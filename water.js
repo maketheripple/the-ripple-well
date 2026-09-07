@@ -1061,7 +1061,7 @@
 
                 transform:
                     translate(-50%, -50%)
-                    scale(.72);
+                    scale(.93);
 
             }
 
@@ -1072,7 +1072,7 @@
 
                 transform:
                     translate(-50%, -50%)
-                    scale(1.08);
+                    scale(1.02);
 
             }
 
@@ -1083,7 +1083,7 @@
 
                 transform:
                     translate(-50%, -50%)
-                    scale(1.42);
+                    scale(1.105);
 
             }
 
@@ -1094,7 +1094,7 @@
 
                 transform:
                     translate(-50%, -50%)
-                    scale(2.25);
+                    scale(1.3125);
 
             }
 
@@ -1710,7 +1710,7 @@
 
                 transform:
                     translate(-50%,-50%)
-                    scale(.72);
+                    scale(.93);
 
             }
 
