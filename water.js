@@ -1,6 +1,6 @@
 /* =========================================================
    THE RIPPLE WELL
-   VERSION 4.0 — SUPER-IMPACT RIPPLES
+   VERSION 4.1 — SUPER-IMPACT CLICK EXPERIENCE
 
    - Water.png remains the visual water surface.
    - The transparent click canvas covers the entire Well,
@@ -2594,6 +2594,12 @@
             );
 
 
+        const impactSuperIntro =
+            document.getElementById(
+                "impact-super-intro"
+            );
+
+
         const impactType =
             impactMessage
                 ? impactMessage.querySelector(
@@ -2760,7 +2766,33 @@
             ) {
 
                 impactTitle.textContent =
-                    "A Super-Impact Ripple";
+                    "A Bigger Ripple";
+
+            }
+
+
+            if (
+                impactSuperIntro
+            ) {
+
+                impactSuperIntro.style.display =
+                    "block";
+
+                impactSuperIntro.setAttribute(
+                    "aria-hidden",
+                    "false"
+                );
+
+            }
+
+
+            if (
+                impactMessage
+            ) {
+
+                impactMessage.classList.add(
+                    "super-impact-open"
+                );
 
             }
 
@@ -2776,6 +2808,32 @@
 
 
         } else {
+
+            if (
+                impactSuperIntro
+            ) {
+
+                impactSuperIntro.style.display =
+                    "none";
+
+                impactSuperIntro.setAttribute(
+                    "aria-hidden",
+                    "true"
+                );
+
+            }
+
+
+            if (
+                impactMessage
+            ) {
+
+                impactMessage.classList.remove(
+                    "super-impact-open"
+                );
+
+            }
+
 
             if (
                 modalLogo
