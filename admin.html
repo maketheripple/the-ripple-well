@@ -1152,518 +1152,6 @@
         }
 
 
-
-
-        /* =================================================
-           SUPER-IMPACT RIPPLES
-        ================================================= */
-
-        .create-super-impact-button {
-
-            background:
-                rgba(
-                    110,
-                    175,
-                    125,
-                    0.24
-                );
-
-            color: #dff8e8;
-
-            border:
-                1px solid
-                rgba(
-                    130,
-                    215,
-                    150,
-                    0.28
-                );
-        }
-
-
-        .create-super-impact-button:hover {
-
-            background:
-                rgba(
-                    110,
-                    185,
-                    130,
-                    0.38
-                );
-        }
-
-
-        #super-impact-ripples-container {
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(
-                    auto-fit,
-                    minmax(
-                        300px,
-                        1fr
-                    )
-                );
-
-            gap: 18px;
-        }
-
-
-        .super-impact-card {
-
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(13, 49, 57, 0.82),
-                    rgba(5, 29, 38, 0.76)
-                );
-
-            border:
-                1px solid
-                rgba(
-                    150,
-                    225,
-                    235,
-                    0.22
-                );
-
-            border-radius: 14px;
-
-            padding: 22px;
-
-            box-shadow:
-                0 14px 40px
-                rgba(
-                    0,
-                    0,
-                    0,
-                    0.24
-                );
-        }
-
-
-        .super-impact-card-header {
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 14px;
-
-            margin-bottom: 18px;
-        }
-
-
-        .super-impact-logo {
-
-            width: 62px;
-
-            height: 62px;
-
-            object-fit: contain;
-
-            border-radius: 10px;
-
-            background:
-                rgba(255,255,255,0.92);
-
-            padding: 7px;
-        }
-
-
-        .super-impact-title {
-
-            flex: 1;
-        }
-
-
-        .super-impact-title h3 {
-
-            margin: 0 0 4px;
-
-            font-size: 18px;
-
-            font-weight: 400;
-        }
-
-
-        .super-impact-id {
-
-            font-size: 11px;
-
-            color:
-                rgba(210, 240, 248, 0.48);
-
-            letter-spacing: 0.8px;
-        }
-
-
-        .super-impact-meta {
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(2, minmax(0, 1fr));
-
-            gap: 8px;
-
-            margin-bottom: 16px;
-        }
-
-
-        .super-impact-message {
-
-            margin: 0 0 18px;
-
-            padding: 13px;
-
-            border-radius: 8px;
-
-            background:
-                rgba(0,15,22,0.30);
-
-            color: #e3f8fc;
-
-            line-height: 1.5;
-
-            white-space: pre-wrap;
-        }
-
-
-        .super-impact-private {
-
-            margin: 0 0 16px;
-
-            padding: 10px 12px;
-
-            border-radius: 7px;
-
-            background:
-                rgba(80, 140, 90, 0.10);
-
-            border:
-                1px solid
-                rgba(110, 190, 130, 0.14);
-
-            color:
-                rgba(210, 240, 220, 0.60);
-
-            font-size: 11px;
-        }
-
-
-        .super-impact-remove {
-
-            width: 100%;
-
-            background:
-                rgba(150,80,80,0.18);
-
-            color: #f0caca;
-
-            border:
-                1px solid
-                rgba(210,130,130,0.20);
-        }
-
-
-        .super-impact-remove:hover {
-
-            background:
-                rgba(170,80,80,0.32);
-        }
-
-
-        /* =================================================
-           SUPER-IMPACT MODAL
-        ================================================= */
-
-        #super-impact-modal {
-
-            position: fixed;
-
-            inset: 0;
-
-            z-index: 1000;
-
-            display: none;
-
-            align-items: center;
-
-            justify-content: center;
-
-            padding: 20px;
-
-            background:
-                rgba(0, 8, 12, 0.78);
-
-            backdrop-filter: blur(6px);
-        }
-
-
-        #super-impact-modal.visible {
-
-            display: flex;
-        }
-
-
-        .super-impact-modal-card {
-
-            width: 100%;
-
-            max-width: 650px;
-
-            max-height: 90vh;
-
-            overflow-y: auto;
-
-            padding: 28px;
-
-            background:
-                linear-gradient(
-                    180deg,
-                    #08232c,
-                    #03151d
-                );
-
-            border:
-                1px solid
-                rgba(150,225,235,0.24);
-
-            border-radius: 16px;
-
-            box-shadow:
-                0 30px 90px
-                rgba(0,0,0,0.50);
-        }
-
-
-        .super-impact-modal-header {
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: space-between;
-
-            gap: 15px;
-
-            margin-bottom: 24px;
-        }
-
-
-        .super-impact-modal-header h2 {
-
-            margin: 0;
-
-            font-size: 22px;
-
-            font-weight: 400;
-        }
-
-
-        .modal-close-button {
-
-            width: 38px;
-
-            height: 38px;
-
-            padding: 0;
-
-            border-radius: 50%;
-
-            background:
-                rgba(130,215,235,0.10);
-
-            color: #dff8ff;
-
-            border:
-                1px solid
-                rgba(130,215,235,0.18);
-
-            font-size: 20px;
-
-            line-height: 1;
-        }
-
-
-        .modal-close-button:hover {
-
-            background:
-                rgba(130,215,235,0.20);
-        }
-
-
-        .super-impact-form-grid {
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(2, minmax(0, 1fr));
-
-            gap: 16px;
-        }
-
-
-        .super-impact-form-full {
-
-            grid-column: 1 / -1;
-        }
-
-
-        .super-impact-modal-card input,
-        .super-impact-modal-card textarea,
-        .super-impact-modal-card select {
-
-            width: 100%;
-
-            padding: 12px 13px;
-
-            border-radius: 7px;
-
-            border:
-                1px solid
-                rgba(140,220,240,0.22);
-
-            background:
-                rgba(0,15,22,0.75);
-
-            color: white;
-
-            font-size: 14px;
-
-            outline: none;
-        }
-
-
-        .super-impact-modal-card textarea {
-
-            min-height: 110px;
-
-            resize: vertical;
-        }
-
-
-        .super-impact-modal-card select {
-
-            appearance: auto;
-        }
-
-
-        .super-impact-modal-card input:focus,
-        .super-impact-modal-card textarea:focus,
-        .super-impact-modal-card select:focus {
-
-            border-color:
-                rgba(150,230,245,0.60);
-        }
-
-
-        .logo-preview {
-
-            display: none;
-
-            width: 80px;
-
-            height: 80px;
-
-            margin-top: 10px;
-
-            padding: 8px;
-
-            object-fit: contain;
-
-            border-radius: 9px;
-
-            background: rgba(255,255,255,0.92);
-        }
-
-
-        .form-help {
-
-            display: block;
-
-            margin-top: 5px;
-
-            color:
-                rgba(210,240,248,0.45);
-
-            font-size: 11px;
-
-            line-height: 1.4;
-        }
-
-
-        .super-impact-form-actions {
-
-            display: flex;
-
-            gap: 10px;
-
-            margin-top: 24px;
-        }
-
-
-        .super-impact-save-button {
-
-            flex: 1;
-
-            background:
-                rgba(70,175,125,0.72);
-
-            color: white;
-
-            font-weight: 600;
-        }
-
-
-        .super-impact-save-button:hover {
-
-            background:
-                rgba(70,190,135,0.92);
-        }
-
-
-        .super-impact-cancel-button {
-
-            background:
-                rgba(80,170,195,0.16);
-
-            color: #cceff7;
-
-            border:
-                1px solid
-                rgba(130,215,235,0.18);
-        }
-
-
-        @media (max-width: 600px) {
-
-            .section-heading {
-                align-items: flex-start;
-                gap: 12px;
-                flex-direction: column;
-            }
-
-            .create-super-impact-button {
-                width: 100%;
-            }
-
-            .super-impact-form-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .super-impact-form-full {
-                grid-column: auto;
-            }
-
-            .super-impact-meta {
-                grid-template-columns: 1fr;
-            }
-        }
-
-
         /* =================================================
            MOBILE
         ================================================= */
@@ -1730,6 +1218,298 @@
                     1fr;
             }
         }
+
+
+        /* =================================================
+           SUPER-IMPACT RIPPLES
+        ================================================= */
+
+        .super-impact-section {
+            margin-top: 30px;
+        }
+
+        .super-impact-create-button {
+            padding: 10px 16px;
+            border-radius: 7px;
+            border: 1px solid rgba(120, 225, 240, 0.35);
+            background: rgba(35, 135, 155, 0.55);
+            color: #e9fcff;
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .super-impact-create-button:hover {
+            background: rgba(45, 160, 180, 0.72);
+            box-shadow: 0 0 18px rgba(80, 220, 240, 0.18);
+        }
+
+        #super-impact-ripples-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 18px;
+        }
+
+        .super-impact-card {
+            background: rgba(7, 34, 44, 0.82);
+            border: 1px solid rgba(130, 215, 235, 0.22);
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.22);
+        }
+
+        .super-impact-card-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+
+        .super-impact-logo {
+            width: 62px;
+            height: 62px;
+            object-fit: contain;
+            border-radius: 9px;
+            background: rgba(255,255,255,0.94);
+            padding: 7px;
+            flex: 0 0 62px;
+        }
+
+        .super-impact-card h3 {
+            margin: 0 0 4px;
+            font-size: 18px;
+            font-weight: 500;
+            color: #f0fdff;
+        }
+
+        .super-impact-id {
+            color: rgba(190, 235, 242, 0.62);
+            font-size: 11px;
+            letter-spacing: 0.8px;
+        }
+
+        .super-impact-meta {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .super-impact-notes {
+            margin: 14px 0 16px;
+            padding: 12px;
+            border-radius: 8px;
+            background: rgba(0, 15, 22, 0.35);
+            border: 1px solid rgba(130, 215, 235, 0.08);
+        }
+
+        .super-impact-notes-label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: rgba(200, 240, 246, 0.52);
+        }
+
+        .super-impact-notes-text {
+            white-space: pre-wrap;
+            color: rgba(225, 248, 252, 0.82);
+            font-size: 13px;
+            line-height: 1.45;
+        }
+
+        .super-impact-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .super-impact-remove-button {
+            width: 100%;
+            padding: 11px 14px;
+            border-radius: 7px;
+            border: 1px solid rgba(210, 130, 130, 0.22);
+            background: rgba(150, 80, 80, 0.18);
+            color: #f0caca;
+            cursor: pointer;
+        }
+
+        .super-impact-remove-button:hover {
+            background: rgba(170, 80, 80, 0.32);
+        }
+
+        .super-impact-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: rgba(0, 7, 12, 0.78);
+            backdrop-filter: blur(7px);
+        }
+
+        .super-impact-modal.visible {
+            display: flex;
+        }
+
+        .super-impact-modal-panel {
+            width: 100%;
+            max-width: 650px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 28px;
+            border-radius: 16px;
+            background: linear-gradient(180deg, rgba(8, 38, 49, 0.98), rgba(3, 21, 29, 0.98));
+            border: 1px solid rgba(130, 215, 235, 0.22);
+            box-shadow: 0 30px 90px rgba(0,0,0,0.5);
+        }
+
+        .super-impact-modal-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 22px;
+        }
+
+        .super-impact-modal-header h2 {
+            margin: 0 0 6px;
+            font-weight: 400;
+        }
+
+        .super-impact-modal-header p {
+            margin: 0;
+            color: rgba(210, 240, 248, 0.62);
+            font-size: 13px;
+        }
+
+        .super-impact-close-button {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid rgba(140, 220, 240, 0.18);
+            background: rgba(0, 15, 22, 0.5);
+            color: #dff8ff;
+            font-size: 20px;
+            cursor: pointer;
+            flex: 0 0 36px;
+        }
+
+        .super-impact-form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .super-impact-form-full {
+            grid-column: 1 / -1;
+        }
+
+        .super-impact-form-group textarea,
+        .super-impact-form-group select {
+            width: 100%;
+            padding: 13px 14px;
+            border-radius: 7px;
+            border: 1px solid rgba(140, 220, 240, 0.22);
+            background: rgba(0, 15, 22, 0.75);
+            color: white;
+            font-size: 15px;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .super-impact-form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .super-impact-form-group select:focus,
+        .super-impact-form-group textarea:focus {
+            border-color: rgba(150, 230, 245, 0.6);
+        }
+
+        .super-impact-logo-preview {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 9px;
+        }
+
+        .super-impact-logo-preview img {
+            width: 58px;
+            height: 58px;
+            object-fit: contain;
+            border-radius: 8px;
+            background: white;
+            padding: 6px;
+            display: none;
+        }
+
+        .super-impact-logo-preview span {
+            color: rgba(210, 240, 248, 0.55);
+            font-size: 12px;
+        }
+
+        .super-impact-private-note {
+            margin-top: 6px;
+            color: rgba(210, 240, 248, 0.45);
+            font-size: 11px;
+            line-height: 1.4;
+        }
+
+        .super-impact-modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+        .super-impact-cancel-button,
+        .super-impact-save-button {
+            padding: 12px 18px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .super-impact-cancel-button {
+            border: 1px solid rgba(140, 220, 240, 0.18);
+            background: rgba(0, 15, 22, 0.5);
+            color: rgba(225, 248, 252, 0.8);
+        }
+
+        .super-impact-save-button {
+            border: 1px solid rgba(100, 210, 160, 0.3);
+            background: rgba(50, 150, 105, 0.72);
+            color: white;
+        }
+
+        .super-impact-save-button:hover {
+            background: rgba(60, 175, 120, 0.86);
+        }
+
+        .super-impact-save-button:disabled,
+        .super-impact-cancel-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 650px) {
+            .super-impact-form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .super-impact-form-full {
+                grid-column: auto;
+            }
+
+            .super-impact-modal-panel {
+                padding: 20px;
+            }
+        }
+
 
     </style>
 
@@ -1917,17 +1697,15 @@
 
             </div>
 
-
             <!-- =================================================
                  SUPER-IMPACT RIPPLES
             ================================================= -->
 
-            <div class="management-section">
+            <div class="management-section super-impact-section">
 
                 <div class="section-heading">
 
                     <div>
-
                         <h2>
                             Super-Impact Ripples
                         </h2>
@@ -1935,24 +1713,23 @@
                         <span>
                             Corporate &amp; Major Contributions
                         </span>
-
                     </div>
 
                     <button
-                        type="button"
-                        class="create-super-impact-button"
                         id="create-super-impact-button"
+                        class="super-impact-create-button"
+                        type="button"
                     >
                         + Create Super-Impact Ripple
                     </button>
 
                 </div>
 
-
                 <div id="super-impact-ripples-container">
                 </div>
 
             </div>
+
 
 
         </section>
@@ -1964,230 +1741,105 @@
 
 
     <!-- =====================================================
-         SUPER-IMPACT RIPPLE CREATION MODAL
+         SUPER-IMPACT RIPPLE FORM
     ===================================================== -->
 
     <div
         id="super-impact-modal"
+        class="super-impact-modal"
         aria-hidden="true"
     >
 
-        <div class="super-impact-modal-card">
+        <div class="super-impact-modal-panel" role="dialog" aria-modal="true" aria-labelledby="super-impact-modal-title">
 
             <div class="super-impact-modal-header">
-
-                <h2>
-                    Create Super-Impact Ripple
-                </h2>
+                <div>
+                    <h2 id="super-impact-modal-title">Create Super-Impact Ripple</h2>
+                    <p>Create a corporate or major-contribution ripple for The Ripple Well.</p>
+                </div>
 
                 <button
+                    id="super-impact-close-button"
+                    class="super-impact-close-button"
                     type="button"
-                    class="modal-close-button"
-                    id="super-impact-modal-close"
                     aria-label="Close"
                 >
                     ×
                 </button>
-
             </div>
 
-
-            <div
-                id="super-impact-form-status"
-                class="status-message"
-            ></div>
-
+            <div id="super-impact-form-status" class="status-message"></div>
 
             <form id="super-impact-form">
 
                 <div class="super-impact-form-grid">
 
-                    <div class="form-group">
-
-                        <label for="sir-id">
-                            Super-Impact Ripple ID
-                        </label>
-
-                        <input
-                            id="sir-id"
-                            type="text"
-                            readonly
-                        >
-
-                        <span class="form-help">
-                            Generated automatically.
-                        </span>
-
+                    <div class="form-group super-impact-form-group">
+                        <label for="super-impact-sir-id">Super-Impact Ripple ID</label>
+                        <input id="super-impact-sir-id" type="text" readonly>
                     </div>
 
-
-                    <div class="form-group">
-
-                        <label for="organization-name">
-                            Organization Name
-                        </label>
-
-                        <input
-                            id="organization-name"
-                            type="text"
-                            required
-                            maxlength="160"
-                        >
-
+                    <div class="form-group super-impact-form-group">
+                        <label for="super-impact-organization-name">Organization Name</label>
+                        <input id="super-impact-organization-name" type="text" required>
                     </div>
 
-
-                    <div class="form-group super-impact-form-full">
-
-                        <label for="organization-address">
-                            Organization Address
-                        </label>
-
-                        <input
-                            id="organization-address"
-                            type="text"
-                            maxlength="300"
-                            placeholder="Optional — use the specific contributing location when applicable"
-                        >
-
+                    <div class="form-group super-impact-form-group super-impact-form-full">
+                        <label for="super-impact-organization-address">Organization / Contributing Location Address</label>
+                        <input id="super-impact-organization-address" type="text" placeholder="Optional — use the specific store/location when applicable">
                     </div>
 
-
-                    <div class="form-group super-impact-form-full">
-
-                        <label for="organization-logo">
-                            Organization Logo
-                        </label>
-
-                        <input
-                            id="organization-logo"
-                            type="file"
-                            accept="image/png,image/jpeg,image/webp,image/svg+xml"
-                            required
-                        >
-
-                        <span class="form-help">
-                            The logo will be uploaded to the Supabase Storage bucket named “organization-logos”.
-                        </span>
-
-                        <img
-                            id="logo-preview"
-                            class="logo-preview"
-                            alt="Logo preview"
-                        >
-
+                    <div class="form-group super-impact-form-group super-impact-form-full">
+                        <label for="super-impact-logo">Organization Logo</label>
+                        <input id="super-impact-logo" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml">
+                        <div class="super-impact-logo-preview">
+                            <img id="super-impact-logo-preview-image" alt="Logo preview">
+                            <span id="super-impact-logo-preview-text">Choose a logo file from your computer.</span>
+                        </div>
                     </div>
 
-
-                    <div class="form-group">
-
-                        <label for="contribution-amount">
-                            Contribution Amount
-                        </label>
-
-                        <input
-                            id="contribution-amount"
-                            type="number"
-                            min="0"
-                            step="0.01"
-                            required
-                        >
-
-                        <span class="form-help">
-                            Private administrative information — not shown publicly.
-                        </span>
-
+                    <div class="form-group super-impact-form-group">
+                        <label for="super-impact-contribution-amount">Contribution Amount</label>
+                        <input id="super-impact-contribution-amount" type="number" min="0" step="0.01" required>
+                        <div class="super-impact-private-note">Private administrative information — it will not be displayed publicly.</div>
                     </div>
 
-
-                    <div class="form-group">
-
-                        <label for="contribution-currency">
-                            Currency
-                        </label>
-
-                        <select
-                            id="contribution-currency"
-                            required
-                        >
+                    <div class="form-group super-impact-form-group">
+                        <label for="super-impact-contribution-currency">Currency</label>
+                        <select id="super-impact-contribution-currency" required>
                             <option value="CAD">CAD — Canadian Dollar</option>
                             <option value="USD">USD — US Dollar</option>
                             <option value="EUR">EUR — Euro</option>
                             <option value="GBP">GBP — British Pound</option>
                         </select>
-
                     </div>
 
-
-                    <div class="form-group">
-
-                        <label for="contribution-date">
-                            Contribution Date
-                        </label>
-
-                        <input
-                            id="contribution-date"
-                            type="date"
-                            required
-                        >
-
+                    <div class="form-group super-impact-form-group">
+                        <label for="super-impact-contribution-date">Contribution Date</label>
+                        <input id="super-impact-contribution-date" type="date" required>
                     </div>
 
-
-                    <div class="form-group">
-
-                        <label for="super-impact-size">
-                            Ripple Size
-                        </label>
-
-                        <select
-                            id="super-impact-size"
-                            required
-                        >
-                            <option value="extra-large">Extra Large</option>
-                            <option value="large">Large</option>
-                            <option value="medium">Medium</option>
+                    <div class="form-group super-impact-form-group">
+                        <label for="super-impact-size">Ripple Size</label>
+                        <select id="super-impact-size" required>
                             <option value="small">Small</option>
+                            <option value="medium">Medium</option>
+                            <option value="large">Large</option>
+                            <option value="extra-large" selected>Extra Large</option>
                         </select>
-
                     </div>
 
-
-                    <div class="form-group super-impact-form-full">
-
-                        <label for="super-impact-message">
-                            Optional Message
-                        </label>
-
-                        <textarea
-                            id="super-impact-message"
-                            maxlength="1000"
-                            placeholder="Optional message associated with this Super-Impact Ripple"
-                        ></textarea>
-
+                    <div class="form-group super-impact-form-group super-impact-form-full">
+                        <label for="super-impact-message">Organization Message (Optional)</label>
+                        <textarea id="super-impact-message" placeholder="Optional message from the organization"></textarea>
                     </div>
+
 
                 </div>
 
-
-                <div class="super-impact-form-actions">
-
-                    <button
-                        type="button"
-                        class="super-impact-cancel-button"
-                        id="super-impact-modal-cancel"
-                    >
-                        Cancel
-                    </button>
-
-                    <button
-                        type="submit"
-                        class="super-impact-save-button"
-                        id="super-impact-save-button"
-                    >
-                        Create Super-Impact Ripple
-                    </button>
-
+                <div class="super-impact-modal-actions">
+                    <button id="super-impact-cancel-button" class="super-impact-cancel-button" type="button">Cancel</button>
+                    <button id="super-impact-save-button" class="super-impact-save-button" type="submit">Create Super-Impact Ripple</button>
                 </div>
 
             </form>
@@ -2195,7 +1847,6 @@
         </div>
 
     </div>
-
 
     <!-- =====================================================
          SUPABASE
@@ -2271,7 +1922,7 @@
         const approvedRipplesContainer =
             document.getElementById(
                 "approved-ripples-container"
-            );\n\n\n        const superImpactRipplesContainer =\n            document.getElementById(\n                "super-impact-ripples-container"\n            );\n\n\n        const createSuperImpactButton =\n            document.getElementById(\n                "create-super-impact-button"\n            );\n\n\n        const superImpactModal =\n            document.getElementById(\n                "super-impact-modal"\n            );\n\n\n        const superImpactModalClose =\n            document.getElementById(\n                "super-impact-modal-close"\n            );\n\n\n        const superImpactModalCancel =\n            document.getElementById(\n                "super-impact-modal-cancel"\n            );\n\n\n        const superImpactForm =\n            document.getElementById(\n                "super-impact-form"\n            );\n\n\n        const superImpactFormStatus =\n            document.getElementById(\n                "super-impact-form-status"\n            );\n\n\n        const sirIdInput =\n            document.getElementById(\n                "sir-id"\n            );\n\n\n        const organizationNameInput =\n            document.getElementById(\n                "organization-name"\n            );\n\n\n        const organizationAddressInput =\n            document.getElementById(\n                "organization-address"\n            );\n\n\n        const organizationLogoInput =\n            document.getElementById(\n                "organization-logo"\n            );\n\n\n        const logoPreview =\n            document.getElementById(\n                "logo-preview"\n            );\n\n\n        const contributionAmountInput =\n            document.getElementById(\n                "contribution-amount"\n            );\n\n\n        const contributionCurrencyInput =\n            document.getElementById(\n                "contribution-currency"\n            );\n\n\n        const contributionDateInput =\n            document.getElementById(\n                "contribution-date"\n            );\n\n\n        const superImpactSizeInput =\n            document.getElementById(\n                "super-impact-size"\n            );\n\n\n        const superImpactMessageInput =\n            document.getElementById(\n                "super-impact-message"\n            );\n\n\n        const superImpactSaveButton =\n            document.getElementById(\n                "super-impact-save-button"\n            );
+            );
 
 
         const pendingCount =
@@ -2289,6 +1940,72 @@
         const logoutButton =
             document.getElementById(
                 "logout-button"
+            );
+
+
+        const superImpactRipplesContainer =
+            document.getElementById(
+                "super-impact-ripples-container"
+            );
+
+
+        const createSuperImpactButton =
+            document.getElementById(
+                "create-super-impact-button"
+            );
+
+
+        const superImpactModal =
+            document.getElementById(
+                "super-impact-modal"
+            );
+
+
+        const superImpactCloseButton =
+            document.getElementById(
+                "super-impact-close-button"
+            );
+
+
+        const superImpactCancelButton =
+            document.getElementById(
+                "super-impact-cancel-button"
+            );
+
+
+        const superImpactForm =
+            document.getElementById(
+                "super-impact-form"
+            );
+
+
+        const superImpactFormStatus =
+            document.getElementById(
+                "super-impact-form-status"
+            );
+
+
+        const superImpactSaveButton =
+            document.getElementById(
+                "super-impact-save-button"
+            );
+
+
+        const superImpactLogoInput =
+            document.getElementById(
+                "super-impact-logo"
+            );
+
+
+        const superImpactLogoPreviewImage =
+            document.getElementById(
+                "super-impact-logo-preview-image"
+            );
+
+
+        const superImpactLogoPreviewText =
+            document.getElementById(
+                "super-impact-logo-preview-text"
             );
 
 
@@ -2480,14 +2197,11 @@
                         "ripple_submissions"
                     )
                     .select(
-                        "id, created_at, message, name, region, country, status, size, type"
+                        "id, created_at, message, name, region, country, status, size"
                     )
                     .eq(
                         "status",
                         "pending"
-                    )
-                    .or(
-                        "type.is.null,type.eq.impact"
                     )
                     .order(
                         "created_at",
@@ -2981,14 +2695,11 @@
                         "ripple_submissions"
                     )
                     .select(
-                        "id, created_at, message, name, region, country, status, size, type"
+                        "id, created_at, message, name, region, country, status, size"
                     )
                     .eq(
                         "status",
                         "approved"
-                    )
-                    .or(
-                        "type.is.null,type.eq.impact"
                     )
                     .order(
                         "created_at",
@@ -3069,635 +2780,6 @@
                 }
             );
         }
-
-
-
-
-        /* =================================================
-           SUPER-IMPACT RIPPLE MANAGEMENT
-        ================================================= */
-
-        async function loadSuperImpactRipples() {
-
-            superImpactRipplesContainer.innerHTML = "";
-
-
-            const {
-                data: ripples,
-                error
-            } =
-                await supabaseClient
-                    .from("ripple_submissions")
-                    .select(
-                        "id, created_at, message, status, size, type, sir_id, organization_name, organization_address, organization_logo, contribution_amount, contribution_currency, contribution_date"
-                    )
-                    .eq("type", "super-impact")
-                    .eq("status", "approved")
-                    .order("created_at", { ascending: false });
-
-
-            if (error) {
-
-                console.error(
-                    "Could not load Super-Impact Ripples:",
-                    error
-                );
-
-                superImpactRipplesContainer.innerHTML = `
-                    <div class="empty-state">
-                        <h2>Unable to Load Super-Impact Ripples</h2>
-                        <p>Please check the database policies.</p>
-                    </div>
-                `;
-
-                return;
-            }
-
-
-            if (!ripples || ripples.length === 0) {
-
-                superImpactRipplesContainer.innerHTML = `
-                    <div class="empty-state">
-                        <h2>No Super-Impact Ripples Yet</h2>
-                        <p>Create the first one when a corporate or major contribution is ready.</p>
-                    </div>
-                `;
-
-                return;
-            }
-
-
-            ripples.forEach(
-                ripple => createSuperImpactCard(ripple)
-            );
-        }
-
-
-        function createSuperImpactCard(ripple) {
-
-            const card = document.createElement("article");
-            card.className = "super-impact-card";
-
-
-            const header = document.createElement("div");
-            header.className = "super-impact-card-header";
-
-
-            if (ripple.organization_logo) {
-
-                const logo = document.createElement("img");
-                logo.className = "super-impact-logo";
-                logo.src = ripple.organization_logo;
-                logo.alt = `${ripple.organization_name || "Organization"} logo`;
-                logo.loading = "lazy";
-                header.appendChild(logo);
-            }
-
-
-            const title = document.createElement("div");
-            title.className = "super-impact-title";
-
-            const titleElement = document.createElement("h3");
-            titleElement.textContent =
-                ripple.organization_name || "Unnamed Organization";
-
-            const idElement = document.createElement("div");
-            idElement.className = "super-impact-id";
-            idElement.textContent = ripple.sir_id || "No SIR ID";
-
-            title.appendChild(titleElement);
-            title.appendChild(idElement);
-            header.appendChild(title);
-
-
-            const meta = document.createElement("div");
-            meta.className = "super-impact-meta";
-
-            meta.appendChild(
-                createMetaItem(
-                    "Location",
-                    ripple.organization_address || "—"
-                )
-            );
-
-            meta.appendChild(
-                createMetaItem(
-                    "Contribution Date",
-                    formatDateOnly(ripple.contribution_date)
-                )
-            );
-
-            meta.appendChild(
-                createMetaItem(
-                    "Ripple Size",
-                    formatRippleSize(ripple.size)
-                )
-            );
-
-            meta.appendChild(
-                createMetaItem(
-                    "Status",
-                    "Active"
-                )
-            );
-
-
-            card.appendChild(header);
-            card.appendChild(meta);
-
-
-            if (ripple.message) {
-
-                const message = document.createElement("p");
-                message.className = "super-impact-message";
-                message.textContent = `“${ripple.message}”`;
-                card.appendChild(message);
-            }
-
-
-            const privateInfo = document.createElement("p");
-            privateInfo.className = "super-impact-private";
-            privateInfo.textContent =
-                `Private contribution record: ${formatCurrency(ripple.contribution_amount, ripple.contribution_currency)}`;
-            card.appendChild(privateInfo);
-
-
-            const removeButton = document.createElement("button");
-            removeButton.type = "button";
-            removeButton.className = "super-impact-remove";
-            removeButton.textContent = "Remove Super-Impact Ripple";
-
-            removeButton.addEventListener(
-                "click",
-                () => removeSuperImpactRipple(ripple, card)
-            );
-
-            card.appendChild(removeButton);
-
-            superImpactRipplesContainer.appendChild(card);
-        }
-
-
-        async function removeSuperImpactRipple(ripple, card) {
-
-            const confirmed = window.confirm(
-                `Are you sure you want to remove ${ripple.sir_id || "this Super-Impact Ripple"} from The Ripple Well?`
-            );
-
-            if (!confirmed) return;
-
-
-            const removeButton =
-                card.querySelector(".super-impact-remove");
-
-            if (removeButton) {
-                removeButton.disabled = true;
-                removeButton.textContent = "Removing...";
-            }
-
-
-            const { error } =
-                await supabaseClient
-                    .from("ripple_submissions")
-                    .update({ status: "rejected" })
-                    .eq("id", ripple.id);
-
-
-            if (error) {
-
-                console.error(
-                    "Could not remove Super-Impact Ripple:",
-                    error
-                );
-
-                if (removeButton) {
-                    removeButton.disabled = false;
-                    removeButton.textContent =
-                        "Remove Super-Impact Ripple";
-                }
-
-                showStatus(
-                    dashboardStatus,
-                    `Unable to remove Super-Impact Ripple. ${error.message || ""}`,
-                    "error"
-                );
-
-                return;
-            }
-
-
-            card.remove();
-
-            showStatus(
-                dashboardStatus,
-                `${ripple.sir_id || "Super-Impact Ripple"} removed.`,
-                "success"
-            );
-
-
-            if (superImpactRipplesContainer.children.length === 0) {
-
-                superImpactRipplesContainer.innerHTML = `
-                    <div class="empty-state">
-                        <h2>No Super-Impact Ripples Yet</h2>
-                        <p>Create the first one when a corporate or major contribution is ready.</p>
-                    </div>
-                `;
-            }
-        }
-
-
-        function formatDateOnly(dateString) {
-
-            if (!dateString) return "—";
-
-            const date = new Date(`${dateString}T00:00:00`);
-
-            return date.toLocaleDateString(
-                undefined,
-                {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric"
-                }
-            );
-        }
-
-
-        function formatCurrency(amount, currency) {
-
-            if (
-                amount === null ||
-                amount === undefined ||
-                amount === ""
-            ) {
-                return "Not recorded";
-            }
-
-            return new Intl.NumberFormat(
-                undefined,
-                {
-                    style: "currency",
-                    currency: currency || "CAD"
-                }
-            ).format(Number(amount));
-        }
-
-
-        /* =================================================
-           SUPER-IMPACT CREATION
-        ================================================= */
-
-        async function getNextSirId() {
-
-            const {
-                data,
-                error
-            } =
-                await supabaseClient
-                    .from("ripple_submissions")
-                    .select("sir_id")
-                    .not("sir_id", "is", null);
-
-
-            if (error) {
-                throw error;
-            }
-
-
-            let highest = 0;
-
-            (data || []).forEach(row => {
-
-                const match =
-                    String(row.sir_id || "")
-                        .match(/^SIR-(\d+)$/i);
-
-                if (match) {
-
-                    highest = Math.max(
-                        highest,
-                        parseInt(match[1], 10)
-                    );
-                }
-            });
-
-
-            return `SIR-${String(highest + 1).padStart(4, "0")}`;
-        }
-
-
-        async function openSuperImpactModal() {
-
-            clearStatus(superImpactFormStatus);
-            superImpactForm.reset();
-
-            contributionCurrencyInput.value = "CAD";
-            superImpactSizeInput.value = "extra-large";
-            contributionDateInput.value =
-                new Date().toISOString().slice(0, 10);
-
-            logoPreview.removeAttribute("src");
-            logoPreview.style.display = "none";
-
-            try {
-
-                sirIdInput.value =
-                    await getNextSirId();
-
-                superImpactModal.classList.add("visible");
-                superImpactModal.setAttribute("aria-hidden", "false");
-
-            } catch (error) {
-
-                console.error(
-                    "Could not generate Super-Impact Ripple ID:",
-                    error
-                );
-
-                showStatus(
-                    dashboardStatus,
-                    `Unable to generate the next Super-Impact Ripple ID. ${error.message || ""}`,
-                    "error"
-                );
-            }
-        }
-
-
-        function closeSuperImpactModal() {
-
-            superImpactModal.classList.remove("visible");
-            superImpactModal.setAttribute("aria-hidden", "true");
-            clearStatus(superImpactFormStatus);
-        }
-
-
-        organizationLogoInput.addEventListener(
-            "change",
-            () => {
-
-                const file = organizationLogoInput.files[0];
-
-                if (!file) {
-                    logoPreview.removeAttribute("src");
-                    logoPreview.style.display = "none";
-                    return;
-                }
-
-                const reader = new FileReader();
-
-                reader.onload = event => {
-                    logoPreview.src = event.target.result;
-                    logoPreview.style.display = "block";
-                };
-
-                reader.readAsDataURL(file);
-            }
-        );
-
-
-        function sanitizeFileName(name) {
-
-            return name
-                .toLowerCase()
-                .replace(/[^a-z0-9._-]+/g, "-")
-                .replace(/-+/g, "-")
-                .replace(/^-|-$/g, "");
-        }
-
-
-        async function uploadOrganizationLogo(file, sirId) {
-
-            if (!file) {
-                throw new Error("Please select an organization logo.");
-            }
-
-            const maxSize = 5 * 1024 * 1024;
-
-            if (file.size > maxSize) {
-                throw new Error("The organization logo must be 5 MB or smaller.");
-            }
-
-            const allowedTypes = [
-                "image/png",
-                "image/jpeg",
-                "image/webp",
-                "image/svg+xml"
-            ];
-
-            if (!allowedTypes.includes(file.type)) {
-                throw new Error("Please use a PNG, JPG, WEBP, or SVG logo.");
-            }
-
-            const extension =
-                file.name.includes(".")
-                    ? file.name.split(".").pop().toLowerCase()
-                    : "png";
-
-            const baseName =
-                sanitizeFileName(
-                    organizationNameInput.value || "organization"
-                ) || "organization";
-
-            const path =
-                `${sirId}/${baseName}-${Date.now()}.${extension}`;
-
-            const { error } =
-                await supabaseClient.storage
-                    .from("organization-logos")
-                    .upload(path, file, {
-                        cacheControl: "31536000",
-                        upsert: false,
-                        contentType: file.type
-                    });
-
-            if (error) {
-                throw error;
-            }
-
-            const {
-                data: publicUrlData
-            } =
-                supabaseClient.storage
-                    .from("organization-logos")
-                    .getPublicUrl(path);
-
-            if (!publicUrlData || !publicUrlData.publicUrl) {
-                throw new Error("The logo uploaded, but its public URL could not be created.");
-            }
-
-            return publicUrlData.publicUrl;
-        }
-
-
-        superImpactForm.addEventListener(
-            "submit",
-            async event => {
-
-                event.preventDefault();
-
-                clearStatus(superImpactFormStatus);
-
-                superImpactSaveButton.disabled = true;
-                superImpactSaveButton.textContent = "Creating...";
-
-                try {
-
-                    const sirId = sirIdInput.value.trim();
-                    const organizationName =
-                        organizationNameInput.value.trim();
-                    const organizationAddress =
-                        organizationAddressInput.value.trim();
-                    const logoFile =
-                        organizationLogoInput.files[0];
-                    const contributionAmount =
-                        Number(contributionAmountInput.value);
-                    const contributionCurrency =
-                        contributionCurrencyInput.value;
-                    const contributionDate =
-                        contributionDateInput.value;
-                    const size =
-                        superImpactSizeInput.value;
-                    const message =
-                        superImpactMessageInput.value.trim();
-
-
-                    if (!sirId) {
-                        throw new Error("A Super-Impact Ripple ID is required.");
-                    }
-
-                    if (!organizationName) {
-                        throw new Error("Organization name is required.");
-                    }
-
-                    if (!logoFile) {
-                        throw new Error("Please select an organization logo.");
-                    }
-
-                    if (
-                        !Number.isFinite(contributionAmount) ||
-                        contributionAmount < 0
-                    ) {
-                        throw new Error("Please enter a valid contribution amount.");
-                    }
-
-                    if (!contributionDate) {
-                        throw new Error("Contribution date is required.");
-                    }
-
-
-                    const logoUrl =
-                        await uploadOrganizationLogo(
-                            logoFile,
-                            sirId
-                        );
-
-
-                    const {
-                        error
-                    } =
-                        await supabaseClient
-                            .from("ripple_submissions")
-                            .insert({
-                                type: "super-impact",
-                                sir_id: sirId,
-                                organization_name: organizationName,
-                                organization_address:
-                                    organizationAddress || null,
-                                organization_logo: logoUrl,
-                                contribution_amount:
-                                    contributionAmount,
-                                contribution_currency:
-                                    contributionCurrency,
-                                contribution_date:
-                                    contributionDate,
-                                message: message || null,
-                                name: organizationName,
-                                region: null,
-                                country: null,
-                                status: "approved",
-                                size
-                            });
-
-
-                    if (error) {
-                        throw error;
-                    }
-
-
-                    closeSuperImpactModal();
-
-                    showStatus(
-                        dashboardStatus,
-                        `${sirId} created successfully.`,
-                        "success"
-                    );
-
-                    await loadSuperImpactRipples();
-
-                } catch (error) {
-
-                    console.error(
-                        "Could not create Super-Impact Ripple:",
-                        error
-                    );
-
-                    showStatus(
-                        superImpactFormStatus,
-                        error.message ||
-                            "Unable to create the Super-Impact Ripple.",
-                        "error"
-                    );
-
-                } finally {
-
-                    superImpactSaveButton.disabled = false;
-                    superImpactSaveButton.textContent =
-                        "Create Super-Impact Ripple";
-                }
-            }
-        );
-
-
-        createSuperImpactButton.addEventListener(
-            "click",
-            openSuperImpactModal
-        );
-
-
-        superImpactModalClose.addEventListener(
-            "click",
-            closeSuperImpactModal
-        );
-
-
-        superImpactModalCancel.addEventListener(
-            "click",
-            closeSuperImpactModal
-        );
-
-
-        superImpactModal.addEventListener(
-            "click",
-            event => {
-                if (event.target === superImpactModal) {
-                    closeSuperImpactModal();
-                }
-            }
-        );
-
-
-        document.addEventListener(
-            "keydown",
-            event => {
-                if (
-                    event.key === "Escape" &&
-                    superImpactModal.classList.contains("visible")
-                ) {
-                    closeSuperImpactModal();
-                }
-            }
-        );
 
 
         /* =================================================
@@ -3967,6 +3049,395 @@
                 `;
             }
         }
+
+
+
+        /* =================================================
+           SUPER-IMPACT RIPPLE MANAGEMENT
+        ================================================= */
+
+        function getTodayDateString() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, "0");
+            const day = String(now.getDate()).padStart(2, "0");
+            return `${year}-${month}-${day}`;
+        }
+
+
+        async function generateNextSirId() {
+
+            const { data, error } =
+                await supabaseClient
+                    .from("ripple_submissions")
+                    .select("sir_id")
+                    .not("sir_id", "is", null)
+                    .order("sir_id", { ascending: false })
+                    .limit(1);
+
+            if (error) {
+                console.error("Could not generate Super-Impact Ripple ID:", error);
+                throw error;
+            }
+
+            let nextNumber = 1;
+
+            if (data && data.length > 0 && data[0].sir_id) {
+                const match = String(data[0].sir_id).match(/SIR-(\d+)/i);
+                if (match) {
+                    nextNumber = parseInt(match[1], 10) + 1;
+                }
+            }
+
+            return `SIR-${String(nextNumber).padStart(4, "0")}`;
+        }
+
+
+        function openSuperImpactModal() {
+            clearStatus(superImpactFormStatus);
+            superImpactForm.reset();
+            document.getElementById("super-impact-contribution-currency").value = "CAD";
+            document.getElementById("super-impact-size").value = "extra-large";
+            document.getElementById("super-impact-contribution-date").value = getTodayDateString();
+            superImpactLogoPreviewImage.src = "";
+            superImpactLogoPreviewImage.style.display = "none";
+            superImpactLogoPreviewText.textContent = "Choose a logo file from your computer.";
+            superImpactSaveButton.disabled = false;
+            superImpactSaveButton.textContent = "Create Super-Impact Ripple";
+
+            superImpactModal.classList.add("visible");
+            superImpactModal.setAttribute("aria-hidden", "false");
+
+            generateNextSirId()
+                .then(sirId => {
+                    document.getElementById("super-impact-sir-id").value = sirId;
+                })
+                .catch(error => {
+                    console.error(error);
+                    showStatus(
+                        superImpactFormStatus,
+                        "Unable to generate the next Super-Impact Ripple ID. Please try again.",
+                        "error"
+                    );
+                });
+
+            document.getElementById("super-impact-organization-name").focus();
+        }
+
+
+        function closeSuperImpactModal() {
+            superImpactModal.classList.remove("visible");
+            superImpactModal.setAttribute("aria-hidden", "true");
+        }
+
+
+        async function loadSuperImpactRipples() {
+
+            superImpactRipplesContainer.innerHTML = "";
+
+            const { data: ripples, error } =
+                await supabaseClient
+                    .from("ripple_submissions")
+                    .select("id, created_at, message, name, region, country, status, size, type, sir_id, organization_name, organization_address, organization_logo, contribution_amount, contribution_currency, contribution_date")
+                    .eq("status", "approved")
+                    .eq("type", "super-impact")
+                    .order("contribution_date", { ascending: false });
+
+            if (error) {
+                console.error("Could not load Super-Impact Ripples:", error);
+                superImpactRipplesContainer.innerHTML = `
+                    <div class="empty-state">
+                        <h2>Unable to Load Super-Impact Ripples</h2>
+                        <p>${escapeHtml(error.message || "Please check the database columns and policies.")}</p>
+                    </div>
+                `;
+                return;
+            }
+
+            if (!ripples || ripples.length === 0) {
+                superImpactRipplesContainer.innerHTML = `
+                    <div class="empty-state">
+                        <h2>No Super-Impact Ripples</h2>
+                        <p>No corporate or major-contribution ripples have been created yet.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            ripples.forEach(ripple => createSuperImpactRippleCard(ripple));
+        }
+
+
+        function createSuperImpactRippleCard(ripple) {
+
+            const card = document.createElement("article");
+            card.className = "super-impact-card";
+
+            const header = document.createElement("div");
+            header.className = "super-impact-card-header";
+
+            if (ripple.organization_logo) {
+                const logo = document.createElement("img");
+                logo.className = "super-impact-logo";
+                logo.src = ripple.organization_logo;
+                logo.alt = `${ripple.organization_name || "Organization"} logo`;
+                header.appendChild(logo);
+            }
+
+            const heading = document.createElement("div");
+            const title = document.createElement("h3");
+            title.textContent = ripple.organization_name || "Unnamed Organization";
+            const id = document.createElement("div");
+            id.className = "super-impact-id";
+            id.textContent = ripple.sir_id || "No SIR ID";
+            heading.appendChild(title);
+            heading.appendChild(id);
+            header.appendChild(heading);
+
+            const meta = document.createElement("div");
+            meta.className = "super-impact-meta";
+            meta.appendChild(createMetaItem("Location", ripple.organization_address || "—"));
+            meta.appendChild(createMetaItem("Contribution", formatContribution(ripple.contribution_amount, ripple.contribution_currency)));
+            meta.appendChild(createMetaItem("Date", formatDateOnly(ripple.contribution_date)));
+            meta.appendChild(createMetaItem("Ripple Size", formatRippleSize(ripple.size)));
+
+            const actions = document.createElement("div");
+            actions.className = "super-impact-actions";
+
+            const removeButton = document.createElement("button");
+            removeButton.type = "button";
+            removeButton.className = "super-impact-remove-button";
+            removeButton.textContent = "Remove Super-Impact Ripple";
+            removeButton.addEventListener("click", () => removeSuperImpactRipple(ripple.id, card));
+            card.appendChild(header);
+            card.appendChild(meta);
+            actions.appendChild(removeButton);
+            card.appendChild(actions);
+
+            superImpactRipplesContainer.appendChild(card);
+        }
+
+
+        async function removeSuperImpactRipple(rippleId, card) {
+
+            const confirmed = window.confirm(
+                "Are you sure you want to remove this Super-Impact Ripple from The Ripple Well?"
+            );
+
+            if (!confirmed) return;
+
+            const button = card.querySelector(".super-impact-remove-button");
+            if (button) {
+                button.disabled = true;
+                button.textContent = "Removing...";
+            }
+
+            const { error } =
+                await supabaseClient
+                    .from("ripple_submissions")
+                    .update({ status: "rejected" })
+                    .eq("id", rippleId)
+                    .eq("type", "super-impact");
+
+            if (error) {
+                console.error("Could not remove Super-Impact Ripple:", error);
+                if (button) {
+                    button.disabled = false;
+                    button.textContent = "Remove Super-Impact Ripple";
+                }
+                showStatus(
+                    dashboardStatus,
+                    `Unable to remove Super-Impact Ripple. ${error.message || ""}`,
+                    "error"
+                );
+                return;
+            }
+
+            card.remove();
+            showStatus(dashboardStatus, "Super-Impact Ripple removed.", "success");
+
+            if (superImpactRipplesContainer.children.length === 0) {
+                superImpactRipplesContainer.innerHTML = `
+                    <div class="empty-state">
+                        <h2>No Super-Impact Ripples</h2>
+                        <p>No corporate or major-contribution ripples have been created yet.</p>
+                    </div>
+                `;
+            }
+        }
+
+
+        function formatContribution(amount, currency) {
+            if (amount === null || amount === undefined || amount === "") return "—";
+            const numericAmount = Number(amount);
+            if (!Number.isFinite(numericAmount)) return `${amount} ${currency || ""}`.trim();
+            return new Intl.NumberFormat(undefined, {
+                style: "currency",
+                currency: currency || "CAD"
+            }).format(numericAmount);
+        }
+
+
+        function formatDateOnly(dateString) {
+            if (!dateString) return "—";
+            const date = new Date(`${dateString}T00:00:00`);
+            if (Number.isNaN(date.getTime())) return dateString;
+            return date.toLocaleDateString(undefined, {
+                year: "numeric",
+                month: "short",
+                day: "numeric"
+            });
+        }
+
+
+        function escapeHtml(value) {
+            const div = document.createElement("div");
+            div.textContent = value;
+            return div.innerHTML;
+        }
+
+
+        async function uploadSuperImpactLogo(file, sirId) {
+
+            if (!file) return null;
+
+            const extension =
+                (file.name.split(".").pop() || "png")
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]/g, "") || "png";
+
+            const safeSirId = sirId.replace(/[^a-zA-Z0-9_-]/g, "");
+            const filePath = `${safeSirId}/${Date.now()}.${extension}`;
+
+            const { error: uploadError } =
+                await supabaseClient.storage
+                    .from("organization-logos")
+                    .upload(filePath, file, {
+                        cacheControl: "3600",
+                        upsert: false,
+                        contentType: file.type || undefined
+                    });
+
+            if (uploadError) throw uploadError;
+
+            const { data } =
+                supabaseClient.storage
+                    .from("organization-logos")
+                    .getPublicUrl(filePath);
+
+            return data.publicUrl;
+        }
+
+
+        createSuperImpactButton.addEventListener("click", openSuperImpactModal);
+        superImpactCloseButton.addEventListener("click", closeSuperImpactModal);
+        superImpactCancelButton.addEventListener("click", closeSuperImpactModal);
+
+        superImpactModal.addEventListener("click", event => {
+            if (event.target === superImpactModal) closeSuperImpactModal();
+        });
+
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape" && superImpactModal.classList.contains("visible")) {
+                closeSuperImpactModal();
+            }
+        });
+
+        superImpactLogoInput.addEventListener("change", () => {
+            const file = superImpactLogoInput.files && superImpactLogoInput.files[0];
+            if (!file) {
+                superImpactLogoPreviewImage.src = "";
+                superImpactLogoPreviewImage.style.display = "none";
+                superImpactLogoPreviewText.textContent = "Choose a logo file from your computer.";
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = event => {
+                superImpactLogoPreviewImage.src = event.target.result;
+                superImpactLogoPreviewImage.style.display = "block";
+                superImpactLogoPreviewText.textContent = file.name;
+            };
+            reader.readAsDataURL(file);
+        });
+
+
+        superImpactForm.addEventListener("submit", async event => {
+
+            event.preventDefault();
+            clearStatus(superImpactFormStatus);
+
+            const sirId = document.getElementById("super-impact-sir-id").value.trim();
+            const organizationName = document.getElementById("super-impact-organization-name").value.trim();
+            const organizationAddress = document.getElementById("super-impact-organization-address").value.trim();
+            const contributionAmount = document.getElementById("super-impact-contribution-amount").value;
+            const contributionCurrency = document.getElementById("super-impact-contribution-currency").value;
+            const contributionDate = document.getElementById("super-impact-contribution-date").value;
+            const size = document.getElementById("super-impact-size").value;
+            const message = document.getElementById("super-impact-message").value.trim();
+            const logoFile = superImpactLogoInput.files && superImpactLogoInput.files[0];
+
+            if (!sirId || !organizationName || !contributionAmount || !contributionDate || !size) {
+                showStatus(superImpactFormStatus, "Please complete all required fields.", "error");
+                return;
+            }
+
+            const numericAmount = Number(contributionAmount);
+            if (!Number.isFinite(numericAmount) || numericAmount < 0) {
+                showStatus(superImpactFormStatus, "Please enter a valid contribution amount.", "error");
+                return;
+            }
+
+            superImpactSaveButton.disabled = true;
+            superImpactCancelButton.disabled = true;
+            superImpactSaveButton.textContent = "Creating...";
+
+            try {
+                let organizationLogo = null;
+
+                if (logoFile) {
+                    organizationLogo = await uploadSuperImpactLogo(logoFile, sirId);
+                }
+
+                const { error } =
+                    await supabaseClient
+                        .from("ripple_submissions")
+                        .insert({
+                            type: "super-impact",
+                            sir_id: sirId,
+                            organization_name: organizationName,
+                            organization_address: organizationAddress || null,
+                            organization_logo: organizationLogo,
+                            contribution_amount: numericAmount,
+                            contribution_currency: contributionCurrency,
+                            contribution_date: contributionDate,
+                            message: message || null,
+                            name: organizationName,
+                            status: "approved",
+                            size,
+                            region: null,
+                            country: null
+                        });
+
+                if (error) throw error;
+
+                closeSuperImpactModal();
+                showStatus(dashboardStatus, `${sirId} created successfully.`, "success");
+                await loadSuperImpactRipples();
+
+            } catch (error) {
+                console.error("Could not create Super-Impact Ripple:", error);
+                showStatus(
+                    superImpactFormStatus,
+                    `Unable to create Super-Impact Ripple. ${error.message || "Please try again."}`,
+                    "error"
+                );
+            } finally {
+                superImpactSaveButton.disabled = false;
+                superImpactCancelButton.disabled = false;
+                superImpactSaveButton.textContent = "Create Super-Impact Ripple";
+            }
+        });
 
 
         /* =================================================
