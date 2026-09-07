@@ -1,6 +1,6 @@
 /* =========================================================
    THE RIPPLE WELL
-   VERSION 3.2 — 500% IMPACT RIPPLE TEST
+   VERSION 4.0 — SUPER-IMPACT RIPPLES
 
    - Water.png remains the visual water surface.
    - The transparent click canvas covers the entire Well,
@@ -9,6 +9,9 @@
    - Each Impact Ripple pulses on its own randomized cycle.
    - Each pulse glows, expands into rings, then fades.
    - Impact Ripples remain clickable and open their quote.
+   - Super-Impact Ripples display their organization logo.
+   - Super-Impact logos pulse outward with the ripple.
+   - Super-Impact IDs remain internal and are never displayed publicly.
    - Clicking an Impact Ripple does not create a normal click ripple.
 ========================================================= */
 
@@ -927,6 +930,253 @@
          * The placement/collision calculations are intentionally
          * untouched for this first mobile-size test.
          */
+        /* =====================================================
+           SUPER-IMPACT RIPPLE
+        ===================================================== */
+
+        .runtime-impact-ripple.super-impact {
+
+            filter:
+                drop-shadow(
+                    0 0 5px
+                    rgba(108, 211, 236, 0.16)
+                );
+
+        }
+
+
+        .runtime-impact-ripple.super-impact .super-impact-logo-wrap {
+
+            position:
+                absolute;
+
+            left:
+                50%;
+
+            top:
+                50%;
+
+            width:
+                42%;
+
+            height:
+                42%;
+
+            transform:
+                translate(-50%, -50%);
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            z-index:
+                8;
+
+            pointer-events:
+                none;
+
+            opacity:
+                .86;
+
+        }
+
+
+        .runtime-impact-ripple.super-impact .super-impact-logo-wrap::before {
+
+            content:"";
+
+            position:
+                absolute;
+
+            inset:
+                8%;
+
+            border-radius:
+                50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(180, 232, 246, .16),
+                    transparent 72%
+                );
+
+            filter:
+                blur(5px);
+
+        }
+
+
+        .runtime-impact-ripple.super-impact .super-impact-logo {
+
+            position:
+                relative;
+
+            display:
+                block;
+
+            width:
+                100%;
+
+            height:
+                100%;
+
+            object-fit:
+                contain;
+
+            opacity:
+                .90;
+
+            filter:
+                drop-shadow(
+                    0 0 5px
+                    rgba(188, 236, 248, .28)
+                );
+
+        }
+
+
+        .runtime-impact-ripple.super-impact.pulsing .super-impact-logo-wrap {
+
+            animation:
+                superImpactLogoPulse
+                var(--pulse-duration)
+                ease-out
+                forwards;
+
+        }
+
+
+        @keyframes superImpactLogoPulse {
+
+            0% {
+
+                opacity:
+                    .86;
+
+                transform:
+                    translate(-50%, -50%)
+                    scale(.72);
+
+            }
+
+            18% {
+
+                opacity:
+                    1;
+
+                transform:
+                    translate(-50%, -50%)
+                    scale(1.08);
+
+            }
+
+            48% {
+
+                opacity:
+                    .90;
+
+                transform:
+                    translate(-50%, -50%)
+                    scale(1.42);
+
+            }
+
+            100% {
+
+                opacity:
+                    0;
+
+                transform:
+                    translate(-50%, -50%)
+                    scale(2.25);
+
+            }
+
+        }
+
+
+        .super-impact-modal-logo {
+
+            display:
+                block;
+
+            width:
+                min(210px, 62%);
+
+            max-height:
+                130px;
+
+            margin:
+                0 auto 24px;
+
+            object-fit:
+                contain;
+
+            filter:
+                drop-shadow(
+                    0 0 12px
+                    rgba(151, 221, 242, .28)
+                );
+
+        }
+
+
+        .super-impact-modal-organization {
+
+            margin:
+                0 0 18px;
+
+            text-align:
+                center;
+
+            color:
+                rgba(218, 245, 251, .76);
+
+            font-size:
+                13px;
+
+            letter-spacing:
+                .10em;
+
+            text-transform:
+                uppercase;
+
+        }
+
+
+        .super-impact-modal-address {
+
+            margin:
+                20px 0 0;
+
+            padding-top:
+                15px;
+
+            border-top:
+                1px solid
+                rgba(141, 207, 226, .14);
+
+            color:
+                rgba(205, 234, 243, .65);
+
+            font-size:
+                13px;
+
+            line-height:
+                1.55;
+
+            text-align:
+                center;
+
+        }
+
+
         @media (max-width: 768px) {
 
             .runtime-impact-ripple {
@@ -2325,6 +2575,260 @@
         }
 
 
+        const isSuperImpact =
+            String(
+                data.type || ""
+            ).toLowerCase() ===
+            "super-impact";
+
+
+        const impactMessage =
+            document.getElementById(
+                "impact-message"
+            );
+
+
+        const impactTitle =
+            document.getElementById(
+                "impact-title"
+            );
+
+
+        const impactType =
+            impactMessage
+                ? impactMessage.querySelector(
+                    ".impact-type"
+                )
+                : null;
+
+
+        let modalLogo =
+            impactMessage
+                ? impactMessage.querySelector(
+                    ".super-impact-modal-logo"
+                )
+                : null;
+
+
+        let modalOrganization =
+            impactMessage
+                ? impactMessage.querySelector(
+                    ".super-impact-modal-organization"
+                )
+                : null;
+
+
+        let modalAddress =
+            impactMessage
+                ? impactMessage.querySelector(
+                    ".super-impact-modal-address"
+                )
+                : null;
+
+
+        if (
+            isSuperImpact
+        ) {
+
+            if (
+                !modalLogo &&
+                impactQuote
+            ) {
+
+                modalLogo =
+                    document.createElement(
+                        "img"
+                    );
+
+                modalLogo.className =
+                    "super-impact-modal-logo";
+
+                modalLogo.alt =
+                    "Organization logo";
+
+                impactMessage.insertBefore(
+                    modalLogo,
+                    impactQuote
+                );
+
+            }
+
+
+            if (
+                !modalOrganization &&
+                impactQuote
+            ) {
+
+                modalOrganization =
+                    document.createElement(
+                        "div"
+                    );
+
+                modalOrganization.className =
+                    "super-impact-modal-organization";
+
+                impactMessage.insertBefore(
+                    modalOrganization,
+                    impactQuote
+                );
+
+            }
+
+
+            if (
+                !modalAddress &&
+                impactDetails
+            ) {
+
+                modalAddress =
+                    document.createElement(
+                        "div"
+                    );
+
+                modalAddress.className =
+                    "super-impact-modal-address";
+
+                impactDetails.appendChild(
+                    modalAddress
+                );
+
+            }
+
+
+            if (
+                modalLogo
+            ) {
+
+                if (
+                    data.organization_logo
+                ) {
+
+                    modalLogo.src =
+                        data.organization_logo;
+
+                    modalLogo.alt =
+                        `${data.organization_name || "Organization"} logo`;
+
+                    modalLogo.style.display =
+                        "block";
+
+                } else {
+
+                    modalLogo.removeAttribute(
+                        "src"
+                    );
+
+                    modalLogo.style.display =
+                        "none";
+
+                }
+
+            }
+
+
+            if (
+                modalOrganization
+            ) {
+
+                modalOrganization.textContent =
+                    data.organization_name ||
+                    "Organization";
+
+                modalOrganization.style.display =
+                    "block";
+
+            }
+
+
+            if (
+                modalAddress
+            ) {
+
+                modalAddress.textContent =
+                    data.organization_address
+                        ? `Contributing location: ${data.organization_address}`
+                        : "Contributing organization";
+
+                modalAddress.style.display =
+                    "block";
+
+            }
+
+
+            if (
+                impactTitle
+            ) {
+
+                impactTitle.textContent =
+                    "A Super-Impact Ripple";
+
+            }
+
+
+            if (
+                impactType
+            ) {
+
+                impactType.textContent =
+                    "Super-Impact Ripple";
+
+            }
+
+
+        } else {
+
+            if (
+                modalLogo
+            ) {
+
+                modalLogo.style.display =
+                    "none";
+
+            }
+
+
+            if (
+                modalOrganization
+            ) {
+
+                modalOrganization.style.display =
+                    "none";
+
+            }
+
+
+            if (
+                modalAddress
+            ) {
+
+                modalAddress.style.display =
+                    "none";
+
+            }
+
+
+            if (
+                impactTitle
+            ) {
+
+                impactTitle.textContent =
+                    "A Message From The Well";
+
+            }
+
+
+            if (
+                impactType
+            ) {
+
+                impactType.textContent =
+                    "Impact Ripple";
+
+            }
+
+        }
+
+
         if (
             impactQuote
         ) {
@@ -2379,12 +2883,33 @@
                 );
 
 
-            impactDetails.textContent =
-                location
+            if (
+                isSuperImpact
+            ) {
 
-                    ? `— ${name}\n${location}`
+                impactDetails.textContent =
+                    "";
 
-                    : `— ${name}`;
+                if (
+                    modalAddress
+                ) {
+
+                    impactDetails.appendChild(
+                        modalAddress
+                    );
+
+                }
+
+            } else {
+
+                impactDetails.textContent =
+                    location
+
+                        ? `— ${name}\n${location}`
+
+                        : `— ${name}`;
+
+            }
 
 
             impactDetails.style.whiteSpace =
@@ -2398,6 +2923,7 @@
         );
 
     }
+
 
 
     /* =====================================================
@@ -2439,6 +2965,24 @@
 
         element.className =
             "runtime-impact-ripple";
+
+
+        const isSuperImpact =
+            String(
+                data.type || ""
+            ).toLowerCase() ===
+            "super-impact";
+
+
+        if (
+            isSuperImpact
+        ) {
+
+            element.classList.add(
+                "super-impact"
+            );
+
+        }
 
 
         /*
@@ -2512,7 +3056,9 @@
 
         hitTarget.setAttribute(
             "aria-label",
-            "Open Impact Ripple message"
+            isSuperImpact
+                ? `Open Super-Impact Ripple from ${data.organization_name || "organization"}`
+                : "Open Impact Ripple message"
         );
 
 
@@ -2578,6 +3124,45 @@
             ringTwo,
             ringThree
         );
+
+
+        if (
+            isSuperImpact &&
+            data.organization_logo
+        ) {
+
+            const logoWrap =
+                document.createElement(
+                    "span"
+                );
+
+            logoWrap.className =
+                "super-impact-logo-wrap";
+
+
+            const logo =
+                document.createElement(
+                    "img"
+                );
+
+            logo.className =
+                "super-impact-logo";
+
+            logo.src =
+                data.organization_logo;
+
+            logo.alt =
+                `${data.organization_name || "Organization"} logo`;
+
+            logoWrap.appendChild(
+                logo
+            );
+
+            element.appendChild(
+                logoWrap
+            );
+
+        }
 
 
         impactLayer.appendChild(
@@ -2788,7 +3373,7 @@
             const response =
                 await fetch(
 
-                    `${SUPABASE_URL}/rest/v1/ripple_submissions?select=id,created_at,message,name,region,country,status,size&status=eq.approved&order=created_at.asc`,
+                    `${SUPABASE_URL}/rest/v1/ripple_submissions?select=id,created_at,message,name,region,country,status,size,type,sir_id,organization_name,organization_address,organization_logo&status=eq.approved&order=created_at.asc`,
 
                     {
 
