@@ -964,6 +964,14 @@
 
         .runtime-impact-ripple.super-impact {
 
+            /*
+             * IMPORTANT:
+             * Super-Impact dimensions come directly from the
+             * Supabase "size" field through getSize(data.size).
+             *
+             * The 1.22 scale keeps Super-Impact Ripples visually
+             * prominent while preserving the selected size tier.
+             */
             transform:
                 translate(-50%, -50%)
                 rotate(var(--rotation))
@@ -2836,6 +2844,14 @@
             item.superImpactHasPulsed =
                 true;
 
+            /*
+             * The Super-Impact has completed its one special wave.
+             * Re-arm it for another randomized 100–120 second cycle.
+             */
+            scheduleImpact(
+                item
+            );
+
             return;
 
         }
@@ -2849,24 +2865,42 @@
 
 
     function scheduleImpact(item, initial=false) {
-    if (!item) return;
 
-    const isSuper = item.dataset.superImpact === "true";
+        if (!item) {
+            return;
+        }
 
-    // Super-Impact Ripples wave rarely:
-    // once every 100–120 seconds.
-    const delay = isSuper
-        ? 100000 + Math.random() * 20000
-        : (
-            initial
-                ? 1800 + Math.random() * 5000
-                : 6000 + Math.random() * 7000
-          );
+        const isSuper =
+            isSuperImpactRipple(item.data);
 
-    item._impactTimer = setTimeout(() => {
-        pulseImpact(item);
-    }, delay);
-}
+        /*
+         * SUPER-IMPACT TIMING
+         *
+         * Super-Impact Ripples make one special gold wave
+         * every 100–120 seconds.
+         *
+         * The initial delay also uses this same rare interval,
+         * so Super-Impact Ripples do not all fire immediately
+         * when the Well loads.
+         */
+        const delay =
+            isSuper
+                ? 100000 + Math.random() * 20000
+                : (
+                    initial
+                        ? 1800 + Math.random() * 5000
+                        : 6000 + Math.random() * 7000
+                );
+
+        item.timer =
+            setTimeout(
+                () => {
+                    pulseImpact(item);
+                },
+                delay
+            );
+
+    }
 
 
     /* =====================================================
