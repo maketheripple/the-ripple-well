@@ -1,6 +1,6 @@
 /* =========================================================
    THE RIPPLE WELL
-   VERSION 4.1 — SUPER-IMPACT CLICK EXPERIENCE
+   VERSION 4.2 — SUPER-IMPACT EARNED-IMPACT VISUAL
 
    - Water.png remains the visual water surface.
    - The transparent click canvas covers the entire Well,
@@ -934,6 +934,15 @@
            SUPER-IMPACT RIPPLE
         ===================================================== */
 
+        /* =====================================================
+           SUPER-IMPACT RIPPLE — EARNED IMPACT VISUAL
+
+           The Super-Impact Ripple remains fundamentally cyan/blue.
+           Gold is intentionally hidden while idle and is revealed
+           only during the active pulse, moving through the existing
+           water rings rather than sitting on top of them.
+        ===================================================== */
+
         .runtime-impact-ripple.super-impact {
 
             filter:
@@ -941,6 +950,242 @@
                     0 0 5px
                     rgba(108, 211, 236, 0.16)
                 );
+
+        }
+
+
+        /*
+         * The center is slightly more substantial than a regular
+         * Impact Ripple, but remains cyan while idle.
+         * Gold is introduced only by the pulse animation below.
+         */
+        .runtime-impact-ripple.super-impact .impact-core {
+
+            box-shadow:
+                0 0 4px
+                rgba(220, 250, 255, .98),
+
+                0 0 14px
+                rgba(86, 211, 239, .68),
+
+                0 0 28px
+                rgba(62, 186, 219, .28);
+
+        }
+
+
+        .runtime-impact-ripple.super-impact.pulsing .impact-core {
+
+            animation:
+                superImpactCorePulse
+                var(--pulse-duration)
+                ease-out
+                forwards;
+
+        }
+
+
+        @keyframes superImpactCorePulse {
+
+            0% {
+                box-shadow:
+                    0 0 4px rgba(220, 250, 255, .98),
+                    0 0 14px rgba(86, 211, 239, .68),
+                    0 0 28px rgba(62, 186, 219, .28);
+            }
+
+            14% {
+                box-shadow:
+                    0 0 5px rgba(220, 250, 255, 1),
+                    0 0 16px rgba(86, 211, 239, .78),
+                    0 0 30px rgba(62, 186, 219, .32);
+            }
+
+            43% {
+                box-shadow:
+                    0 0 6px rgba(255, 248, 218, .92),
+                    0 0 17px rgba(238, 199, 82, .34),
+                    0 0 32px rgba(62, 186, 219, .28);
+            }
+
+            58% {
+                box-shadow:
+                    0 0 5px rgba(220, 250, 255, .82),
+                    0 0 14px rgba(86, 211, 239, .52),
+                    0 0 28px rgba(62, 186, 219, .22);
+            }
+
+            100% {
+                box-shadow:
+                    0 0 4px rgba(220, 250, 255, .0),
+                    0 0 10px rgba(86, 211, 239, .0),
+                    0 0 22px rgba(62, 186, 219, .0);
+            }
+
+        }
+
+
+        /*
+         * Super-Impact uses its own ring pulse.
+         * The existing rings remain the same rings; their colour
+         * briefly carries a restrained gold accent during the pulse.
+         */
+        .runtime-impact-ripple.super-impact.pulsing .ring-one {
+
+            animation:
+                superImpactRingPulseOne
+                var(--pulse-duration)
+                ease-out
+                forwards;
+
+        }
+
+
+        .runtime-impact-ripple.super-impact.pulsing .ring-two {
+
+            animation:
+                superImpactRingPulseTwo
+                var(--pulse-duration)
+                ease-out
+                forwards;
+
+        }
+
+
+        .runtime-impact-ripple.super-impact.pulsing .ring-three {
+
+            animation:
+                superImpactRingPulseThree
+                var(--pulse-duration)
+                ease-out
+                forwards;
+
+        }
+
+
+        @keyframes superImpactRingPulseOne {
+
+            0% {
+                border-color:
+                    rgba(168, 234, 248, 0);
+                box-shadow:
+                    0 0 5px rgba(92, 206, 233, .10);
+            }
+
+            10% {
+                border-color:
+                    rgba(168, 234, 248, .92);
+                box-shadow:
+                    0 0 7px rgba(92, 206, 233, .24);
+            }
+
+            34% {
+                border-color:
+                    rgba(191, 235, 246, .88);
+                box-shadow:
+                    0 0 8px rgba(92, 206, 233, .28);
+            }
+
+            48% {
+                border-color:
+                    rgba(246, 213, 125, .72);
+                box-shadow:
+                    0 0 9px rgba(236, 195, 76, .30);
+            }
+
+            62% {
+                border-color:
+                    rgba(168, 234, 248, .46);
+                box-shadow:
+                    0 0 6px rgba(92, 206, 233, .18);
+            }
+
+            100% {
+                border-color:
+                    rgba(168, 234, 248, 0);
+                box-shadow:
+                    0 0 3px rgba(92, 206, 233, 0);
+            }
+
+        }
+
+
+        @keyframes superImpactRingPulseTwo {
+
+            0%, 12% {
+                border-color:
+                    rgba(128, 222, 243, 0);
+                box-shadow:
+                    0 0 4px rgba(92, 206, 233, 0);
+            }
+
+            24% {
+                border-color:
+                    rgba(128, 222, 243, .46);
+                box-shadow:
+                    0 0 6px rgba(92, 206, 233, .16);
+            }
+
+            52% {
+                border-color:
+                    rgba(241, 209, 118, .48);
+                box-shadow:
+                    0 0 7px rgba(236, 195, 76, .18);
+            }
+
+            70% {
+                border-color:
+                    rgba(128, 222, 243, .24);
+                box-shadow:
+                    0 0 5px rgba(92, 206, 233, .10);
+            }
+
+            100% {
+                border-color:
+                    rgba(128, 222, 243, 0);
+                box-shadow:
+                    0 0 3px rgba(92, 206, 233, 0);
+            }
+
+        }
+
+
+        @keyframes superImpactRingPulseThree {
+
+            0%, 20% {
+                border-color:
+                    rgba(107, 211, 237, 0);
+                box-shadow:
+                    0 0 3px rgba(92, 206, 233, 0);
+            }
+
+            36% {
+                border-color:
+                    rgba(107, 211, 237, .24);
+                box-shadow:
+                    0 0 5px rgba(92, 206, 233, .10);
+            }
+
+            61% {
+                border-color:
+                    rgba(235, 204, 112, .25);
+                box-shadow:
+                    0 0 6px rgba(236, 195, 76, .10);
+            }
+
+            78% {
+                border-color:
+                    rgba(107, 211, 237, .12);
+                box-shadow:
+                    0 0 4px rgba(92, 206, 233, .06);
+            }
+
+            100% {
+                border-color:
+                    rgba(107, 211, 237, 0);
+                box-shadow:
+                    0 0 2px rgba(92, 206, 233, 0);
+            }
 
         }
 
@@ -981,7 +1226,7 @@
                 none;
 
             opacity:
-                .86;
+                .78;
 
         }
 
@@ -1030,12 +1275,12 @@
                 contain;
 
             opacity:
-                .90;
+                .88;
 
             filter:
                 drop-shadow(
                     0 0 5px
-                    rgba(188, 236, 248, .28)
+                    rgba(188, 236, 248, .24)
                 );
 
         }
