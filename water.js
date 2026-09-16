@@ -1,6 +1,6 @@
 /* =========================================================
    THE RIPPLE WELL
-   VERSION 4.3 — SUPER-IMPACT EARNED-IMPACT VISUAL
+   VERSION 4.4 — SUPER-IMPACT VISUAL EMPHASIS
 
    - Water.png remains the visual water surface.
    - The transparent click canvas covers the entire Well,
@@ -954,6 +954,169 @@
         }
 
 
+        /* =====================================================
+           V4.4 — MAKE SUPER-IMPACT VISUALLY UNMISTAKABLE
+
+           A Super-Impact Ripple is intentionally larger and brighter
+           than a regular Impact Ripple.  The existing regular ripple
+           remains unchanged.
+        ===================================================== */
+
+        .runtime-impact-ripple.super-impact {
+
+            transform:
+                translate(-50%, -50%)
+                rotate(var(--rotation))
+                scale(1.22);
+
+            opacity:
+                1;
+
+            z-index:
+                5;
+
+            filter:
+                drop-shadow(0 0 7px rgba(112, 222, 246, .42))
+                drop-shadow(0 0 18px rgba(74, 190, 220, .22));
+
+        }
+
+
+        .runtime-impact-ripple.super-impact .impact-glow {
+
+            width: 34%;
+            height: 50%;
+            opacity: .16;
+            filter: blur(5px);
+
+        }
+
+
+        .runtime-impact-ripple.super-impact .impact-core {
+
+            width: 10%;
+            height: 24%;
+
+            background:
+                radial-gradient(
+                    ellipse,
+                    rgba(255, 255, 255, 1) 0%,
+                    rgba(215, 249, 255, .98) 28%,
+                    rgba(77, 207, 237, .82) 58%,
+                    rgba(77, 207, 237, 0) 100%
+                );
+
+            box-shadow:
+                0 0 7px rgba(240, 253, 255, 1),
+                0 0 20px rgba(86, 211, 239, .92),
+                0 0 42px rgba(62, 186, 219, .52);
+
+            opacity: .92;
+
+        }
+
+
+        .runtime-impact-ripple.super-impact .ring-one {
+            width: 34%;
+            height: 28%;
+            border-width: 1.5px;
+            border-color: rgba(184, 240, 251, .86);
+            box-shadow: 0 0 8px rgba(92, 206, 233, .34);
+        }
+
+
+        .runtime-impact-ripple.super-impact .ring-two {
+            width: 54%;
+            height: 43%;
+            border-width: 1.35px;
+            border-color: rgba(145, 229, 246, .58);
+            box-shadow: 0 0 10px rgba(92, 206, 233, .26);
+        }
+
+
+        .runtime-impact-ripple.super-impact .ring-three {
+            width: 78%;
+            height: 60%;
+            border-width: 1.15px;
+            border-color: rgba(120, 219, 240, .40);
+            box-shadow: 0 0 12px rgba(92, 206, 233, .20);
+        }
+
+
+        .runtime-impact-ripple.super-impact .super-impact-logo-wrap {
+
+            width: 38%;
+            height: 38%;
+            opacity: 1;
+
+            filter:
+                drop-shadow(0 0 7px rgba(220, 250, 255, .55))
+                drop-shadow(0 0 18px rgba(86, 211, 239, .34));
+
+        }
+
+
+        .runtime-impact-ripple.super-impact .super-impact-logo {
+
+            opacity: .98;
+            filter:
+                drop-shadow(0 0 4px rgba(255,255,255,.65))
+                drop-shadow(0 0 10px rgba(86,211,239,.55));
+
+        }
+
+
+        .runtime-impact-ripple.super-impact.pulsing {
+
+            z-index: 10;
+            filter:
+                drop-shadow(0 0 10px rgba(150, 235, 250, .68))
+                drop-shadow(0 0 28px rgba(70, 193, 225, .38));
+
+        }
+
+
+        .runtime-impact-ripple.super-impact.pulsing .impact-glow {
+
+            animation:
+                superImpactGlowPulseV44
+                var(--pulse-duration)
+                ease-out
+                forwards;
+
+        }
+
+
+        @keyframes superImpactGlowPulseV44 {
+
+            0% {
+                opacity: .12;
+                transform: translate(-50%,-50%) scale(.55);
+            }
+
+            12% {
+                opacity: 1;
+                transform: translate(-50%,-50%) scale(1.05);
+            }
+
+            38% {
+                opacity: .72;
+                transform: translate(-50%,-50%) scale(1.32);
+            }
+
+            65% {
+                opacity: .28;
+                transform: translate(-50%,-50%) scale(1.62);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(-50%,-50%) scale(2.0);
+            }
+
+        }
+
+
         /*
          * The center is slightly more substantial than a regular
          * Impact Ripple, but remains cyan while idle.
@@ -1440,6 +1603,13 @@
                     translate(-50%, -50%)
                     rotate(var(--rotation))
                     scale(0.20);
+            }
+
+            .runtime-impact-ripple.super-impact {
+                transform:
+                    translate(-50%, -50%)
+                    rotate(var(--rotation))
+                    scale(0.245);
             }
 
         }
@@ -2812,7 +2982,7 @@
             .trim()
             .toLowerCase()
             .replace(/[_-]+/g, " ")
-            .replace(/\\s+/g, " ");
+            .replace(/\s+/g, " ");
 
         return (
             type === "super impact" ||
@@ -3280,6 +3450,11 @@
 
         element.className =
             "runtime-impact-ripple";
+
+        element.dataset.rippleType =
+            isSuperImpactRipple(data)
+                ? "super-impact"
+                : "impact";
 
 
         const isSuperImpact =
@@ -3763,6 +3938,16 @@
                     );
 
                 }
+            );
+
+            const superImpactCount =
+                submissions.filter(
+                    submission =>
+                        isSuperImpactRipple(submission)
+                ).length;
+
+            console.log(
+                `The Ripple Well: ${superImpactCount} Super-Impact Ripple(s) detected.`
             );
 
 
