@@ -1522,6 +1522,104 @@
         }
 
 
+
+        /* =====================================================
+           SUPER-IMPACT RIPPLE — VISUAL FOUNDATION
+
+           This layer works with water.js Version 4.3.
+           It gives Super-Impact Ripples a clearly distinct visual
+           footprint without changing regular Impact Ripples.
+        ===================================================== */
+
+        #impact-ripples-layer .runtime-impact-ripple.super-impact {
+
+            z-index: 20;
+
+            filter:
+                drop-shadow(0 0 7px rgba(91, 211, 239, 0.34))
+                drop-shadow(0 0 18px rgba(54, 170, 205, 0.16));
+
+        }
+
+        #impact-ripples-layer .runtime-impact-ripple.super-impact .impact-glow {
+
+            opacity: 1;
+
+            filter:
+                blur(1px)
+                brightness(1.18);
+
+        }
+
+        #impact-ripples-layer .runtime-impact-ripple.super-impact .impact-core {
+
+            transform: translate(-50%, -50%) scale(1.28);
+
+            box-shadow:
+                0 0 6px rgba(230, 251, 255, 1),
+                0 0 17px rgba(84, 213, 240, 0.78),
+                0 0 34px rgba(54, 183, 219, 0.34);
+
+        }
+
+        #impact-ripples-layer .runtime-impact-ripple.super-impact .impact-ring {
+
+            border-width: 1.5px;
+
+        }
+
+        #impact-ripples-layer .runtime-impact-ripple.super-impact .ring-one {
+
+            box-shadow:
+                0 0 8px rgba(93, 213, 239, 0.28),
+                0 0 20px rgba(54, 174, 207, 0.12);
+
+        }
+
+        #impact-ripples-layer .runtime-impact-ripple.super-impact .ring-two {
+
+            box-shadow:
+                0 0 7px rgba(93, 213, 239, 0.22),
+                0 0 18px rgba(54, 174, 207, 0.10);
+
+        }
+
+        #impact-ripples-layer .runtime-impact-ripple.super-impact .ring-three {
+
+            box-shadow:
+                0 0 6px rgba(93, 213, 239, 0.18),
+                0 0 15px rgba(54, 174, 207, 0.08);
+
+        }
+
+        #impact-ripples-layer .runtime-impact-ripple.super-impact .super-impact-logo-wrap {
+
+            width: 48%;
+            height: 48%;
+
+            opacity: 0.92;
+
+        }
+
+        #impact-ripples-layer .runtime-impact-ripple.super-impact .super-impact-logo {
+
+            opacity: 0.96;
+
+            filter:
+                drop-shadow(0 0 7px rgba(205, 244, 253, 0.34))
+                drop-shadow(0 0 15px rgba(76, 202, 232, 0.18));
+
+        }
+
+        #impact-ripples-layer .runtime-impact-ripple.super-impact.pulsing .super-impact-logo-wrap {
+
+            filter:
+                drop-shadow(0 0 9px rgba(210, 248, 255, 0.38))
+                drop-shadow(0 0 19px rgba(73, 203, 231, 0.20));
+
+        }
+
+
         /* =====================================================
            IMPACT RIPPLE MESSAGE
         ===================================================== */
