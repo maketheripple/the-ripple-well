@@ -1,6 +1,6 @@
 /* =========================================================
    THE RIPPLE WELL
-   VERSION 4.2 — SUPER-IMPACT EARNED-IMPACT VISUAL
+   VERSION 4.3 — SUPER-IMPACT EARNED-IMPACT VISUAL
 
    - Water.png remains the visual water surface.
    - The transparent click canvas covers the entire Well,
@@ -948,7 +948,7 @@
             filter:
                 drop-shadow(
                     0 0 5px
-                    rgba(108, 211, 236, 0.16)
+                    rgba(108, 211, 236, 0.28)
                 );
 
         }
@@ -1088,9 +1088,9 @@
 
             48% {
                 border-color:
-                    rgba(246, 213, 125, .72);
+                    rgba(255, 218, 120, .96);
                 box-shadow:
-                    0 0 9px rgba(236, 195, 76, .30);
+                    0 0 9px rgba(236, 195, 76, .48);
             }
 
             62% {
@@ -1128,9 +1128,9 @@
 
             52% {
                 border-color:
-                    rgba(241, 209, 118, .48);
+                    rgba(255, 216, 112, .72);
                 box-shadow:
-                    0 0 7px rgba(236, 195, 76, .18);
+                    0 0 7px rgba(236, 195, 76, .34);
             }
 
             70% {
@@ -1168,9 +1168,9 @@
 
             61% {
                 border-color:
-                    rgba(235, 204, 112, .25);
+                    rgba(255, 216, 112, .48);
                 box-shadow:
-                    0 0 6px rgba(236, 195, 76, .10);
+                    0 0 6px rgba(236, 195, 76, .22);
             }
 
             78% {
@@ -2807,6 +2807,21 @@
        IMPACT RIPPLE QUOTE MODAL
     ===================================================== */
 
+    function isSuperImpactRipple(data) {
+        const type = String(data?.type || "")
+            .trim()
+            .toLowerCase()
+            .replace(/[_-]+/g, " ")
+            .replace(/\\s+/g, " ");
+
+        return (
+            type === "super impact" ||
+            type === "super impact ripple" ||
+            Boolean(data?.sir_id)
+        );
+    }
+
+
     function openImpactMessage(
         data
     ) {
@@ -2821,10 +2836,7 @@
 
 
         const isSuperImpact =
-            String(
-                data.type || ""
-            ).toLowerCase() ===
-            "super-impact";
+            isSuperImpactRipple(data);
 
 
         const impactMessage =
@@ -3271,10 +3283,7 @@
 
 
         const isSuperImpact =
-            String(
-                data.type || ""
-            ).toLowerCase() ===
-            "super-impact";
+            isSuperImpactRipple(data);
 
 
         if (
