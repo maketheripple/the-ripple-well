@@ -2848,46 +2848,25 @@
     }
 
 
-    function scheduleImpact(
-        item,
-        initial = false
-    ) {
+    function scheduleImpact(item, initial=false) {
+    if (!item) return;
 
-        clearTimeout(
-            item.timer
-        );
+    const isSuper = item.dataset.superImpact === "true";
 
-
-        /*
-         * Initial appearances are staggered.
-         *
-         * After each pulse, the next pulse occurs somewhere
-         * between 6 and 13 seconds later.
-         */
-
-        const delay =
+    // Super-Impact Ripples wave rarely:
+    // once every 100–120 seconds.
+    const delay = isSuper
+        ? 100000 + Math.random() * 20000
+        : (
             initial
+                ? 1800 + Math.random() * 5000
+                : 6000 + Math.random() * 7000
+          );
 
-                ? item.initialDelay
-
-                : 6000 +
-                  Math.random() *
-                  7000;
-
-
-        item.timer =
-            setTimeout(
-                () => {
-
-                    pulseImpact(
-                        item
-                    );
-
-                },
-                delay
-            );
-
-    }
+    item._impactTimer = setTimeout(() => {
+        pulseImpact(item);
+    }, delay);
+}
 
 
     /* =====================================================
