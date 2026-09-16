@@ -1020,8 +1020,11 @@
             width: 34%;
             height: 28%;
             border-width: 1.5px;
-            border-color: rgba(184, 240, 251, .86);
-            box-shadow: 0 0 8px rgba(92, 206, 233, .34);
+            /* Gold outer rim — always present on Super-Impact waves. */
+            border-color: rgba(238, 199, 82, .82);
+            box-shadow:
+                0 0 5px rgba(238, 199, 82, .24),
+                0 0 8px rgba(92, 206, 233, .24);
         }
 
 
@@ -1029,8 +1032,11 @@
             width: 54%;
             height: 43%;
             border-width: 1.35px;
-            border-color: rgba(145, 229, 246, .58);
-            box-shadow: 0 0 10px rgba(92, 206, 233, .26);
+            /* Gold outer rim — always present on Super-Impact waves. */
+            border-color: rgba(238, 199, 82, .60);
+            box-shadow:
+                0 0 5px rgba(238, 199, 82, .18),
+                0 0 10px rgba(92, 206, 233, .20);
         }
 
 
@@ -1038,8 +1044,11 @@
             width: 78%;
             height: 60%;
             border-width: 1.15px;
-            border-color: rgba(120, 219, 240, .40);
-            box-shadow: 0 0 12px rgba(92, 206, 233, .20);
+            /* Gold outer rim — always present on Super-Impact waves. */
+            border-color: rgba(238, 199, 82, .42);
+            box-shadow:
+                0 0 5px rgba(238, 199, 82, .14),
+                0 0 12px rgba(92, 206, 233, .16);
         }
 
 
@@ -1230,44 +1239,50 @@
 
             0% {
                 border-color:
-                    rgba(168, 234, 248, 0);
+                    rgba(238, 199, 82, .70);
                 box-shadow:
-                    0 0 5px rgba(92, 206, 233, .10);
+                    0 0 5px rgba(238, 199, 82, .18),
+                    0 0 8px rgba(92, 206, 233, .18);
             }
 
-            10% {
+            12% {
                 border-color:
-                    rgba(168, 234, 248, .92);
+                    rgba(255, 235, 150, .92);
                 box-shadow:
-                    0 0 7px rgba(92, 206, 233, .24);
+                    0 0 8px rgba(238, 199, 82, .38),
+                    0 0 10px rgba(92, 206, 233, .24);
             }
 
             34% {
                 border-color:
-                    rgba(191, 235, 246, .88);
+                    rgba(255, 226, 125, .96);
                 box-shadow:
-                    0 0 8px rgba(92, 206, 233, .28);
+                    0 0 10px rgba(238, 199, 82, .52),
+                    0 0 12px rgba(92, 206, 233, .24);
             }
 
             48% {
                 border-color:
-                    rgba(255, 218, 120, .96);
+                    rgba(255, 221, 108, 1);
                 box-shadow:
-                    0 0 9px rgba(236, 195, 76, .48);
+                    0 0 13px rgba(236, 195, 76, .68),
+                    0 0 16px rgba(255, 232, 150, .30);
             }
 
-            62% {
+            65% {
                 border-color:
-                    rgba(168, 234, 248, .46);
+                    rgba(238, 199, 82, .76);
                 box-shadow:
-                    0 0 6px rgba(92, 206, 233, .18);
+                    0 0 7px rgba(238, 199, 82, .28),
+                    0 0 9px rgba(92, 206, 233, .16);
             }
 
             100% {
                 border-color:
-                    rgba(168, 234, 248, 0);
+                    rgba(238, 199, 82, .70);
                 box-shadow:
-                    0 0 3px rgba(92, 206, 233, 0);
+                    0 0 5px rgba(238, 199, 82, .18),
+                    0 0 8px rgba(92, 206, 233, .14);
             }
 
         }
@@ -1277,37 +1292,42 @@
 
             0%, 12% {
                 border-color:
-                    rgba(128, 222, 243, 0);
+                    rgba(238, 199, 82, .50);
                 box-shadow:
-                    0 0 4px rgba(92, 206, 233, 0);
+                    0 0 5px rgba(238, 199, 82, .12),
+                    0 0 7px rgba(92, 206, 233, .12);
             }
 
             24% {
                 border-color:
-                    rgba(128, 222, 243, .46);
+                    rgba(248, 213, 105, .66);
                 box-shadow:
-                    0 0 6px rgba(92, 206, 233, .16);
+                    0 0 7px rgba(238, 199, 82, .24),
+                    0 0 9px rgba(92, 206, 233, .16);
             }
 
             52% {
                 border-color:
-                    rgba(255, 216, 112, .72);
+                    rgba(255, 216, 112, .92);
                 box-shadow:
-                    0 0 7px rgba(236, 195, 76, .34);
+                    0 0 10px rgba(236, 195, 76, .46),
+                    0 0 13px rgba(255, 232, 150, .20);
             }
 
             70% {
                 border-color:
-                    rgba(128, 222, 243, .24);
+                    rgba(238, 199, 82, .58);
                 box-shadow:
-                    0 0 5px rgba(92, 206, 233, .10);
+                    0 0 6px rgba(238, 199, 82, .18),
+                    0 0 8px rgba(92, 206, 233, .10);
             }
 
             100% {
                 border-color:
-                    rgba(128, 222, 243, 0);
+                    rgba(238, 199, 82, .50);
                 box-shadow:
-                    0 0 3px rgba(92, 206, 233, 0);
+                    0 0 5px rgba(238, 199, 82, .12),
+                    0 0 7px rgba(92, 206, 233, .10);
             }
 
         }
@@ -1317,37 +1337,42 @@
 
             0%, 20% {
                 border-color:
-                    rgba(107, 211, 237, 0);
+                    rgba(238, 199, 82, .34);
                 box-shadow:
-                    0 0 3px rgba(92, 206, 233, 0);
+                    0 0 4px rgba(238, 199, 82, .08),
+                    0 0 5px rgba(92, 206, 233, .08);
             }
 
             36% {
                 border-color:
-                    rgba(107, 211, 237, .24);
+                    rgba(244, 207, 92, .46);
                 box-shadow:
-                    0 0 5px rgba(92, 206, 233, .10);
+                    0 0 6px rgba(238, 199, 82, .14),
+                    0 0 7px rgba(92, 206, 233, .10);
             }
 
             61% {
                 border-color:
-                    rgba(255, 216, 112, .48);
+                    rgba(255, 216, 112, .76);
                 box-shadow:
-                    0 0 6px rgba(236, 195, 76, .22);
+                    0 0 9px rgba(236, 195, 76, .32),
+                    0 0 11px rgba(255, 232, 150, .14);
             }
 
             78% {
                 border-color:
-                    rgba(107, 211, 237, .12);
+                    rgba(238, 199, 82, .40);
                 box-shadow:
-                    0 0 4px rgba(92, 206, 233, .06);
+                    0 0 5px rgba(238, 199, 82, .11),
+                    0 0 6px rgba(92, 206, 233, .06);
             }
 
             100% {
                 border-color:
-                    rgba(107, 211, 237, 0);
+                    rgba(238, 199, 82, .34);
                 box-shadow:
-                    0 0 2px rgba(92, 206, 233, 0);
+                    0 0 4px rgba(238, 199, 82, .08),
+                    0 0 5px rgba(92, 206, 233, .06);
             }
 
         }
