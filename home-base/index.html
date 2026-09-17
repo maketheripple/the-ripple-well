@@ -61,17 +61,16 @@ button{font:inherit}
 .about-section{min-height:125vh;position:relative;padding:15vh 8vw 18vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(circle at 50% 35%,rgba(15,65,82,.22),transparent 48%),linear-gradient(to bottom,#000 0%,#01070d 45%,#000 100%);border-top:1px solid rgba(82,211,236,.08)}
 .about-section::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 20%,rgba(91,225,247,.08),transparent 42%)}
 .about-content{position:relative;z-index:2;width:min(1000px,100%);text-align:center}
-.about-kicker{font-size:12px;letter-spacing:.42em;text-transform:uppercase;color:rgba(194,242,250,.65);margin-bottom:18px}
 .about-content h2{margin:0 0 55px;font-size:clamp(34px,5vw,68px);font-weight:400;letter-spacing:.16em;text-shadow:0 0 22px rgba(92,218,255,.3)}
 .about-block{margin:0 auto 58px;max-width:900px}
 .about-block h3{margin:0 0 20px;font-size:18px;font-weight:400;letter-spacing:.28em;text-transform:uppercase;color:#9cebf8}
 .about-block p{margin:0;font-size:clamp(17px,2vw,22px);line-height:1.8;color:rgba(238,250,255,.88)}
-.about-mission{padding:38px 45px;border:1px solid rgba(88,219,240,.18);background:rgba(3,19,28,.28);box-shadow:0 0 45px rgba(42,181,211,.06);backdrop-filter:blur(3px)}
+.about-mission{padding:10px 20px}
 .about-mission p{font-size:clamp(19px,2.2vw,25px);line-height:1.7}
 .about-signoff{margin-top:28px;font-style:italic;font-size:18px!important;color:rgba(205,243,249,.7)!important}
-.about-logo{width:min(300px,62vw);height:auto;display:block;margin:0 auto 45px;filter:drop-shadow(0 0 18px rgba(55,219,246,.18))}
+.about-kicker{font-size:13px;letter-spacing:.32em;text-transform:uppercase;color:rgba(194,242,250,.72);margin-bottom:12px}
 @media(max-width:1050px){#homebase-header{padding:16px 4vw;gap:15px}.brand-link,.brand-link img{width:190px}.desktop-nav{gap:14px;font-size:11px}.header-actions{gap:10px}#make-ripple-button{padding:10px 14px;font-size:11px}}
-@media(max-width:760px){.about-section{padding:12vh 6vw 16vh}.about-content h2{margin-bottom:40px}.about-mission{padding:28px 22px}.about-block{margin-bottom:45px}.about-block p{line-height:1.7}} @media(max-width:760px){#homebase-header{height:75px;padding:10px 5vw}.brand-link,.brand-link img{width:155px}.desktop-nav{display:none}.header-actions{margin-left:auto}#make-ripple-button{font-size:10px;padding:9px 12px}.menu-button{width:34px}.moon{top:80px;width:68px;height:68px}.hero-title{top:205px}.hero-title h1{font-size:clamp(42px,12vw,72px)}.water-horizon{top:350px}.stone-bank{top:320px;height:130px;width:38%}#environment-art{height:105vh;object-position:center top}.scroll-cue{top:760px}.social-icons{gap:7px}.social-icons a{width:23px;height:23px;font-size:14px}.contact-link{font-size:12px;padding-left:12px}.homebase-prototype #homebase-sky{min-height:1800px}}
+@media(max-width:760px){.about-section{padding:12vh 6vw 16vh}.about-content h2{margin-bottom:40px}.about-mission{padding:10px 0}.about-block{margin-bottom:45px}.about-block p{line-height:1.7}} @media(max-width:760px){#homebase-header{height:75px;padding:10px 5vw}.brand-link,.brand-link img{width:155px}.desktop-nav{display:none}.header-actions{margin-left:auto}#make-ripple-button{font-size:10px;padding:9px 12px}.menu-button{width:34px}.moon{top:80px;width:68px;height:68px}.hero-title{top:205px}.hero-title h1{font-size:clamp(42px,12vw,72px)}.water-horizon{top:350px}.stone-bank{top:320px;height:130px;width:38%}#environment-art{height:105vh;object-position:center top}.scroll-cue{top:760px}.social-icons{gap:7px}.social-icons a{width:23px;height:23px;font-size:14px}.contact-link{font-size:12px;padding-left:12px}.homebase-prototype #homebase-sky{min-height:1800px}}
 </style>
 </head>
 
@@ -141,7 +140,7 @@ button{font:inherit}
 
         <section class="about-section" id="about" aria-labelledby="about-heading">
             <div class="about-content">
-                <img class="about-logo" src="images/Make the Ripple Large Logo.png" alt="Make the Ripple">
+                <div class="about-kicker">Make the Ripple</div>
                 <h2 id="about-heading">ABOUT</h2>
 
                 <div class="about-block about-mission">
