@@ -1,6 +1,6 @@
 /* =========================================================
    THE RIPPLE WELL
-   VERSION 2.8 — HOME BASE PROTOTYPE BASELINE
+   VERSION 2.9 — HOME BASE PROTOTYPE DEPTH PASS
 
    THREE-LAYER WATER EXPERIENCE
 
@@ -1262,6 +1262,227 @@
                 updateWellDepth
             );
     }
+
+
+    /* =====================================================
+       HOME BASE DEPTH VISUAL CONTROLLER
+
+       VERSION 2.9 — HOME BASE DEPTH PASS
+
+       The original v2.8 code calculated --well-depth, but
+       the Home Base prototype did not yet consume that value
+       visually. This controller now applies the depth value
+       directly to the Home Base environment.
+
+       Nothing here changes Supabase data or the live Ripple
+       Well. It only affects the prototype page.
+    ===================================================== */
+
+    function applyHomeBaseDepth(progress) {
+
+        const clamped =
+            Math.min(
+                1,
+                Math.max(0, progress)
+            );
+
+        /*
+         * Separate curves keep the descent cinematic:
+         * - upper water stays readable
+         * - mid-depth becomes noticeably darker
+         * - lower depth approaches black
+         */
+        const midDepth =
+            Math.pow(clamped, 1.15);
+
+        const abyss =
+            Math.pow(clamped, 2.25);
+
+        const sky =
+            document.getElementById("homebase-sky");
+
+        const water =
+            document.getElementById("water-window");
+
+        const vignette =
+            water
+                ? water.querySelector(".water-vignette")
+                : null;
+
+        const fade =
+            water
+                ? water.querySelector(".depth-fade")
+                : null;
+
+        const rays =
+            water
+                ? water.querySelector(".underwater-rays")
+                : null;
+
+        const particles =
+            water
+                ? water.querySelector(".depth-particles")
+                : null;
+
+        /*
+         * Keep the CSS custom property available for future
+         * styling and debugging.
+         */
+        document.documentElement.style.setProperty(
+            "--well-depth",
+            clamped.toFixed(3)
+        );
+
+        document.documentElement.style.setProperty(
+            "--well-abyss",
+            abyss.toFixed(3)
+        );
+
+        if (sky) {
+
+            /*
+             * The upper environment gradually loses its blue
+             * atmosphere as the visitor descends.
+             */
+            sky.style.filter =
+                `brightness(${(1 - abyss * 0.72).toFixed(3)})`;
+
+            sky.style.setProperty(
+                "--homebase-depth",
+                clamped.toFixed(3)
+            );
+        }
+
+        if (water) {
+
+            /*
+             * A progressive black veil is placed over the
+             * water canvas. This is independent of the shader,
+             * so the existing water movement remains intact.
+             */
+            water.style.setProperty(
+                "--depth-black-opacity",
+                (abyss * 0.92).toFixed(3)
+            );
+
+            water.style.setProperty(
+                "--depth-blue-opacity",
+                (1 - midDepth * 0.72).toFixed(3)
+            );
+
+            water.style.background =
+                `linear-gradient(
+                    to bottom,
+                    rgba(0,36,54,${(0.86 - abyss * 0.58).toFixed(3)}),
+                    rgba(0,20,32,${(0.96 - abyss * 0.68).toFixed(3)}) 26%,
+                    rgba(0,9,17,${(0.99 - abyss * 0.78).toFixed(3)}) 65%,
+                    rgba(0,0,0,${Math.min(1, 0.18 + abyss * 0.82).toFixed(3)}) 100%
+                )`;
+        }
+
+        if (vignette) {
+
+            vignette.style.opacity =
+                (0.25 + abyss * 1.45).toFixed(3);
+        }
+
+        if (fade) {
+
+            fade.style.opacity =
+                (0.15 + abyss * 1.35).toFixed(3);
+        }
+
+        if (rays) {
+
+            /*
+             * Light rays fade as the visitor moves away from
+             * the surface.
+             */
+            rays.style.opacity =
+                Math.max(
+                    0,
+                    0.65 - midDepth * 0.58
+                ).toFixed(3);
+        }
+
+        if (particles) {
+
+            /*
+             * Particles become more visible in the middle
+             * depth, then disappear into the abyss.
+             */
+            particles.style.opacity =
+                Math.max(
+                    0,
+                    0.10 + midDepth * 0.18 - abyss * 0.22
+                ).toFixed(3);
+        }
+    }
+
+
+    function updateHomeBaseDepth() {
+
+        const documentHeight =
+            Math.max(
+                document.documentElement.scrollHeight,
+                document.body.scrollHeight
+            );
+
+        const scrollableHeight =
+            Math.max(
+                1,
+                documentHeight - window.innerHeight
+            );
+
+        const progress =
+            Math.min(
+                1,
+                Math.max(
+                    0,
+                    window.scrollY / scrollableHeight
+                )
+            );
+
+        applyHomeBaseDepth(progress);
+    }
+
+
+    let homeBaseDepthFrame = null;
+
+
+    function requestHomeBaseDepthUpdate() {
+
+        if (homeBaseDepthFrame !== null)
+            return;
+
+        homeBaseDepthFrame =
+            requestAnimationFrame(
+                () => {
+
+                    homeBaseDepthFrame = null;
+
+                    updateHomeBaseDepth();
+
+                }
+            );
+    }
+
+
+    window.addEventListener(
+        "scroll",
+        requestHomeBaseDepthUpdate,
+        { passive: true }
+    );
+
+
+    window.addEventListener(
+        "resize",
+        requestHomeBaseDepthUpdate,
+        { passive: true }
+    );
+
+
+    updateHomeBaseDepth();
 
 
     window.addEventListener(
