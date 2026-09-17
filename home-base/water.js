@@ -1370,14 +1370,11 @@
                 (1 - midDepth * 0.72).toFixed(3)
             );
 
-            water.style.background =
-                `linear-gradient(
-                    to bottom,
-                    rgba(0,36,54,${(0.86 - abyss * 0.58).toFixed(3)}),
-                    rgba(0,20,32,${(0.96 - abyss * 0.68).toFixed(3)}) 26%,
-                    rgba(0,9,17,${(0.99 - abyss * 0.78).toFixed(3)}) 65%,
-                    rgba(0,0,0,${Math.min(1, 0.18 + abyss * 0.82).toFixed(3)}) 100%
-                )`;
+            /*
+             * Keep the water layer transparent so the cinematic
+             * environment underneath remains visible.
+             */
+            water.style.background = "transparent";
         }
 
         if (vignette) {
