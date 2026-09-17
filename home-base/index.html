@@ -30,16 +30,14 @@ button{font:inherit}
 .menu-button{width:42px;height:42px;border:0;background:transparent;display:grid;align-content:center;gap:6px;cursor:pointer}.menu-button span{display:block;width:30px;height:2px;background:#eefaff;margin:auto;box-shadow:0 0 7px rgba(255,255,255,.25)}
 
 #homebase{min-height:430vh;background:#01050b}
-#homebase-sky{position:relative;height:310vh;min-height:2200px;overflow:hidden;background:radial-gradient(circle at 50% 18%,rgba(45,101,137,.25),transparent 30%),linear-gradient(to bottom,#020915 0%,#041321 17%,#03101b 32%,#010913 57%,#01050b 82%,#000 100%)}
-#stars{position:absolute;inset:0;z-index:1;pointer-events:none;background-image:radial-gradient(circle at 12% 14%,rgba(255,255,255,.8) 0 1px,transparent 2px),radial-gradient(circle at 32% 8%,rgba(255,255,255,.65) 0 1px,transparent 2px),radial-gradient(circle at 71% 12%,rgba(255,255,255,.8) 0 1px,transparent 2px),radial-gradient(circle at 84% 24%,rgba(255,255,255,.65) 0 1px,transparent 2px),radial-gradient(circle at 55% 5%,rgba(255,255,255,.7) 0 1px,transparent 2px);background-size:260px 190px,330px 230px,290px 210px,370px 260px,310px 220px;opacity:.8}
-.moon{position:absolute;z-index:4;top:88px;left:50%;width:92px;height:92px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle at 38% 35%,#fff 0 20%,#e9f7ff 48%,#b9dce9 72%,#86b8c9 100%);box-shadow:0 0 22px rgba(223,248,255,.9),0 0 70px rgba(129,213,242,.42)}
-.forest{position:absolute;left:-5%;width:110%;z-index:3;pointer-events:none}.forest-back{top:165px;height:285px;background:linear-gradient(to bottom,transparent 0 12%,rgba(1,13,23,.35) 40%,#03101a 100%);clip-path:polygon(0 45%,3% 34%,5% 42%,8% 26%,11% 42%,15% 30%,18% 45%,22% 23%,25% 42%,29% 29%,33% 43%,37% 18%,41% 42%,46% 25%,50% 45%,54% 27%,59% 44%,63% 20%,67% 41%,72% 28%,76% 44%,80% 23%,84% 43%,89% 27%,93% 44%,97% 31%,100% 43%,100% 100%,0 100%)}
-.forest-front{top:240px;height:270px;background:linear-gradient(to bottom,transparent 0 18%,rgba(1,12,20,.72) 48%,#03101a 100%);clip-path:polygon(0 52%,4% 39%,7% 52%,12% 33%,15% 51%,19% 37%,24% 53%,29% 30%,34% 52%,39% 36%,44% 52%,49% 29%,54% 51%,59% 36%,64% 52%,69% 31%,74% 51%,79% 36%,84% 52%,89% 29%,94% 51%,100% 38%,100% 100%,0 100%)}
+#homebase-sky{position:relative;height:310vh;min-height:2200px;overflow:hidden;background:#000}
+#environment-art{position:absolute;z-index:2;top:0;left:0;width:100%;height:118vh;object-fit:cover;object-position:center top;display:block;pointer-events:none;filter:saturate(.98) contrast(1.03)}
+#environment-art-fade{position:absolute;z-index:3;left:0;top:82vh;width:100%;height:42vh;background:linear-gradient(to bottom,transparent 0%,rgba(0,4,9,.22) 22%,rgba(0,3,7,.72) 65%,#000 100%);pointer-events:none}
+#stars{position:absolute;inset:0;z-index:4;pointer-events:none;background-image:radial-gradient(circle at 12% 14%,rgba(255,255,255,.8) 0 1px,transparent 2px),radial-gradient(circle at 32% 8%,rgba(255,255,255,.65) 0 1px,transparent 2px),radial-gradient(circle at 71% 12%,rgba(255,255,255,.8) 0 1px,transparent 2px),radial-gradient(circle at 84% 24%,rgba(255,255,255,.65) 0 1px,transparent 2px),radial-gradient(circle at 55% 5%,rgba(255,255,255,.7) 0 1px,transparent 2px);background-size:260px 190px,330px 230px,290px 210px,370px 260px,310px 220px;opacity:.28}
 .hero-title{position:absolute;z-index:8;top:235px;left:50%;transform:translateX(-50%);width:min(900px,90%);text-align:center;text-shadow:0 0 22px rgba(92,218,255,.5)}
 .hero-title h1{margin:0;font-size:clamp(54px,7vw,108px);font-weight:400;letter-spacing:.11em;line-height:.95;color:#f3fbff}.hero-title h1 span{display:block;font-size:.32em;letter-spacing:.55em;margin-left:.55em;margin-bottom:15px}
-.water-horizon{position:absolute;z-index:7;top:405px;left:0;width:100%;height:80px;background:linear-gradient(to bottom,rgba(0,0,0,0),rgba(12,68,91,.36),rgba(2,18,29,.9));box-shadow:0 -8px 35px rgba(45,194,233,.12)}
-.stone-bank{position:absolute;z-index:8;top:360px;width:31%;height:170px;background:linear-gradient(145deg,#182936,#07131d 68%,#03090e);box-shadow:0 12px 30px rgba(0,0,0,.7)}.stone-left{left:-2%;clip-path:polygon(0 38%,100% 15%,100% 100%,0 100%)}.stone-right{right:-2%;clip-path:polygon(0 15%,100% 38%,100% 100%,0 100%)}
-#water-window{position:absolute;z-index:9;left:0;top:425px;width:100%;height:calc(310vh - 425px);overflow:hidden;background:linear-gradient(to bottom,rgba(0,36,54,.86),rgba(0,20,32,.96) 26%,rgba(0,9,17,.99) 65%,#000 100%)}
+#water-window{position:absolute;z-index:9;left:0;top:425px;width:100%;height:calc(310vh - 425px);overflow:hidden;background:linear-gradient(to bottom,rgba(0,36,54,.28),rgba(0,20,32,.62) 26%,rgba(0,9,17,.94) 65%,#000 100%)}
+#water-canvas{mix-blend-mode:screen;opacity:.46}
 #water-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .water-vignette{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 10%,transparent 0 28%,rgba(0,0,0,.16) 48%,rgba(0,0,0,.72) 100%);pointer-events:none}
 .depth-fade{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 0%,transparent 22%,rgba(0,5,10,.12) 36%,rgba(0,3,7,.5) 63%,#000 91%,#000 100%);pointer-events:none}
@@ -51,7 +49,7 @@ button{font:inherit}
 .social-icons{display:flex;align-items:center;gap:18px}.social-icons a{width:27px;height:27px;display:grid;place-items:center;font-family:Arial,sans-serif;font-weight:700;font-size:18px;border-radius:50%;border:1px solid rgba(169,235,248,.35);color:#eafaff;transition:.2s}.social-icons a:hover{border-color:#5fe8ff;box-shadow:0 0 12px rgba(70,222,250,.35);transform:translateY(-1px)}
 .contact-link{font-size:16px;letter-spacing:.08em;border-left:1px solid rgba(65,212,240,.45);padding-left:28px}
 @media(max-width:1050px){#homebase-header{padding:16px 4vw;gap:15px}.brand-link,.brand-link img{width:190px}.desktop-nav{gap:14px;font-size:11px}.header-actions{gap:10px}#make-ripple-button{padding:10px 14px;font-size:11px}}
-@media(max-width:760px){#homebase-header{height:75px;padding:10px 5vw}.brand-link,.brand-link img{width:155px}.desktop-nav{display:none}.header-actions{margin-left:auto}#make-ripple-button{font-size:10px;padding:9px 12px}.menu-button{width:34px}.moon{top:80px;width:68px;height:68px}.hero-title{top:205px}.hero-title h1{font-size:clamp(42px,12vw,72px)}.water-horizon{top:350px}.stone-bank{top:320px;height:130px;width:38%}#water-window{top:350px;height:calc(310vh - 350px)}.scroll-cue{top:760px}.social-icons{gap:7px}.social-icons a{width:23px;height:23px;font-size:14px}.contact-link{font-size:12px;padding-left:12px}.homebase-prototype #homebase-sky{min-height:1800px}}
+@media(max-width:760px){#homebase-header{height:75px;padding:10px 5vw}.brand-link,.brand-link img{width:155px}.desktop-nav{display:none}.header-actions{margin-left:auto}#make-ripple-button{font-size:10px;padding:9px 12px}.menu-button{width:34px}.moon{top:80px;width:68px;height:68px}.hero-title{top:205px}.hero-title h1{font-size:clamp(42px,12vw,72px)}.water-horizon{top:350px}.stone-bank{top:320px;height:130px;width:38%}#water-window{top:350px;height:calc(310vh - 350px)}#environment-art{height:105vh;object-position:center top}#environment-art-fade{top:72vh;height:38vh}.scroll-cue{top:760px}.social-icons{gap:7px}.social-icons a{width:23px;height:23px;font-size:14px}.contact-link{font-size:12px;padding-left:12px}.homebase-prototype #homebase-sky{min-height:1800px}}
 </style>
 </head>
 
@@ -81,18 +79,18 @@ button{font:inherit}
 
     <main id="homebase">
         <section id="homebase-sky" aria-label="The Ripple Well Home Base">
+            <img
+                id="environment-art"
+                src="images/ripple-well-environment.png"
+                alt=""
+                aria-hidden="true"
+            >
+            <div id="environment-art-fade"></div>
             <div id="stars"></div>
-            <div class="moon"></div>
-            <div class="forest forest-back"></div>
-            <div class="forest forest-front"></div>
 
             <div class="hero-title">
                 <h1><span>THE</span>RIPPLE WELL</h1>
             </div>
-
-            <div class="water-horizon"></div>
-            <div class="stone-bank stone-left"></div>
-            <div class="stone-bank stone-right"></div>
 
             <div id="water-window">
                 <canvas id="water-canvas"></canvas>
