@@ -42,7 +42,13 @@ button{font:inherit}
 @keyframes impactFloat{0%,100%{translate:0 0}50%{translate:0 -10px}}
 @keyframes impactPulse{0%,100%{opacity:.48;scale:.98}50%{opacity:.78;scale:1.04}}
 .scroll-cue{position:absolute;z-index:12;left:50%;top:830px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:5px;opacity:.85;pointer-events:none}.scroll-cue span{width:4px;height:4px;border-radius:50%;background:#dff9ff;box-shadow:0 0 9px #63e6ff}.scroll-cue small{margin-top:20px;font-size:12px;letter-spacing:.25em}.scroll-cue b{font-size:30px;font-weight:400;line-height:.7}
-.depth-marker{height:55vh;min-height:450px;display:flex;align-items:center;justify-content:center;background:#000;color:rgba(221,246,255,.5);border-top:1px solid rgba(58,195,224,.08)}.depth-marker h2{font-size:clamp(26px,4vw,60px);letter-spacing:.45em;font-weight:400}
+.projects-section{min-height:85vh;position:relative;padding:14vh 8vw 16vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(circle at 50% 40%,rgba(15,65,82,.18),transparent 50%),linear-gradient(to bottom,#000 0%,#01070d 50%,#000 100%);border-top:1px solid rgba(82,211,236,.08)}
+.projects-content{position:relative;z-index:2;width:min(1000px,100%);text-align:center}
+.projects-content h2{margin:0 0 60px;font-size:clamp(34px,5vw,68px);font-weight:400;letter-spacing:.16em;text-shadow:0 0 22px rgba(92,218,255,.3)}
+.project-list{display:flex;flex-direction:column;align-items:center;gap:24px}
+.project-item{display:block;width:min(650px,90%);padding:20px 28px;border:1px solid rgba(156,235,248,.22);background:rgba(2,15,25,.28);font-size:clamp(20px,2.5vw,30px);letter-spacing:.12em;text-transform:uppercase;color:rgba(238,250,255,.9);transition:.25s ease}
+.project-item:hover{border-color:rgba(95,232,255,.7);background:rgba(16,55,68,.38);box-shadow:0 0 24px rgba(50,211,243,.14);transform:translateY(-2px)}
+@media(max-width:760px){.projects-section{padding:12vh 6vw 16vh;min-height:80vh}.projects-content h2{margin-bottom:45px}.project-list{gap:18px}.project-item{width:100%;padding:17px 18px;font-size:20px}}.depth-marker{height:55vh;min-height:450px;display:flex;align-items:center;justify-content:center;background:#000;color:rgba(221,246,255,.5);border-top:1px solid rgba(58,195,224,.08)}.depth-marker h2{font-size:clamp(26px,4vw,60px);letter-spacing:.45em;font-weight:400}
 #homebase-footer{position:fixed;z-index:1100;bottom:0;left:0;width:100%;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:rgba(1,6,12,.9);border-top:1px solid rgba(61,208,239,.38);backdrop-filter:blur(7px)}
 .social-icons{display:flex;align-items:center;gap:18px}.social-icons a{width:27px;height:27px;display:grid;place-items:center;font-family:Arial,sans-serif;font-weight:700;font-size:18px;border-radius:50%;border:1px solid rgba(169,235,248,.35);color:#eafaff;transition:.2s}.social-icons a:hover{border-color:#5fe8ff;box-shadow:0 0 12px rgba(70,222,250,.35);transform:translateY(-1px)}
 .contact-link{font-size:16px;letter-spacing:.08em;border-left:1px solid rgba(65,212,240,.45);padding-left:28px}
@@ -162,7 +168,16 @@ button{font:inherit}
                 </div>
             </div>
         </section>
-        <section class="depth-marker" id="projects"><h2>PROJECTS</h2></section>
+        <section class="projects-section" id="projects" aria-labelledby="projects-heading">
+            <div class="projects-content">
+                <h2 id="projects-heading">PROJECTS</h2>
+                <div class="project-list">
+                    <a class="project-item" href="#" aria-label="Ripple Roll">Ripple Roll</a>
+                    <a class="project-item" href="#" aria-label="The Ripple Quest">The Ripple Quest</a>
+                    <a class="project-item" href="#" aria-label="Ripple Reflections">Ripple Reflections</a>
+                </div>
+            </div>
+        </section>
         <section class="depth-marker" id="socials"><h2>SOCIALS</h2></section>
         <section class="depth-marker" id="involved"><h2>GET INVOLVED</h2></section>
         <section class="depth-marker" id="support"><h2>SUPPORT</h2></section>
