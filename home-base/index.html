@@ -56,7 +56,15 @@ button{font:inherit}
 .social-link img{width:34px;height:34px;display:block;filter:brightness(0) invert(1);opacity:.88;transition:.25s ease}
 .social-link:hover{background:rgba(16,55,68,.38);box-shadow:0 0 24px rgba(50,211,243,.14);transform:translateY(-2px)}
 .social-link:hover img{opacity:1;filter:brightness(0) saturate(100%) invert(84%) sepia(31%) saturate(1054%) hue-rotate(151deg) brightness(103%) contrast(102%)}
-@media(max-width:760px){.socials-section{padding:12vh 6vw 16vh;min-height:95vh}.socials-content h2{margin-bottom:45px}.social-links{grid-template-columns:1fr;gap:14px}.social-link{min-height:54px;padding:14px 18px}}.depth-marker{height:55vh;min-height:450px;display:flex;align-items:center;justify-content:center;background:#000;color:rgba(221,246,255,.5);border-top:1px solid rgba(58,195,224,.08)}.depth-marker h2{font-size:clamp(26px,4vw,60px);letter-spacing:.45em;font-weight:400}
+@media(max-width:760px){.socials-section{padding:12vh 6vw 16vh;min-height:95vh}.socials-content h2{margin-bottom:45px}.social-links{grid-template-columns:1fr;gap:14px}.social-link{min-height:54px;padding:14px 18px}}.involved-section{min-height:85vh;position:relative;padding:14vh 8vw 16vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(circle at 50% 40%,rgba(15,65,82,.18),transparent 50%),linear-gradient(to bottom,#000 0%,#01070d 50%,#000 100%);border-top:1px solid rgba(82,211,236,.08)}
+.involved-content{position:relative;z-index:2;width:min(900px,100%);text-align:center}
+.involved-content h2{margin:0 0 60px;font-size:clamp(34px,5vw,68px);font-weight:400;letter-spacing:.16em;text-shadow:0 0 22px rgba(92,218,255,.3)}
+.involved-message{max-width:780px;margin:0 auto}
+.involved-message h3{margin:0 0 26px;font-size:clamp(24px,3vw,36px);font-weight:400;letter-spacing:.1em;color:#b9a76f}
+.involved-message p{margin:0 auto 22px;font-size:clamp(17px,2vw,22px);line-height:1.8;color:rgba(238,250,255,.88)}
+.involved-email{display:inline-block;margin-top:18px;padding:12px 4px;font-size:clamp(16px,1.8vw,20px);letter-spacing:.06em;color:#9cebf8;border-bottom:1px solid rgba(156,235,248,.45);transition:.25s ease}
+.involved-email:hover{color:#63e6ff;border-bottom-color:#63e6ff;text-shadow:0 0 14px rgba(70,224,250,.45)}
+@media(max-width:760px){.involved-section{padding:12vh 6vw 16vh;min-height:90vh}.involved-content h2{margin-bottom:45px}.involved-message h3{margin-bottom:22px}.involved-message p{line-height:1.7}.involved-email{margin-top:12px}}.depth-marker{height:55vh;min-height:450px;display:flex;align-items:center;justify-content:center;background:#000;color:rgba(221,246,255,.5);border-top:1px solid rgba(58,195,224,.08)}.depth-marker h2{font-size:clamp(26px,4vw,60px);letter-spacing:.45em;font-weight:400}
 #homebase-footer{position:fixed;z-index:1100;bottom:0;left:0;width:100%;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:rgba(1,6,12,.9);border-top:1px solid rgba(61,208,239,.38);backdrop-filter:blur(7px)}
 .social-icons{display:flex;align-items:center;gap:18px}.social-icons a{width:27px;height:27px;display:grid;place-items:center;font-family:Arial,sans-serif;font-weight:700;font-size:18px;border-radius:50%;border:1px solid rgba(169,235,248,.35);color:#eafaff;transition:.2s}.social-icons a:hover{border-color:#5fe8ff;box-shadow:0 0 12px rgba(70,222,250,.35);transform:translateY(-1px)}
 .contact-link{font-size:16px;letter-spacing:.08em;border-left:1px solid rgba(65,212,240,.45);padding-left:28px}
@@ -202,7 +210,17 @@ button{font:inherit}
                 </div>
             </div>
         </section>
-        <section class="depth-marker" id="involved"><h2>GET INVOLVED</h2></section>
+        <section class="involved-section" id="involved" aria-labelledby="involved-heading">
+            <div class="involved-content">
+                <h2 id="involved-heading">GET INVOLVED</h2>
+                <div class="involved-message">
+                    <h3>We’re Looking for Volunteers</h3>
+                    <p>Make the Ripple is currently looking for volunteers to help with our social media and marketing efforts.</p>
+                    <p>If you’re creative, passionate about making a difference, or simply want to help our message reach more people, we’d love to hear from you.</p>
+                    <a class="involved-email" href="mailto:info@maketheripple.com">To apply, email info@maketheripple.com</a>
+                </div>
+            </div>
+        </section>
         <section class="depth-marker" id="support"><h2>SUPPORT</h2></section>
     </main>
 
