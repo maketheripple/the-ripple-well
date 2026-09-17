@@ -31,7 +31,7 @@ button{font:inherit}
 
 #homebase{min-height:430vh;background:#01050b}
 #homebase-sky{position:relative;height:310vh;min-height:2200px;overflow:hidden;background:#000}
-#environment-art{position:absolute;z-index:2;top:0;left:0;width:100%;height:auto;min-height:0;max-width:none;object-fit:contain;object-position:center top;display:block;pointer-events:none;filter:saturate(1) contrast(1.02);transform:none!important}
+#environment-art{position:absolute;z-index:2;top:0;left:0;width:100%;height:100%;min-height:0;max-width:none;object-fit:cover;object-position:center top;display:block;pointer-events:none;filter:saturate(1) contrast(1.02);transform:none!important}
 #environment-art-fade{position:absolute;z-index:3;left:0;top:0;width:100%;height:310vh;pointer-events:none;background:linear-gradient(to bottom,transparent 0%,transparent 72%,rgba(0,2,6,.08) 82%,rgba(0,1,4,.28) 91%,#000 100%)}
 #stars{position:absolute;inset:0;z-index:4;pointer-events:none;background-image:radial-gradient(circle at 12% 14%,rgba(255,255,255,.8) 0 1px,transparent 2px),radial-gradient(circle at 32% 8%,rgba(255,255,255,.65) 0 1px,transparent 2px),radial-gradient(circle at 71% 12%,rgba(255,255,255,.8) 0 1px,transparent 2px),radial-gradient(circle at 84% 24%,rgba(255,255,255,.65) 0 1px,transparent 2px),radial-gradient(circle at 55% 5%,rgba(255,255,255,.7) 0 1px,transparent 2px);background-size:260px 190px,330px 230px,290px 210px,370px 260px,310px 220px;opacity:.28}
 .hero-title{position:absolute;z-index:8;top:235px;left:50%;transform:translateX(-50%);width:min(900px,90%);text-align:center;text-shadow:0 0 22px rgba(92,218,255,.5)}
@@ -47,10 +47,10 @@ button{font:inherit}
 #homebase-footer{position:relative;z-index:1100;width:100%;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;margin-top:0;background:rgba(1,6,12,.9);border-top:1px solid rgba(61,208,239,.38);backdrop-filter:blur(7px)}
 .social-icons{display:flex;align-items:center;gap:18px}.social-icons a{width:27px;height:27px;display:grid;place-items:center;font-family:Arial,sans-serif;font-weight:700;font-size:18px;border-radius:50%;border:1px solid rgba(169,235,248,.35);color:#eafaff;transition:.2s}.social-icons a:hover{border-color:#5fe8ff;box-shadow:0 0 12px rgba(70,222,250,.35);transform:translateY(-1px)}
 .contact-link{font-size:16px;letter-spacing:.08em;border-left:1px solid rgba(65,212,240,.45);padding-left:28px}
-#homebase-header{position:fixed!important;top:0!important;left:0!important;right:0!important;transform:translate3d(0,0,0)!important;will-change:auto!important}
+#homebase-header{position:fixed!important;top:0!important;left:0!important;right:0!important;bottom:auto!important;height:92px!important;transform:none!important;will-change:auto!important;margin:0!important;z-index:2147483647!important;contain:layout style!important}
 
 @media(max-width:1050px){#homebase-header{padding:16px 4vw;gap:15px}.brand-link,.brand-link img{width:190px}.desktop-nav{gap:14px;font-size:11px}.header-actions{gap:10px}#make-ripple-button{padding:10px 14px;font-size:11px}}
-@media(max-width:760px){#homebase-header{height:75px;padding:10px 5vw}.brand-link,.brand-link img{width:155px}.desktop-nav{display:none}.header-actions{margin-left:auto}#make-ripple-button{font-size:10px;padding:9px 12px}.menu-button{width:34px}.moon{top:80px;width:68px;height:68px}.hero-title{top:205px}.hero-title h1{font-size:clamp(42px,12vw,72px)}.water-horizon{top:350px}.stone-bank{top:320px;height:130px;width:38%}#water-window{top:0;height:310vh}#environment-art{height:auto;min-height:0;object-position:center top}#environment-art-fade{top:0;height:310vh}.scroll-cue{top:760px}.social-icons{gap:7px}.social-icons a{width:23px;height:23px;font-size:14px}.contact-link{font-size:12px;padding-left:12px}.homebase-prototype #homebase-sky{min-height:1800px}}
+@media(max-width:760px){#homebase-header{height:75px;padding:10px 5vw}.brand-link,.brand-link img{width:155px}.desktop-nav{display:none}.header-actions{margin-left:auto}#make-ripple-button{font-size:10px;padding:9px 12px}.menu-button{width:34px}.moon{top:80px;width:68px;height:68px}.hero-title{top:205px}.hero-title h1{font-size:clamp(42px,12vw,72px)}.water-horizon{top:350px}.stone-bank{top:320px;height:130px;width:38%}#water-window{top:0;height:310vh}#environment-art{height:100%;min-height:0;object-fit:cover;object-position:center top}#environment-art-fade{top:0;height:310vh}.scroll-cue{top:760px}.social-icons{gap:7px}.social-icons a{width:23px;height:23px;font-size:14px}.contact-link{font-size:12px;padding-left:12px}.homebase-prototype #homebase-sky{min-height:1800px}}
 #homebase::after{content:"";display:block;height:0;background:#000}
 </style>
 </head>
@@ -109,11 +109,6 @@ button{font:inherit}
             </div>
         </section>
 
-        <section class="depth-marker" id="about"><h2>ABOUT</h2></section>
-        <section class="depth-marker" id="projects"><h2>PROJECTS</h2></section>
-        <section class="depth-marker" id="socials"><h2>SOCIALS</h2></section>
-        <section class="depth-marker" id="involved"><h2>GET INVOLVED</h2></section>
-        <section class="depth-marker" id="support"><h2>SUPPORT</h2></section>
     </main>
 
     <footer id="homebase-footer">
@@ -131,6 +126,32 @@ button{font:inherit}
         <a class="contact-link" href="#contact">Contact Us</a>
     </footer>
 
+    <main id="homebase-content">
+        <section class="depth-marker" id="about"><h2>ABOUT</h2></section>
+        <section class="depth-marker" id="projects"><h2>PROJECTS</h2></section>
+        <section class="depth-marker" id="socials"><h2>SOCIALS</h2></section>
+        <section class="depth-marker" id="involved"><h2>GET INVOLVED</h2></section>
+        <section class="depth-marker" id="support"><h2>SUPPORT</h2></section>
+    </main>
+
+    <script>
+        // Hard-pin the Home Base navigation to the viewport.
+        (function(){
+            const header = document.getElementById("homebase-header");
+            if (!header) return;
+            const pin = () => {
+                header.style.setProperty("position", "fixed", "important");
+                header.style.setProperty("top", "0px", "important");
+                header.style.setProperty("left", "0px", "important");
+                header.style.setProperty("right", "0px", "important");
+                header.style.setProperty("bottom", "auto", "important");
+                header.style.setProperty("transform", "none", "important");
+            };
+            pin();
+            window.addEventListener("scroll", pin, {passive:true});
+            window.addEventListener("resize", pin, {passive:true});
+        })();
+    </script>
     <script src="water.js"></script>
 </body>
 </html>
