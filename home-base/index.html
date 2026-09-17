@@ -52,8 +52,10 @@ button{font:inherit}
 .socials-content{position:relative;z-index:2;width:min(1000px,100%);text-align:center}
 .socials-content h2{margin:0 0 60px;font-size:clamp(34px,5vw,68px);font-weight:400;letter-spacing:.16em;text-shadow:0 0 22px rgba(92,218,255,.3)}
 .social-links{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:850px;margin:0 auto}
-.social-link{display:flex;align-items:center;justify-content:center;min-height:64px;padding:16px 20px;border:1px solid rgba(156,235,248,.22);background:rgba(2,15,25,.28);font-size:clamp(15px,1.7vw,20px);letter-spacing:.1em;text-transform:uppercase;color:rgba(238,250,255,.9);transition:.25s ease}
+.social-link{display:flex;align-items:center;justify-content:center;min-height:64px;padding:16px 20px;border:1px solid rgba(156,235,248,.22);background:rgba(2,15,25,.28);color:rgba(238,250,255,.9);transition:.25s ease}
+.social-link img{width:34px;height:34px;display:block;filter:brightness(0) invert(1);opacity:.88;transition:.25s ease}
 .social-link:hover{border-color:rgba(95,232,255,.7);background:rgba(16,55,68,.38);box-shadow:0 0 24px rgba(50,211,243,.14);transform:translateY(-2px)}
+.social-link:hover img{opacity:1;filter:brightness(0) saturate(100%) invert(84%) sepia(31%) saturate(1054%) hue-rotate(151deg) brightness(103%) contrast(102%)}
 @media(max-width:760px){.socials-section{padding:12vh 6vw 16vh;min-height:95vh}.socials-content h2{margin-bottom:45px}.social-links{grid-template-columns:1fr;gap:14px}.social-link{min-height:54px;padding:14px 18px}}.depth-marker{height:55vh;min-height:450px;display:flex;align-items:center;justify-content:center;background:#000;color:rgba(221,246,255,.5);border-top:1px solid rgba(58,195,224,.08)}.depth-marker h2{font-size:clamp(26px,4vw,60px);letter-spacing:.45em;font-weight:400}
 #homebase-footer{position:fixed;z-index:1100;bottom:0;left:0;width:100%;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:rgba(1,6,12,.9);border-top:1px solid rgba(61,208,239,.38);backdrop-filter:blur(7px)}
 .social-icons{display:flex;align-items:center;gap:18px}.social-icons a{width:27px;height:27px;display:grid;place-items:center;font-family:Arial,sans-serif;font-weight:700;font-size:18px;border-radius:50%;border:1px solid rgba(169,235,248,.35);color:#eafaff;transition:.2s}.social-icons a:hover{border-color:#5fe8ff;box-shadow:0 0 12px rgba(70,222,250,.35);transform:translateY(-1px)}
@@ -188,15 +190,15 @@ button{font:inherit}
             <div class="socials-content">
                 <h2 id="socials-heading">SOCIALS</h2>
                 <div class="social-links">
-                    <a class="social-link" href="https://www.tiktok.com/@maketheripple" target="_blank" rel="noopener noreferrer">TikTok</a>
-                    <a class="social-link" href="https://www.facebook.com/people/Make-the-Ripple/61586152371456/" target="_blank" rel="noopener noreferrer">Facebook</a>
-                    <a class="social-link" href="https://www.instagram.com/maketheripple/" target="_blank" rel="noopener noreferrer">Instagram 1</a>
-                    <a class="social-link" href="https://www.instagram.com/make.the.ripple/" target="_blank" rel="noopener noreferrer">Instagram 2</a>
-                    <a class="social-link" href="https://www.threads.com/@maketheripple" target="_blank" rel="noopener noreferrer">Threads</a>
-                    <a class="social-link" href="https://x.com/MakeTheRipple" target="_blank" rel="noopener noreferrer">X / Twitter</a>
-                    <a class="social-link" href="https://www.linkedin.com/company/make-the-ripple/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                    <a class="social-link" href="https://bsky.app/profile/maketheripple.bsky.social" target="_blank" rel="noopener noreferrer">Bluesky</a>
-                    <a class="social-link" href="https://www.youtube.com/@MaketheRipple" target="_blank" rel="noopener noreferrer">YouTube</a>
+                    <a class="social-link" href="https://www.tiktok.com/@maketheripple" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><img src="images/social-icons/tiktok.svg" alt="TikTok"></a>
+                    <a class="social-link" href="https://www.facebook.com/people/Make-the-Ripple/61586152371456/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><img src="images/social-icons/facebook.svg" alt="Facebook"></a>
+                    <a class="social-link" href="https://www.instagram.com/maketheripple/" target="_blank" rel="noopener noreferrer" aria-label="Instagram 1"><img src="images/social-icons/instagram.svg" alt="Instagram"></a>
+                    <a class="social-link" href="https://www.instagram.com/make.the.ripple/" target="_blank" rel="noopener noreferrer" aria-label="Instagram 2"><img src="images/social-icons/instagram.svg" alt="Instagram"></a>
+                    <a class="social-link" href="https://www.threads.com/@maketheripple" target="_blank" rel="noopener noreferrer" aria-label="Threads"><img src="images/social-icons/threads.svg" alt="Threads"></a>
+                    <a class="social-link" href="https://x.com/MakeTheRipple" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter"><img src="images/social-icons/x-twitter.svg" alt="X / Twitter"></a>
+                    <a class="social-link" href="https://www.linkedin.com/company/make-the-ripple/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="images/social-icons/linkedin.svg" alt="LinkedIn"></a>
+                    <a class="social-link" href="https://bsky.app/profile/maketheripple.bsky.social" target="_blank" rel="noopener noreferrer" aria-label="Bluesky"><img src="images/social-icons/bluesky.svg" alt="Bluesky"></a>
+                    <a class="social-link" href="https://www.youtube.com/@MaketheRipple" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><img src="images/social-icons/youtube.svg" alt="YouTube"></a>
                 </div>
             </div>
         </section>
