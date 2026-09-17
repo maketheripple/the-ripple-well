@@ -85,7 +85,7 @@
       <div class="make-ripple-box" role="dialog" aria-modal="true" aria-labelledby="make-ripple-title">
         <button class="make-ripple-close" type="button" aria-label="Close Make the Ripple form">×</button>
         <div class="make-ripple-kicker">MAKE THE RIPPLE</div>
-        <h2 id="make-ripple-title">Leave a Message From the Well</h2>
+        <h2 id="make-ripple-title">Leave a Message For the Well</h2>
         <p class="make-ripple-intro">Share a message of hope, encouragement, kindness, or support. Your ripple may become part of the Ripple Well.</p>
 
         <form id="make-ripple-form">
