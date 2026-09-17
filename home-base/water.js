@@ -428,24 +428,38 @@
   }
 
   /* ---------------------------------------------------------
-     LOAD APPROVED IMPACT + SUPER-IMPACT RIPPLES
+     LOAD APPROVED IMPACT RIPPLES
+     Keep this query identical to the original working loader.
   --------------------------------------------------------- */
-  fetch(`${SUPABASE_URL}/rest/v1/ripple_submissions?select=id,created_at,message,name,region,country,status,size,type,sir_id,organization_name,organization_address,organization_logo,contribution_amount,contribution_currency,contribution_date&status=eq.approved&order=created_at.asc`, {
+  fetch(`${SUPABASE_URL}/rest/v1/ripple_submissions?select=id,created_at,message,name,region,country,status,size&status=eq.approved&order=created_at.asc`, {
     headers: {
       apikey: SUPABASE_KEY,
       Authorization: `Bearer ${SUPABASE_KEY}`
     }
   })
-    .then(response => response.ok ? response.json() : Promise.reject(new Error(`Supabase ${response.status}`)))
+    .then(response => response.ok ? response.json() : Promise.reject(new Error(`Supabase Impact ${response.status}`)))
     .then(rows => {
-      rows.forEach(row => {
-        if (String(row.type || "").toLowerCase() === "super-impact") {
-          addSuperImpactRipple(row);
-        } else {
-          addImpactRipple(row);
-        }
-      });
+      console.log("[Ripple Well] Approved Impact Ripples:", rows.length);
+      rows.forEach(addImpactRipple);
     })
-    .catch(error => console.warn("Impact Ripples could not be loaded:", error));
+    .catch(error => console.warn("[Ripple Well] Impact Ripples could not be loaded:", error));
+
+  /* ---------------------------------------------------------
+     LOAD APPROVED SUPER-IMPACT RIPPLES
+     Super-Impact is identified by type = "super-impact".
+     Contribution amounts are deliberately NOT requested.
+  --------------------------------------------------------- */
+  fetch(`${SUPABASE_URL}/rest/v1/ripple_submissions?select=id,created_at,message,name,region,country,status,size,type,sir_id,organization_name,organization_address,organization_logo&status=eq.approved&type=eq.super-impact&order=created_at.asc`, {
+    headers: {
+      apikey: SUPABASE_KEY,
+      Authorization: `Bearer ${SUPABASE_KEY}`
+    }
+  })
+    .then(response => response.ok ? response.json() : Promise.reject(new Error(`Supabase Super-Impact ${response.status}`)))
+    .then(rows => {
+      console.log("[Ripple Well] Approved Super-Impact Ripples:", rows.length, rows);
+      rows.forEach(addSuperImpactRipple);
+    })
+    .catch(error => console.warn("[Ripple Well] Super-Impact Ripples could not be loaded:", error));
 
 })();
