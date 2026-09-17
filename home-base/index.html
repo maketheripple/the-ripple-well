@@ -18,7 +18,7 @@ body{margin:0;background:#01050b;color:#eefaff;font-family:Georgia,"Times New Ro
 a{color:inherit;text-decoration:none}
 button{font:inherit}
 
-#homebase-header{position:fixed;z-index:1000;top:0;left:0;width:100%;height:92px;display:flex;align-items:center;padding:18px 7vw;gap:35px;background:linear-gradient(to bottom,rgba(1,8,15,.90),rgba(1,8,15,.52),rgba(1,8,15,.08));pointer-events:none;transform:translateZ(0);will-change:auto}
+#homebase-header{position:fixed!important;z-index:1000;top:0;left:0;width:100%;height:92px;display:flex;align-items:center;padding:18px 7vw;gap:35px;background:linear-gradient(to bottom,rgba(1,8,15,.90),rgba(1,8,15,.52),rgba(1,8,15,.08));pointer-events:none;transform:none!important;will-change:auto;
 #homebase-header>*{pointer-events:auto}
 .brand-link{display:flex;align-items:center;flex:0 0 auto;width:225px}
 .brand-link img{width:225px;height:auto;display:block;filter:drop-shadow(0 0 12px rgba(55,219,246,.16))}
@@ -36,11 +36,11 @@ button{font:inherit}
 #stars{position:absolute;inset:0;z-index:4;pointer-events:none;background-image:radial-gradient(circle at 12% 14%,rgba(255,255,255,.8) 0 1px,transparent 2px),radial-gradient(circle at 32% 8%,rgba(255,255,255,.65) 0 1px,transparent 2px),radial-gradient(circle at 71% 12%,rgba(255,255,255,.8) 0 1px,transparent 2px),radial-gradient(circle at 84% 24%,rgba(255,255,255,.65) 0 1px,transparent 2px),radial-gradient(circle at 55% 5%,rgba(255,255,255,.7) 0 1px,transparent 2px);background-size:260px 190px,330px 230px,290px 210px,370px 260px,310px 220px;opacity:.28}
 .hero-title{position:absolute;z-index:8;top:235px;left:50%;transform:translateX(-50%);width:min(900px,90%);text-align:center;text-shadow:0 0 22px rgba(92,218,255,.5)}
 .hero-title h1{margin:0;font-size:clamp(54px,7vw,108px);font-weight:400;letter-spacing:.11em;line-height:.95;color:#f3fbff}.hero-title h1 span{display:block;font-size:.32em;letter-spacing:.55em;margin-left:.55em;margin-bottom:15px}
-#water-window{position:absolute;z-index:9;left:0;top:0;width:100%;height:310vh;overflow:hidden;background:transparent}
-#water-canvas{mix-blend-mode:screen;opacity:.30}
+#water-window{position:absolute;z-index:9;left:0;top:0;width:100%;height:310vh;overflow:hidden;background:transparent!important;
+#water-canvas{mix-blend-mode:screen;opacity:.16
 #water-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-.water-vignette{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 8%,transparent 0 30%,rgba(0,0,0,.10) 52%,rgba(0,0,0,.50) 100%);pointer-events:none}
-.depth-fade{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 0%,transparent 58%,rgba(0,2,7,.08) 72%,rgba(0,1,4,.28) 86%,rgba(0,0,0,.72) 95%,#000 100%);pointer-events:none}
+.water-vignette{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 8%,transparent 0 42%,rgba(0,0,0,.06) 65%,rgba(0,0,0,.28) 100%);pointer-events:none}
+.depth-fade{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 0%,transparent 68%,rgba(0,2,7,.04) 78%,rgba(0,1,4,.16) 90%,rgba(0,0,0,.55) 97%,#000 100%);pointer-events:none}
 .underwater-rays{position:absolute;left:50%;top:6%;width:70%;height:55%;transform:translateX(-50%);background:conic-gradient(from 180deg at 50% 0%,transparent 36deg,rgba(64,196,235,.10) 46deg,transparent 54deg,rgba(64,196,235,.07) 67deg,transparent 78deg);filter:blur(3px);opacity:.65;pointer-events:none}
 .depth-particles{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(125,226,247,.35) 0 1px,transparent 1.5px);background-size:190px 230px;opacity:.18;mask-image:linear-gradient(to bottom,transparent 0%,black 20%,transparent 75%);pointer-events:none}
 .scroll-cue{position:absolute;z-index:12;left:50%;top:830px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:5px;opacity:.85;pointer-events:none}.scroll-cue span{width:4px;height:4px;border-radius:50%;background:#dff9ff;box-shadow:0 0 9px #63e6ff}.scroll-cue small{margin-top:20px;font-size:12px;letter-spacing:.25em}.scroll-cue b{font-size:30px;font-weight:400;line-height:.7}
