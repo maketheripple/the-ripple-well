@@ -1,6 +1,6 @@
 /* THE RIPPLE WELL — HOME BASE
-   Make the Ripple submission form + Impact/Super-Impact Ripples.
-   Super-Impact uses type = "super-impact". Contribution amounts remain private. */
+   Make a Ripple submission form added.
+   Approved Impact Ripples remain. */
 (() => {
   "use strict";
 
@@ -9,7 +9,7 @@
   const layer = document.getElementById("impact-ripples-layer");
 
   /* ---------------------------------------------------------
-     IMPACT + SUPER-IMPACT RIPPLES
+     IMPACT RIPPLES
   --------------------------------------------------------- */
   function hash(value) {
     let h = 2166136261;
@@ -33,60 +33,7 @@
     }
   }
 
-  function escapeRipple(value) {
-    return String(value || "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
-
-  function showRipplePreview(data, isSuperImpact) {
-    const existing = document.getElementById("impact-ripple-preview");
-    if (existing) existing.remove();
-
-    const box = document.createElement("div");
-    box.id = "impact-ripple-preview";
-
-    if (isSuperImpact) {
-      const organization = escapeRipple(data.organization_name || "Supporting Organization");
-      const address = escapeRipple(data.organization_address || "");
-      const logo = String(data.organization_logo || "").trim();
-
-      box.innerHTML = `
-        <div class="irp-box super-irp-box">
-          <button class="irp-close" aria-label="Close">×</button>
-          <div class="super-irp-kicker">SUPER-IMPACT RIPPLE</div>
-          ${logo ? `<img class="super-irp-logo" src="${escapeRipple(logo)}" alt="${organization}">` : ""}
-          <h3 class="super-irp-organization">${organization}</h3>
-          ${address ? `<div class="super-irp-address">${address}</div>` : ""}
-          <div class="super-irp-id">${escapeRipple(data.sir_id || "SUPER-IMPACT")}</div>
-          <p class="super-irp-message">“${escapeRipple(data.message || "A ripple of positive impact.")}”</p>
-        </div>
-      `;
-    } else {
-      const message = escapeRipple(data.message || "");
-      const name = escapeRipple(data.name || "Anonymous");
-
-      box.innerHTML = `
-        <div class="irp-box">
-          <button class="irp-close" aria-label="Close">×</button>
-          <div class="irp-label">IMPACT RIPPLE</div>
-          <p>“${message}”</p>
-          <small>${name}</small>
-        </div>
-      `;
-    }
-
-    document.body.appendChild(box);
-    box.querySelector(".irp-close").onclick = () => box.remove();
-    box.onclick = event => {
-      if (event.target === box) box.remove();
-    };
-  }
-
-  function addImpactRipple(data) {
+  function addRipple(data) {
     const el = document.createElement("div");
     el.className = `impact-ripple impact-size-${sizeClass(data.size)}`;
     el.style.left = `${rand(data.id + "x", 12, 88)}%`;
@@ -97,40 +44,21 @@
     el.style.setProperty("--pulse-time", `${rand(data.id + "p", 5.5, 8.5)}s`);
     el.title = data.name ? data.name : "Impact Ripple";
 
-    el.addEventListener("click", () => showRipplePreview(data, false));
+    el.addEventListener("click", () => {
+      const message = (data.message || "").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      const name = (data.name || "Anonymous").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      const existing = document.getElementById("impact-ripple-preview");
+      if (existing) existing.remove();
 
-    if (layer) layer.appendChild(el);
-  }
-
-  function addSuperImpactRipple(data) {
-    const el = document.createElement("div");
-    el.className = "impact-ripple super-impact-ripple";
-
-    el.style.left = `${rand(data.id + "sx", 18, 82)}%`;
-    el.style.top = `${rand(data.id + "sy", 20, 84)}%`;
-    el.style.setProperty("--rotation", `${rand(data.id + "sr", -18, 18)}deg`);
-    el.style.setProperty("--super-float-time", `${rand(data.id + "sf", 18, 27)}s`);
-    el.style.setProperty("--super-pulse-time", `${rand(data.id + "sp", 100, 120)}s`);
-
-    el.title = data.organization_name
-      ? `Super-Impact Ripple — ${data.organization_name}`
-      : "Super-Impact Ripple";
-
-    const logo = String(data.organization_logo || "").trim();
-
-    if (logo) {
-      const img = document.createElement("img");
-      img.className = "super-impact-logo";
-      img.src = logo;
-      img.alt = data.organization_name
-        ? `${data.organization_name} logo`
-        : "Supporting organization logo";
-      img.loading = "lazy";
-      img.addEventListener("error", () => img.remove());
-      el.appendChild(img);
-    }
-
-    el.addEventListener("click", () => showRipplePreview(data, true));
+      const box = document.createElement("div");
+      box.id = "impact-ripple-preview";
+      box.innerHTML = `<div class="irp-box"><button class="irp-close" aria-label="Close">×</button><div class="irp-label">IMPACT RIPPLE</div><p>“${message}”</p><small>${name}</small></div>`;
+      document.body.appendChild(box);
+      box.querySelector(".irp-close").onclick = () => box.remove();
+      box.onclick = event => {
+        if (event.target === box) box.remove();
+      };
+    });
 
     if (layer) layer.appendChild(el);
   }
@@ -271,116 +199,12 @@
     .impact-size-large{width:175px;height:88px}
     .impact-size-extra-large{width:230px;height:115px}
 
-    /* SUPER-IMPACT RIPPLES */
-    .super-impact-ripple{
-      width:320px;
-      height:160px;
-      position:absolute;
-      transform:translate(-50%,-50%) rotate(var(--rotation));
-      border:2px solid rgba(217,190,101,.9);
-      border-radius:50%;
-      background:radial-gradient(ellipse at center,rgba(55,213,241,.10) 0%,rgba(55,213,241,.035) 38%,transparent 69%);
-      box-shadow:0 0 8px rgba(217,190,101,.75),0 0 22px rgba(217,190,101,.38),0 0 42px rgba(47,207,237,.24),inset 0 0 18px rgba(217,190,101,.18);
-      opacity:.86;
-      cursor:pointer;
-      animation:superRippleFloat var(--super-float-time) ease-in-out infinite,superRipplePulse var(--super-pulse-time) ease-in-out infinite;
-    }
-
-    .super-impact-ripple::before,
-    .super-impact-ripple::after{
-      content:"";
-      position:absolute;
-      border-radius:50%;
-      pointer-events:none;
-    }
-
-    .super-impact-ripple::before{
-      inset:9px 18px;
-      border:1px solid rgba(81,224,247,.55);
-    }
-
-    .super-impact-ripple::after{
-      inset:24px 38px;
-      border:1px solid rgba(217,190,101,.36);
-    }
-
-    .super-impact-logo{
-      position:absolute;
-      left:50%;
-      top:50%;
-      width:25%;
-      height:25%;
-      object-fit:contain;
-      transform:translate(-50%,-50%);
-      filter:drop-shadow(0 0 6px rgba(255,255,255,.65)) drop-shadow(0 0 13px rgba(217,190,101,.55));
-      pointer-events:none;
-      z-index:2;
-    }
-
-    @keyframes superRippleFloat{
-      0%,100%{transform:translate(-50%,-50%) rotate(var(--rotation))}
-      50%{transform:translate(-50%,-54%) rotate(var(--rotation))}
-    }
-
-    @keyframes superRipplePulse{
-      0%,88%{box-shadow:0 0 8px rgba(217,190,101,.75),0 0 22px rgba(217,190,101,.38),0 0 42px rgba(47,207,237,.24),inset 0 0 18px rgba(217,190,101,.18)}
-      94%{box-shadow:0 0 15px rgba(217,190,101,.95),0 0 38px rgba(217,190,101,.62),0 0 72px rgba(47,207,237,.48),inset 0 0 28px rgba(217,190,101,.30)}
-      100%{box-shadow:0 0 8px rgba(217,190,101,.75),0 0 22px rgba(217,190,101,.38),0 0 42px rgba(47,207,237,.24),inset 0 0 18px rgba(217,190,101,.18)}
-    }
-
     #impact-ripple-preview{position:fixed;inset:0;z-index:3000;display:grid;place-items:center;background:rgba(0,5,10,.68);backdrop-filter:blur(6px)}
     .irp-box{position:relative;width:min(620px,86vw);padding:42px;border:1px solid rgba(91,226,249,.45);background:rgba(2,13,22,.92);box-shadow:0 0 45px rgba(46,198,229,.16);text-align:center;color:#eefaff}
     .irp-label{font-size:12px;letter-spacing:.25em;opacity:.7}
     .irp-box p{font-size:22px;line-height:1.55}
     .irp-box small{opacity:.7}
     .irp-close{position:absolute;right:14px;top:10px;border:0;background:none;color:#fff;font-size:28px;cursor:pointer}
-
-    .super-irp-box{
-      border-color:rgba(217,190,101,.65);
-      box-shadow:0 0 45px rgba(217,190,101,.16),0 0 75px rgba(46,198,229,.10);
-    }
-
-    .super-irp-kicker{
-      font-size:12px;
-      letter-spacing:.28em;
-      color:#d9be65;
-      margin-bottom:20px;
-    }
-
-    .super-irp-logo{
-      display:block;
-      width:min(150px,34vw);
-      height:90px;
-      object-fit:contain;
-      margin:0 auto 16px;
-      filter:drop-shadow(0 0 8px rgba(255,255,255,.45)) drop-shadow(0 0 18px rgba(217,190,101,.35));
-    }
-
-    .super-irp-organization{
-      margin:0;
-      font-size:27px;
-      font-weight:400;
-      letter-spacing:.06em;
-      color:#f2df9a;
-    }
-
-    .super-irp-address{
-      margin-top:8px;
-      color:rgba(238,250,255,.58);
-      font-size:13px;
-      line-height:1.5;
-    }
-
-    .super-irp-id{
-      margin-top:14px;
-      color:rgba(217,190,101,.72);
-      font-size:11px;
-      letter-spacing:.18em;
-    }
-
-    .super-irp-message{
-      margin-top:26px;
-    }
 
     #make-ripple-modal{position:fixed;inset:0;z-index:2900;display:flex;align-items:center;justify-content:center;padding:30px;background:rgba(0,5,12,.78);backdrop-filter:blur(10px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s ease,visibility .3s ease;overflow-y:auto}
     #make-ripple-modal.open{opacity:1;visibility:visible;pointer-events:auto}
@@ -429,7 +253,6 @@
 
   /* ---------------------------------------------------------
      LOAD APPROVED IMPACT RIPPLES
-     Keep this query identical to the original working loader.
   --------------------------------------------------------- */
   fetch(`${SUPABASE_URL}/rest/v1/ripple_submissions?select=id,created_at,message,name,region,country,status,size&status=eq.approved&order=created_at.asc`, {
     headers: {
@@ -437,29 +260,7 @@
       Authorization: `Bearer ${SUPABASE_KEY}`
     }
   })
-    .then(response => response.ok ? response.json() : Promise.reject(new Error(`Supabase Impact ${response.status}`)))
-    .then(rows => {
-      console.log("[Ripple Well] Approved Impact Ripples:", rows.length);
-      rows.forEach(addImpactRipple);
-    })
-    .catch(error => console.warn("[Ripple Well] Impact Ripples could not be loaded:", error));
-
-  /* ---------------------------------------------------------
-     LOAD APPROVED SUPER-IMPACT RIPPLES
-     Super-Impact is identified by type = "super-impact".
-     Contribution amounts are deliberately NOT requested.
-  --------------------------------------------------------- */
-  fetch(`${SUPABASE_URL}/rest/v1/ripple_submissions?select=id,created_at,message,name,region,country,status,size,type,sir_id,organization_name,organization_address,organization_logo&status=eq.approved&type=eq.super-impact&order=created_at.asc`, {
-    headers: {
-      apikey: SUPABASE_KEY,
-      Authorization: `Bearer ${SUPABASE_KEY}`
-    }
-  })
-    .then(response => response.ok ? response.json() : Promise.reject(new Error(`Supabase Super-Impact ${response.status}`)))
-    .then(rows => {
-      console.log("[Ripple Well] Approved Super-Impact Ripples:", rows.length, rows);
-      rows.forEach(addSuperImpactRipple);
-    })
-    .catch(error => console.warn("[Ripple Well] Super-Impact Ripples could not be loaded:", error));
-
+    .then(response => response.ok ? response.json() : Promise.reject(new Error(`Supabase ${response.status}`)))
+    .then(rows => rows.forEach(addRipple))
+    .catch(error => console.warn("Impact Ripples could not be loaded:", error));
 })();
