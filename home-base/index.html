@@ -20,8 +20,9 @@ button{font:inherit}
 
 #homebase-header{position:absolute;z-index:1000;top:0;left:0;width:100%;height:92px;display:flex;align-items:center;padding:18px 7vw;gap:35px;background:linear-gradient(to bottom,rgba(1,8,15,.82),rgba(1,8,15,.18),transparent);pointer-events:none}
 #homebase-header>*{pointer-events:auto}
-.brand-link{display:flex;align-items:center;flex:0 0 auto;width:225px}
-.brand-link img{width:225px;height:auto;display:block;transform:translateY(85px);filter:drop-shadow(0 0 18px rgba(55,219,246,.32)) drop-shadow(0 0 34px rgba(55,219,246,.16))}
+.brand-link{position:relative;display:flex;align-items:center;flex:0 0 auto;width:225px;z-index:1}
+.brand-link::before{content:"";position:absolute;left:50%;top:calc(50% + 42px);width:245px;height:175px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(ellipse,rgba(74,220,248,.42) 0%,rgba(74,220,248,.24) 28%,rgba(74,220,248,.10) 52%,transparent 76%);filter:blur(12px);pointer-events:none;z-index:-1}
+.brand-link img{position:relative;width:225px;height:auto;display:block;transform:translateY(85px);filter:drop-shadow(0 0 10px rgba(55,219,246,.8)) drop-shadow(0 0 24px rgba(55,219,246,.55)) drop-shadow(0 0 42px rgba(55,219,246,.32))}
 .desktop-nav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,2.3vw,38px);flex:1;font-size:14px;letter-spacing:.11em;text-transform:uppercase;white-space:nowrap}
 .desktop-nav a{opacity:.9;transition:.25s ease}.desktop-nav a:hover{opacity:1;color:#59e8ff;text-shadow:0 0 12px rgba(70,224,250,.6)}
 .header-actions{display:flex;align-items:center;gap:22px}
@@ -100,8 +101,8 @@ button{font:inherit}
 .about-mission p{font-size:clamp(19px,2.2vw,25px);line-height:1.7;color:#e0d1a6}
 .about-signoff{margin-top:28px;font-style:italic;font-size:18px!important;color:rgba(205,243,249,.7)!important}
 
-@media(max-width:1050px){#homebase-header{padding:16px 4vw;gap:15px}.brand-link,.brand-link img{width:190px}.brand-link img{transform:translateY(55px)}.desktop-nav{gap:14px;font-size:11px}.header-actions{gap:10px}#make-ripple-button{padding:10px 14px;font-size:11px}}
-@media(max-width:760px){.about-section{padding:12vh 6vw 16vh}.about-content h2{margin-bottom:0}.about-block h3.mission-title{font-size:30px}.about-mission{padding:10px 0}.about-block{margin-bottom:45px}.about-block p{line-height:1.7}} @media(max-width:760px){#homebase-header{height:75px;padding:10px 5vw}.brand-link,.brand-link img{width:155px}.brand-link img{transform:translateY(45px)}.desktop-nav{display:none}.header-actions{margin-left:auto}#make-ripple-button{font-size:10px;padding:9px 12px}.menu-button{width:34px}.moon{top:80px;width:68px;height:68px}.hero-title{top:205px}.hero-title h1{font-size:clamp(42px,12vw,72px)}.water-horizon{top:350px}.stone-bank{top:320px;height:130px;width:38%}#environment-art{height:105vh;object-position:center top}.social-icons{gap:7px}.social-icons a{width:23px;height:23px;font-size:14px}.contact-link{font-size:12px;padding-left:12px}.homebase-prototype #homebase-sky{min-height:1800px}}
+@media(max-width:1050px){#homebase-header{padding:16px 4vw;gap:15px}.brand-link,.brand-link img{width:190px}.brand-link::before{width:215px;height:155px}.brand-link img{transform:translateY(55px)}.desktop-nav{gap:14px;font-size:11px}.header-actions{gap:10px}#make-ripple-button{padding:10px 14px;font-size:11px}}
+@media(max-width:760px){.about-section{padding:12vh 6vw 16vh}.about-content h2{margin-bottom:0}.about-block h3.mission-title{font-size:30px}.about-mission{padding:10px 0}.about-block{margin-bottom:45px}.about-block p{line-height:1.7}} @media(max-width:760px){#homebase-header{height:75px;padding:10px 5vw}.brand-link,.brand-link img{width:155px}.brand-link::before{width:175px;height:125px;top:calc(50% + 28px)}.brand-link img{transform:translateY(45px)}.desktop-nav{display:none}.header-actions{margin-left:auto}#make-ripple-button{font-size:10px;padding:9px 12px}.menu-button{width:34px}.moon{top:80px;width:68px;height:68px}.hero-title{top:205px}.hero-title h1{font-size:clamp(42px,12vw,72px)}.water-horizon{top:350px}.stone-bank{top:320px;height:130px;width:38%}#environment-art{height:105vh;object-position:center top}.social-icons{gap:7px}.social-icons a{width:23px;height:23px;font-size:14px}.contact-link{font-size:12px;padding-left:12px}.homebase-prototype #homebase-sky{min-height:1800px}}
 </style>
 </head>
 
