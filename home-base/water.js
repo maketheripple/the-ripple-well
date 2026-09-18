@@ -1,5 +1,5 @@
 /* THE RIPPLE WELL — HOME BASE
-   v44 — JS-driven organic traveling Impact Ripple
+   v45 — Visible JS-driven organic traveling Impact Ripple
    Make a Ripple submission form added.
    Approved Impact Ripples remain. */
 (() => {
@@ -327,7 +327,7 @@
       stroke-width:1.35;
       stroke-linecap:round;
       stroke-linejoin:round;
-      opacity:0;
+      opacity:1;
     }
 
     #impact-ripple-preview{position:fixed;inset:0;z-index:3000;display:grid;place-items:center;background:rgba(0,5,10,.68);backdrop-filter:blur(6px)}
