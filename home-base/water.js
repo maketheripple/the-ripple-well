@@ -34,17 +34,18 @@
   }
 
   function addRipple(data) {
+    const hitbox = document.createElement("div");
+    hitbox.className = `impact-hitbox impact-size-${sizeClass(data.size)}`;
+    hitbox.style.left = `${rand(data.id + "x", 12, 88)}%`;
+    hitbox.style.top = `${rand(data.id + "y", 18, 88)}%`;
+    hitbox.style.setProperty("--rotation", `${rand(data.id + "r", -28, 28)}deg`);
+
     const el = document.createElement("div");
-    el.className = `impact-ripple impact-size-${sizeClass(data.size)}`;
-    el.style.left = `${rand(data.id + "x", 12, 88)}%`;
-    el.style.top = `${rand(data.id + "y", 18, 88)}%`;
-    el.style.setProperty("--rotation", `${rand(data.id + "r", -28, 28)}deg`);
+    el.className = "impact-ripple";
     el.style.setProperty("--secondary-rotation", `${rand(data.id + "s", -18, 18)}deg`);
-    el.style.setProperty("--float-time", `${rand(data.id + "f", 13, 21)}s`);
-    el.style.setProperty("--pulse-time", `${rand(data.id + "p", 5.5, 8.5)}s`);
     el.title = data.name ? data.name : "Impact Ripple";
 
-    el.addEventListener("click", () => {
+    hitbox.addEventListener("click", () => {
       const message = (data.message || "").replace(/</g, "&lt;").replace(/>/g, "&gt;");
       const name = (data.name || "Anonymous").replace(/</g, "&lt;").replace(/>/g, "&gt;");
       const existing = document.getElementById("impact-ripple-preview");
@@ -60,7 +61,8 @@
       };
     });
 
-    if (layer) layer.appendChild(el);
+    hitbox.appendChild(el);
+    if (layer) layer.appendChild(hitbox);
   }
 
   /* ---------------------------------------------------------
@@ -194,40 +196,64 @@
 
   const style = document.createElement("style");
   style.textContent = `
+    /* Impact Ripple size presets */
     .impact-size-small{width:90px;height:45px}
     .impact-size-medium{width:130px;height:65px}
     .impact-size-large{width:175px;height:88px}
     .impact-size-extra-large{width:230px;height:115px}
 
+    /* Impact Ripple hit area is ~50% of the visible ripple.
+       The visual remains full-size and the interaction area stays small. */
+    .impact-hitbox{
+      position:absolute;
+      width:clamp(90px,12vw,190px);
+      height:clamp(45px,6vw,95px);
+      transform:translate(-50%,-50%) rotate(var(--rotation,0deg)) scale(.5);
+      pointer-events:auto;
+      cursor:pointer;
+      overflow:visible;
+    }
+    .impact-hitbox.impact-size-small{width:90px;height:45px}
+    .impact-hitbox.impact-size-medium{width:130px;height:65px}
+    .impact-hitbox.impact-size-large{width:175px;height:88px}
+    .impact-hitbox.impact-size-extra-large{width:230px;height:115px}
+
     /* Realistic Impact Ripple — layered, irregular water rings */
     .impact-ripple{
-      border:1px solid rgba(93,225,247,.28);
+      position:absolute;
+      left:50%;
+      top:50%;
+      width:200%;
+      height:200%;
+      transform:translate(-50%,-50%);
+      border:1px solid rgba(93,225,247,.08);
       border-radius:48% 52% 50% 46% / 52% 47% 53% 48%;
       box-shadow:
-        0 0 8px rgba(74,214,239,.045),
-        inset 0 0 6px rgba(74,214,239,.015);
-      opacity:.42;
-      animation:impactFloat var(--float-time,15s) ease-in-out infinite;
+        0 0 8px rgba(74,214,239,.02),
+        inset 0 0 6px rgba(74,214,239,.008);
+      opacity:.30;
+      pointer-events:none;
+      animation:none;
     }
     .impact-ripple::before,
     .impact-ripple::after{
       content:"";
       position:absolute;
       pointer-events:none;
-      border:1px solid rgba(93,225,247,.24);
+      border:1px solid rgba(93,225,247,.42);
       border-radius:53% 47% 46% 54% / 47% 54% 46% 52%;
       transform:rotate(var(--secondary-rotation,0deg));
       animation:impactWave 11s cubic-bezier(.18,.65,.25,1) infinite;
     }
     .impact-ripple::before{
       inset:12% 10%;
-      opacity:.54;
+      opacity:.72;
       animation-delay:2.6s;
     }
     .impact-ripple::after{
       inset:24% 20%;
-      opacity:.36;
-      border-color:rgba(93,225,247,.20);
+      opacity:.52;
+      border-color:rgba(93,225,247,.32);
       border-radius:46% 54% 52% 48% / 54% 45% 55% 47%;
       transform:rotate(calc(var(--secondary-rotation,0deg) * -1));
       animation-delay:5.2s;
