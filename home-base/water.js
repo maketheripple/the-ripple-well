@@ -1,5 +1,5 @@
 /* THE RIPPLE WELL — HOME BASE
-   v60 — Added restrained click-ripples for direct Well interaction
+   v64 — Added ripple placement separation so Impact and Super-Impact ripples avoid overlapping
    Make a Ripple submission form added.
    Approved Impact Ripples remain. */
 (() => {
@@ -23,6 +23,40 @@
   const SUPER_X_MAX = 78;
   const SUPER_Y_MIN = 46;
   const SUPER_Y_MAX = 88;
+
+  /* Keep the visible ripple footprints separated. */
+  const placedRippleFootprints = [];
+  const RIPPLE_SEPARATION = 1.12;
+
+  function rippleFootprint(size, isSuper) {
+    const dimensions = { small: [90,45], medium: [130,65], large: [175,88], "extra-large": [230,115] };
+    const [w,h] = dimensions[sizeClass(size)] || dimensions.medium;
+    const scale = isSuper ? 8.7 : 2;
+    return { halfW: w * scale * 0.5 * RIPPLE_SEPARATION, halfH: h * scale * 0.5 * RIPPLE_SEPARATION };
+  }
+
+  function footprintsOverlap(a,b) {
+    return Math.abs(a.x-b.x) < a.halfW+b.halfW && Math.abs(a.y-b.y) < a.halfH+b.halfH;
+  }
+
+  function chooseRipplePosition(data,xMin,xMax,yMin,yMax,isSuper) {
+    const rect = layer ? layer.getBoundingClientRect() : {width:window.innerWidth,height:window.innerHeight};
+    const fp = rippleFootprint(data.size,isSuper);
+    const suffix = isSuper ? "super" : "normal";
+    for (let attempt=0; attempt<80; attempt++) {
+      const x = rand(data.id+suffix+"x"+attempt,xMin,xMax)/100*rect.width;
+      const y = rand(data.id+suffix+"y"+attempt,yMin,yMax)/100*rect.height;
+      const candidate={x,y,halfW:fp.halfW,halfH:fp.halfH};
+      if (!placedRippleFootprints.some(existing=>footprintsOverlap(candidate,existing))) {
+        placedRippleFootprints.push(candidate);
+        return {x:x/rect.width*100,y:y/rect.height*100};
+      }
+    }
+    const x=rand(data.id+suffix+"fallbackX",xMin,xMax)/100*rect.width;
+    const y=rand(data.id+suffix+"fallbackY",yMin,yMax)/100*rect.height;
+    placedRippleFootprints.push({x,y,halfW:fp.halfW,halfH:fp.halfH});
+    return {x:x/rect.width*100,y:y/rect.height*100};
+  }
 
   /* ---------------------------------------------------------
      IMPACT RIPPLES
@@ -52,8 +86,9 @@
   function addRipple(data) {
     const hitbox = document.createElement("div");
     hitbox.className = `impact-hitbox impact-size-${sizeClass(data.size)}`;
-    hitbox.style.left = `${rand(data.id + "x", IMPACT_X_MIN, IMPACT_X_MAX)}%`;
-    hitbox.style.top = `${rand(data.id + "y", IMPACT_Y_MIN, IMPACT_Y_MAX)}%`;
+    const position = chooseRipplePosition(data, IMPACT_X_MIN, IMPACT_X_MAX, IMPACT_Y_MIN, IMPACT_Y_MAX, false);
+    hitbox.style.left = `${position.x}%`;
+    hitbox.style.top = `${position.y}%`;
     hitbox.style.setProperty("--rotation", `${rand(data.id + "r", -28, 28)}deg`);
 
     const el = document.createElement("div");
@@ -347,8 +382,9 @@
   function addSuperImpactRipple(data) {
     const hitbox = document.createElement("div");
     hitbox.className = `impact-hitbox super-impact-hitbox impact-size-${sizeClass(data.size)}`;
-    hitbox.style.left = `${rand(data.id + "superX", SUPER_X_MIN, SUPER_X_MAX)}%`;
-    hitbox.style.top = `${rand(data.id + "superY", SUPER_Y_MIN, SUPER_Y_MAX)}%`;
+    const position = chooseRipplePosition(data, SUPER_X_MIN, SUPER_X_MAX, SUPER_Y_MIN, SUPER_Y_MAX, true);
+    hitbox.style.left = `${position.x}%`;
+    hitbox.style.top = `${position.y}%`;
     hitbox.style.setProperty("--rotation", `${rand(data.id + "r", -18, 18)}deg`);
 
     const el = document.createElement("div");
