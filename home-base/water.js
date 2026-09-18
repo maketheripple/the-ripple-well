@@ -199,6 +199,36 @@
     .impact-size-large{width:175px;height:88px}
     .impact-size-extra-large{width:230px;height:115px}
 
+    /* Realistic Impact Ripple — layered, irregular water rings */
+    .impact-ripple{
+      border:1.5px solid rgba(93,225,247,.58);
+      border-radius:48% 52% 50% 46% / 52% 47% 53% 48%;
+      box-shadow:
+        0 0 10px rgba(74,214,239,.10),
+        inset 0 0 8px rgba(74,214,239,.035);
+      opacity:.66;
+    }
+    .impact-ripple::before,
+    .impact-ripple::after{
+      content:"";
+      position:absolute;
+      pointer-events:none;
+      border:1px solid rgba(93,225,247,.42);
+      border-radius:53% 47% 46% 54% / 47% 54% 46% 52%;
+      transform:rotate(var(--secondary-rotation,0deg));
+    }
+    .impact-ripple::before{
+      inset:12% 10%;
+      opacity:.78;
+    }
+    .impact-ripple::after{
+      inset:24% 20%;
+      opacity:.58;
+      border-color:rgba(93,225,247,.34);
+      border-radius:46% 54% 52% 48% / 54% 45% 55% 47%;
+      transform:rotate(calc(var(--secondary-rotation,0deg) * -1));
+    }
+
     #impact-ripple-preview{position:fixed;inset:0;z-index:3000;display:grid;place-items:center;background:rgba(0,5,10,.68);backdrop-filter:blur(6px)}
     .irp-box{position:relative;width:min(620px,86vw);padding:42px;border:1px solid rgba(91,226,249,.45);background:rgba(2,13,22,.92);box-shadow:0 0 45px rgba(46,198,229,.16);text-align:center;color:#eefaff}
     .irp-label{font-size:12px;letter-spacing:.25em;opacity:.7}
