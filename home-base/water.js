@@ -37,8 +37,8 @@
   function addRipple(data) {
     const hitbox = document.createElement("div");
     hitbox.className = `impact-hitbox impact-size-${sizeClass(data.size)}`;
-    hitbox.style.left = `${rand(data.id + "x", 12, 88)}%`;
-    hitbox.style.top = `${rand(data.id + "y", 18, 88)}%`;
+    hitbox.style.left = `${rand(data.id + "x", 8, 92)}%`;
+    hitbox.style.top = `${rand(data.id + "y", 34, 90)}%`;
     hitbox.style.setProperty("--rotation", `${rand(data.id + "r", -28, 28)}deg`);
 
     const el = document.createElement("div");
@@ -332,8 +332,8 @@
   function addSuperImpactRipple(data) {
     const hitbox = document.createElement("div");
     hitbox.className = `impact-hitbox super-impact-hitbox impact-size-${sizeClass(data.size)}`;
-    hitbox.style.left = `${rand(data.id + "x", 12, 88)}%`;
-    hitbox.style.top = `${rand(data.id + "y", 18, 88)}%`;
+    hitbox.style.left = `${rand(data.id + "x", 8, 92)}%`;
+    hitbox.style.top = `${rand(data.id + "y", 34, 90)}%`;
     hitbox.style.setProperty("--rotation", `${rand(data.id + "r", -18, 18)}deg`);
 
     const el = document.createElement("div");
@@ -615,10 +615,10 @@
   const style = document.createElement("style");
   style.textContent = `
     /* Impact Ripple size presets */
-    .impact-size-small{width:90px;height:45px}
-    .impact-size-medium{width:130px;height:65px}
-    .impact-size-large{width:175px;height:88px}
-    .impact-size-extra-large{width:230px;height:115px}
+    .impact-size-small{width:270px;height:135px}
+    .impact-size-medium{width:390px;height:195px}
+    .impact-size-large{width:525px;height:264px}
+    .impact-size-extra-large{width:690px;height:345px}
 
     /* Impact Ripple hit area is ~50% of the visible ripple.
        The visual remains full-size and the interaction area stays small. */
@@ -631,10 +631,10 @@
       cursor:pointer;
       overflow:visible;
     }
-    .impact-hitbox.impact-size-small{width:90px;height:45px}
-    .impact-hitbox.impact-size-medium{width:130px;height:65px}
-    .impact-hitbox.impact-size-large{width:175px;height:88px}
-    .impact-hitbox.impact-size-extra-large{width:230px;height:115px}
+    .impact-hitbox.impact-size-small{width:270px;height:135px}
+    .impact-hitbox.impact-size-medium{width:390px;height:195px}
+    .impact-hitbox.impact-size-large{width:525px;height:264px}
+    .impact-hitbox.impact-size-extra-large{width:690px;height:345px}
 
     /* Organic Impact Ripple — JS-driven traveling water wave */
     .impact-ripple{
