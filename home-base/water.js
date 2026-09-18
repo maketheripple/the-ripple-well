@@ -1,5 +1,5 @@
 /* THE RIPPLE WELL — HOME BASE
-   v46 — Broken-light organic Impact Ripple
+   v46 — Water-textured organic Impact Ripple
    Make a Ripple submission form added.
    Approved Impact Ripples remain. */
 (() => {
@@ -86,6 +86,22 @@
     svg.appendChild(waveGroup);
     el.appendChild(svg);
 
+    /* Subtle broken highlights move around the wave as it expands. */
+    waveInner.animate(
+      [
+        { strokeDashoffset: "0", opacity: .72 },
+        { strokeDashoffset: "-14", opacity: .90, offset: .24 },
+        { strokeDashoffset: "-31", opacity: .66, offset: .52 },
+        { strokeDashoffset: "-49", opacity: .34, offset: .76 },
+        { strokeDashoffset: "-64", opacity: .05 }
+      ],
+      {
+        duration: 11000,
+        easing: "ease-out",
+        iterations: Infinity
+      }
+    );
+
     /* Drive the expansion directly with the Web Animations API.
        This avoids CSS/SVG transform interpolation differences between browsers. */
     waveGroup.style.transformOrigin = "100px 50px";
@@ -109,19 +125,6 @@
         iterations: Infinity,
         delay: 0,
         fill: "both"
-      }
-    );
-
-    /* Slowly shift the broken highlight pattern while the wave travels. */
-    waveInner.animate(
-      [
-        { strokeDashoffset: "0" },
-        { strokeDashoffset: "-48" }
-      ],
-      {
-        duration: 11000,
-        easing: "linear",
-        iterations: Infinity
       }
     );
 
@@ -336,13 +339,13 @@
 
     /* Main irregular water disturbance. */
     .impact-wave-inner{
-      stroke:rgba(93,225,247,.88);
-      stroke-width:1.35;
+      stroke:rgba(93,225,247,.82);
+      stroke-width:1.25;
       stroke-linecap:round;
       stroke-linejoin:round;
-      stroke-dasharray:18 7 4 11 26 5 9 14 31 8 6 19;
+      stroke-dasharray:7 3 16 5 4 11 22 6 9 4 18 8;
       opacity:1;
-      filter:drop-shadow(0 0 2px rgba(74,214,239,.16));
+      filter:drop-shadow(0 0 1.5px rgba(74,214,239,.13));
     }
 
     #impact-ripple-preview{position:fixed;inset:0;z-index:3000;display:grid;place-items:center;background:rgba(0,5,10,.68);backdrop-filter:blur(6px)}
