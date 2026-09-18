@@ -134,6 +134,14 @@
     svg.appendChild(waveGroup);
     el.appendChild(svg);
 
+    /*
+       Give every Impact Ripple its own rhythm.
+       Each ripple starts at a different point in the cycle and uses a
+       slightly different duration, while preserving the existing motion.
+    */
+    const rippleDelay = -rand(data.id + "delay", 0, 11000);
+    const rippleDuration = rand(data.id + "duration", 9800, 13200);
+
     /* Subtle broken highlights move around the wave as it expands. */
     waveInner.animate(
       [
@@ -155,16 +163,6 @@
        This avoids CSS/SVG transform interpolation differences between browsers. */
     waveGroup.style.transformOrigin = "100px 50px";
     waveGroup.style.transformBox = "fill-box";
-
-    /*
-       Give every Impact Ripple its own rhythm.
-       The wave shape, brightness curve, and overall behavior stay the same,
-       but each ripple starts at a different point in the cycle and breathes
-       at a slightly different natural interval. This prevents the whole Well
-       from visibly pulsing in unison.
-    */
-    const rippleDelay = -rand(data.id + "delay", 0, 11000);
-    const rippleDuration = rand(data.id + "duration", 9800, 13200);
 
     waveGroup.animate(
       [
