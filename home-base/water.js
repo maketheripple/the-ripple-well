@@ -449,9 +449,9 @@
         {strokeDashoffset:"-108",opacity:0}
       ],{duration:ringDuration,easing:"ease-out",iterations:Infinity,delay:ringDelay});
       gold.animate([
-        {strokeDashoffset:"-12",opacity:.08},{strokeDashoffset:"-35",opacity:.72,offset:.22},
-        {strokeDashoffset:"-64",opacity:.54,offset:.46},{strokeDashoffset:"-94",opacity:.22,offset:.73},
-        {strokeDashoffset:"-128",opacity:0}
+        {strokeDashoffset:"-12",opacity:.18},{strokeDashoffset:"-38",opacity:.92,offset:.20},
+        {strokeDashoffset:"-72",opacity:.68,offset:.42},{strokeDashoffset:"-108",opacity:.34,offset:.68},
+        {strokeDashoffset:"-145",opacity:0}
       ],{duration:ringDuration,easing:"ease-out",iterations:Infinity,delay:ringDelay + 45});
     });
 
@@ -615,10 +615,10 @@
   const style = document.createElement("style");
   style.textContent = `
     /* Impact Ripple size presets */
-    .impact-size-small{width:270px;height:135px}
-    .impact-size-medium{width:390px;height:195px}
-    .impact-size-large{width:525px;height:264px}
-    .impact-size-extra-large{width:690px;height:345px}
+    .impact-size-small{width:90px;height:45px}
+    .impact-size-medium{width:130px;height:65px}
+    .impact-size-large{width:175px;height:88px}
+    .impact-size-extra-large{width:230px;height:115px}
 
     /* Impact Ripple hit area is ~50% of the visible ripple.
        The visual remains full-size and the interaction area stays small. */
@@ -631,10 +631,10 @@
       cursor:pointer;
       overflow:visible;
     }
-    .impact-hitbox.impact-size-small{width:270px;height:135px}
-    .impact-hitbox.impact-size-medium{width:390px;height:195px}
-    .impact-hitbox.impact-size-large{width:525px;height:264px}
-    .impact-hitbox.impact-size-extra-large{width:690px;height:345px}
+    .impact-hitbox.impact-size-small{width:90px;height:45px}
+    .impact-hitbox.impact-size-medium{width:130px;height:65px}
+    .impact-hitbox.impact-size-large{width:175px;height:88px}
+    .impact-hitbox.impact-size-extra-large{width:230px;height:115px}
 
     /* Organic Impact Ripple — JS-driven traveling water wave */
     .impact-ripple{
@@ -737,12 +737,12 @@
        SUPER-IMPACT — INVISIBLE ROCK / BLUE WATER + GOLD RIM
     ========================================================= */
     .super-impact-hitbox{z-index:12;}
-    .super-impact-ripple{width:260%;height:260%;transform:translate(-50%,-50%);}
+    .super-impact-ripple{width:290%;height:290%;transform:translate(-50%,-50%);}
     .super-impact-wave-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;}
     .super-impact-wave{fill:none;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;}
     .super-impact-wave-glow{stroke:rgba(70,210,240,.28);stroke-width:5.5;stroke-dasharray:10 22 6 34 14 30;opacity:.12;filter:blur(3px) drop-shadow(0 0 7px rgba(61,204,236,.28));}
     .super-impact-wave-blue{stroke:rgba(111,231,249,.94);stroke-width:1.55;stroke-dasharray:3 8 18 5 5 25 9 16 3 31 11 7 22 12;opacity:1;filter:drop-shadow(0 0 2px rgba(77,214,241,.28));}
-    .super-impact-wave-gold{stroke:rgba(255,215,94,.92);stroke-width:1.15;stroke-dasharray:2 16 8 28 3 20 11 34;opacity:.85;filter:drop-shadow(0 0 2px rgba(255,211,82,.38)) drop-shadow(0 0 5px rgba(238,195,76,.18));}
+    .super-impact-wave-gold{stroke:rgba(255,221,105,.98);stroke-width:1.35;stroke-dasharray:2 13 8 22 3 16 11 27;opacity:.95;filter:drop-shadow(0 0 3px rgba(255,218,92,.58)) drop-shadow(0 0 7px rgba(238,195,76,.32));}
     .super-impact-hit{position:absolute;left:50%;top:50%;width:9px;height:9px;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,255,255,1) 0%,rgba(210,248,255,.98) 28%,rgba(75,210,239,.78) 58%,transparent 100%);box-shadow:0 0 5px rgba(255,255,255,.9),0 0 14px rgba(70,208,239,.8),0 0 26px rgba(255,211,82,.26);opacity:0;pointer-events:none;}
     .super-impact-logo-wrap{position:absolute;left:50%;top:50%;width:30%;height:30%;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;z-index:8;pointer-events:none;opacity:0;}
     .super-impact-logo-wrap::before{content:"";position:absolute;inset:-16%;border-radius:50%;background:radial-gradient(circle,rgba(210,247,255,.22),rgba(255,215,94,.08) 42%,transparent 72%);filter:blur(4px);}
