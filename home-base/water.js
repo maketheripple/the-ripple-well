@@ -99,6 +99,28 @@
       }
 
       /*
+         Re-center the finished organic shape around the exact raindrop
+         impact point. Because the deformation uses different random
+         amplitudes around the circumference, the raw shape can otherwise
+         develop a slight visual/geometry offset.
+      */
+      let centerX = 0;
+      let centerY = 0;
+
+      for (const point of points) {
+        centerX += point[0];
+        centerY += point[1];
+      }
+
+      centerX /= points.length;
+      centerY /= points.length;
+
+      for (const point of points) {
+        point[0] += 100 - centerX;
+        point[1] += 50 - centerY;
+      }
+
+      /*
          Smooth the polygon with quadratic midpoint curves.
          This keeps the peaks/valleys organic rather than jagged.
       */
@@ -193,8 +215,8 @@
       const ringDelay = rippleDelay + index * (rippleDuration * .115);
       const ringDuration = rippleDuration * .88;
 
-      ring.style.transformOrigin = "100px 50px";
-      ring.style.transformBox = "fill-box";
+      ring.style.transformOrigin = "50% 50%";
+      ring.style.transformBox = "view-box";
 
       ring.animate(
         [
