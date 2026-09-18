@@ -737,7 +737,7 @@
        SUPER-IMPACT — INVISIBLE ROCK / BLUE WATER + GOLD RIM
     ========================================================= */
     .super-impact-hitbox{z-index:12;}
-    .super-impact-ripple{width:290%;height:290%;transform:translate(-50%,-50%);}
+    .super-impact-ripple{width:870%;height:870%;transform:translate(-50%,-50%);}
     .super-impact-wave-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;}
     .super-impact-wave{fill:none;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;}
     .super-impact-wave-glow{stroke:rgba(70,210,240,.28);stroke-width:5.5;stroke-dasharray:10 22 6 34 14 30;opacity:.12;filter:blur(3px) drop-shadow(0 0 7px rgba(61,204,236,.28));}
