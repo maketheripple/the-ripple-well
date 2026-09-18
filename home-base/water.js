@@ -93,7 +93,7 @@
 
     const el = document.createElement("div");
     el.className = "impact-ripple";
-    el.style.setProperty("--secondary-rotation", `${rand(data.id + "s", -18, 18)}deg`);
+    el.style.setProperty("--secondary-rotation", `${rand(data.id + "s", -10, 10)}deg`);
     el.title = data.name ? data.name : "Impact Ripple";
 
     /*
@@ -295,14 +295,14 @@
         { transform: "scale(.54)", opacity: .82, offset: .10 },
         { transform: "scale(.70)", opacity: .72, offset: .28 },
         { transform: "scale(.88)", opacity: .48, offset: .50 },
-        { transform: "scale(1.08)", opacity: .18, offset: .74 },
-        { transform: "scale(1.18)", opacity: 0, offset: 1 }
+        { transform: "scale(1.08)", opacity: .10, offset: .74 },
+        { transform: "scale(1.10)", opacity: 0, offset: 1 }
       ];
 
       [ring, ringGlow, ringShimmer].forEach(part => {
         part.animate(expansion, {
           duration: ringDuration,
-          easing: "cubic-bezier(.18,.65,.25,1)",
+          easing: "cubic-bezier(.10,.65,.25,1)",
           iterations: Infinity,
           delay: ringDelay,
           fill: "both"
@@ -330,7 +330,7 @@
       ringGlow.animate(
         [
           { strokeDashoffset: "8", opacity: .05 },
-          { strokeDashoffset: "-18", opacity: .15, offset: .24 },
+          { strokeDashoffset: "-10", opacity: .15, offset: .24 },
           { strokeDashoffset: "-38", opacity: .09, offset: .50 },
           { strokeDashoffset: "-61", opacity: .13, offset: .70 },
           { strokeDashoffset: "-84", opacity: 0 }
@@ -385,7 +385,7 @@
     const position = chooseRipplePosition(data, SUPER_X_MIN, SUPER_X_MAX, SUPER_Y_MIN, SUPER_Y_MAX, true);
     hitbox.style.left = `${position.x}%`;
     hitbox.style.top = `${position.y}%`;
-    hitbox.style.setProperty("--rotation", `${rand(data.id + "r", -18, 18)}deg`);
+    hitbox.style.setProperty("--rotation", `${rand(data.id + "r", -10, 10)}deg`);
 
     const el = document.createElement("div");
     el.className = "impact-ripple super-impact-ripple";
@@ -495,12 +495,12 @@
         ],{duration:ringDuration,easing:"cubic-bezier(.12,.62,.22,1)",iterations:Infinity,delay:ringDelay,fill:"both"});
       });
       blue.animate([
-        {strokeDashoffset:"0",opacity:.20},{strokeDashoffset:"-18",opacity:.92,offset:.16},
+        {strokeDashoffset:"0",opacity:.20},{strokeDashoffset:"-10",opacity:.92,offset:.16},
         {strokeDashoffset:"-43",opacity:.66,offset:.40},{strokeDashoffset:"-76",opacity:.30,offset:.68},
         {strokeDashoffset:"-108",opacity:0}
       ],{duration:ringDuration,easing:"ease-out",iterations:Infinity,delay:ringDelay});
       gold.animate([
-        {strokeDashoffset:"-12",opacity:.18},{strokeDashoffset:"-38",opacity:.92,offset:.20},
+        {strokeDashoffset:"-12",opacity:.10},{strokeDashoffset:"-38",opacity:.92,offset:.20},
         {strokeDashoffset:"-72",opacity:.68,offset:.42},{strokeDashoffset:"-108",opacity:.34,offset:.68},
         {strokeDashoffset:"-145",opacity:0}
       ],{duration:ringDuration,easing:"ease-out",iterations:Infinity,delay:ringDelay + 45});
@@ -513,8 +513,8 @@
         {transform:"translate(-50%,-50%) scale(1)",opacity:1,offset:.045},
         {transform:"translate(-50%,-50%) scale(1.04)",opacity:.92,offset:.12},
         {transform:"translate(-50%,-50%) scale(1.12)",opacity:.50,offset:.28},
-        {transform:"translate(-50%,-50%) scale(1.18)",opacity:0,offset:.48},
-        {transform:"translate(-50%,-50%) scale(1.18)",opacity:0}
+        {transform:"translate(-50%,-50%) scale(1.10)",opacity:0,offset:.48},
+        {transform:"translate(-50%,-50%) scale(1.10)",opacity:0}
       ],{duration:cycle,easing:"ease-out",iterations:Infinity,delay,fill:"both"});
     }
 
@@ -758,7 +758,7 @@
       stroke-width:4.2;
       stroke-linecap:round;
       stroke-linejoin:round;
-      stroke-dasharray:8 18 4 31 12 24 6 38;
+      stroke-dasharray:8 10 4 31 12 24 6 38;
       opacity:.10;
       filter:blur(2.2px) drop-shadow(0 0 4px rgba(74,214,239,.22));
     }
@@ -771,7 +771,7 @@
       stroke-linejoin:round;
       stroke-dasharray:2 9 13 5 3 21 7 15 2 28 8 6 19 11;
       opacity:1;
-      filter:drop-shadow(0 0 1.8px rgba(74,214,239,.18));
+      filter:drop-shadow(0 0 1.8px rgba(74,214,239,.10));
     }
 
     /* Very small bright fragments imitate moonlight catching individual wave crests. */
@@ -797,14 +797,14 @@
       margin:0;
       border:1px solid rgba(121,231,247,.82);
       border-radius:50%;
-      transform:translate(-50%,-50%) rotate(var(--click-rotation,0deg)) scale(.18);
+      transform:translate(-50%,-50%) rotate(var(--click-rotation,0deg)) scale(.10);
       opacity:0;
       pointer-events:none;
       z-index:6;
       box-shadow:
         0 0 3px rgba(111,231,249,.45),
-        0 0 9px rgba(70,210,240,.18);
-      animation:clickRippleWave .82s cubic-bezier(.18,.68,.3,1) forwards;
+        0 0 9px rgba(70,210,240,.10);
+      animation:clickRippleWave .82s cubic-bezier(.10,.68,.3,1) forwards;
     }
     .click-ripple::before{
       content:"";
@@ -828,7 +828,7 @@
       opacity:.55;
     }
     @keyframes clickRippleWave{
-      0%{transform:translate(-50%,-50%) rotate(var(--click-rotation,0deg)) scale(.18);opacity:0}
+      0%{transform:translate(-50%,-50%) rotate(var(--click-rotation,0deg)) scale(.10);opacity:0}
       15%{opacity:.92}
       42%{opacity:.72}
       100%{transform:translate(-50%,-50%) rotate(var(--click-rotation,0deg)) scale(1.25);opacity:0}
@@ -842,8 +842,8 @@
     .super-impact-wave-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;}
     .super-impact-wave{fill:none;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;}
     .super-impact-wave-glow{stroke:rgba(70,210,240,.28);stroke-width:5.5;stroke-dasharray:10 22 6 34 14 30;opacity:.12;filter:blur(3px) drop-shadow(0 0 7px rgba(61,204,236,.28));}
-    .super-impact-wave-blue{stroke:rgba(111,231,249,.94);stroke-width:1.55;stroke-dasharray:3 8 18 5 5 25 9 16 3 31 11 7 22 12;opacity:1;filter:drop-shadow(0 0 2px rgba(77,214,241,.28));}
-    .super-impact-wave-gold{stroke:rgba(255,221,105,.98);stroke-width:1.35;stroke-dasharray:2 13 8 22 3 16 11 27;opacity:.95;filter:drop-shadow(0 0 3px rgba(255,218,92,.58)) drop-shadow(0 0 7px rgba(238,195,76,.32));}
+    .super-impact-wave-blue{stroke:rgba(111,231,249,.94);stroke-width:1.55;stroke-dasharray:3 8 10 5 5 25 9 16 3 31 11 7 22 12;opacity:1;filter:drop-shadow(0 0 2px rgba(77,214,241,.28));}
+    .super-impact-wave-gold{stroke:rgba(255,221,105,.98);stroke-width:1.35;stroke-dasharray:2 13 8 22 3 16 11 27;opacity:.95;filter:drop-shadow(0 0 3px rgba(255,210,92,.58)) drop-shadow(0 0 7px rgba(238,195,76,.32));}
     .super-impact-hit{position:absolute;left:50%;top:50%;width:9px;height:9px;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,255,255,1) 0%,rgba(210,248,255,.98) 28%,rgba(75,210,239,.78) 58%,transparent 100%);box-shadow:0 0 5px rgba(255,255,255,.9),0 0 14px rgba(70,208,239,.8),0 0 26px rgba(255,211,82,.26);opacity:0;pointer-events:none;}
     .super-impact-logo-wrap{position:absolute;left:50%;top:50%;width:30%;height:30%;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;z-index:8;pointer-events:none;opacity:0;}
     .super-impact-logo-wrap::before{content:"";position:absolute;inset:-16%;border-radius:50%;background:radial-gradient(circle,rgba(210,247,255,.22),rgba(255,215,94,.08) 42%,transparent 72%);filter:blur(4px);}
@@ -851,7 +851,7 @@
 
     #impact-ripple-preview{position:fixed;inset:0;z-index:3000;display:grid;place-items:center;background:rgba(0,5,10,.68);backdrop-filter:blur(6px)}
     .irp-box{position:relative;width:min(620px,86vw);padding:42px;border:1px solid rgba(91,226,249,.45);background:rgba(2,13,22,.92);box-shadow:0 0 45px rgba(46,198,229,.16);text-align:center;color:#eefaff}
-    .irp-org-logo{display:block;width:min(180px,42vw);height:min(110px,24vw);object-fit:contain;margin:0 auto 20px;filter:drop-shadow(0 0 5px rgba(255,255,255,.7)) drop-shadow(0 0 12px rgba(75,211,240,.35)) drop-shadow(0 0 14px rgba(255,211,82,.18));}
+    .irp-org-logo{display:block;width:min(100px,42vw);height:min(110px,24vw);object-fit:contain;margin:0 auto 20px;filter:drop-shadow(0 0 5px rgba(255,255,255,.7)) drop-shadow(0 0 12px rgba(75,211,240,.35)) drop-shadow(0 0 14px rgba(255,211,82,.10));}
     .irp-label{font-size:12px;letter-spacing:.25em;opacity:.7}
     .irp-box p{font-size:22px;line-height:1.55}
     .irp-box small{opacity:.7}
@@ -860,10 +860,10 @@
     #make-ripple-modal{position:fixed;inset:0;z-index:2900;display:flex;align-items:center;justify-content:center;padding:30px;background:rgba(0,5,12,.78);backdrop-filter:blur(10px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s ease,visibility .3s ease;overflow-y:auto}
     #make-ripple-modal.open{opacity:1;visibility:visible;pointer-events:auto}
     .make-ripple-box{position:relative;width:min(680px,92vw);max-height:calc(100vh - 60px);overflow-y:auto;padding:48px 48px 42px;border:1px solid rgba(91,226,249,.38);border-radius:14px;background:linear-gradient(145deg,rgba(3,19,30,.98),rgba(1,9,17,.98));box-shadow:0 0 60px rgba(46,198,229,.14),inset 0 0 40px rgba(38,163,190,.04);color:#eefaff}
-    .make-ripple-close{position:absolute;right:18px;top:14px;width:40px;height:40px;border:1px solid rgba(110,225,246,.35);border-radius:50%;background:rgba(2,15,25,.45);color:#eefaff;font:28px/1 Arial,sans-serif;cursor:pointer}
+    .make-ripple-close{position:absolute;right:10px;top:14px;width:40px;height:40px;border:1px solid rgba(110,225,246,.35);border-radius:50%;background:rgba(2,15,25,.45);color:#eefaff;font:28px/1 Arial,sans-serif;cursor:pointer}
     .make-ripple-close:hover{border-color:#63e6ff;box-shadow:0 0 16px rgba(70,224,250,.28)}
     .make-ripple-kicker{text-align:center;font-size:11px;letter-spacing:.34em;color:#9cebf8;opacity:.75;margin-bottom:12px}
-    .make-ripple-box h2{margin:0;text-align:center;font-size:clamp(28px,4vw,42px);font-weight:400;letter-spacing:.08em;color:#eefaff;text-shadow:0 0 18px rgba(92,218,255,.24)}
+    .make-ripple-box h2{margin:0;text-align:center;font-size:clamp(28px,4vw,42px);font-weight:400;letter-spacing:.08em;color:#eefaff;text-shadow:0 0 10px rgba(92,210,255,.24)}
     .make-ripple-intro{max-width:560px;margin:20px auto 32px;text-align:center;font-size:17px;line-height:1.7;color:rgba(238,250,255,.78)}
     #make-ripple-form{display:flex;flex-direction:column;gap:12px}
     #make-ripple-form label{margin-top:8px;font-size:13px;letter-spacing:.13em;text-transform:uppercase;color:#b9a76f}
@@ -876,9 +876,9 @@
     .make-ripple-note{margin:8px 0 8px;text-align:center;font-size:13px;line-height:1.5;color:rgba(238,250,255,.48)}
     .make-ripple-actions{display:flex;justify-content:center;gap:14px;margin-top:10px}
     .make-ripple-actions button{padding:12px 22px;border-radius:25px;cursor:pointer;letter-spacing:.1em;text-transform:uppercase;font-size:12px;transition:.2s ease}
-    .make-ripple-cancel{border:1px solid rgba(180,220,230,.25);background:rgba(2,15,25,.4);color:rgba(238,250,255,.72)}
-    .make-ripple-cancel:hover{border-color:rgba(180,220,230,.5);color:#eefaff}
-    .make-ripple-submit{border:1px solid rgba(82,229,255,.85);background:rgba(8,55,68,.55);color:#eefaff;box-shadow:0 0 18px rgba(50,211,243,.1)}
+    .make-ripple-cancel{border:1px solid rgba(100,220,230,.25);background:rgba(2,15,25,.4);color:rgba(238,250,255,.72)}
+    .make-ripple-cancel:hover{border-color:rgba(100,220,230,.5);color:#eefaff}
+    .make-ripple-submit{border:1px solid rgba(82,229,255,.85);background:rgba(8,55,68,.55);color:#eefaff;box-shadow:0 0 10px rgba(50,211,243,.1)}
     .make-ripple-submit:hover:not(:disabled){background:rgba(16,75,88,.7);box-shadow:0 0 24px rgba(50,211,243,.24)}
     .make-ripple-submit:disabled{opacity:.55;cursor:wait}
     .make-ripple-status{min-height:22px;margin-top:10px;text-align:center;font-size:14px;line-height:1.5}
@@ -929,7 +929,7 @@
 
     /* Keep click-ripples below the upper moon/header/title area. On mobile
        the boundary is raised so the lower Well becomes interactive sooner. */
-    const CLICK_RIPPLE_Y_MIN = 18;
+    const CLICK_RIPPLE_Y_MIN = 10;
     const clickYPercent = (y / rect.height) * 100;
     if (clickYPercent < CLICK_RIPPLE_Y_MIN) return;
 
