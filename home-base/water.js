@@ -165,18 +165,33 @@
     const sharedRingPhase = rand(data.id + "sharedRingPhase", 0, 6.28);
 
     ringScales.forEach((scale, index) => {
+      const pathData = makeWavePath(
+        data.id + "sharedRingContour",
+        scale,
+        sharedRingPhase
+      );
+
+      /*
+         Three visual layers make the disturbance read as water rather than
+         a graphic outline: a soft reflected glow, a broken water crest,
+         and tiny bright surface highlights. All three share the same path.
+      */
+      const ringGlow = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      ringGlow.classList.add("impact-wave", "impact-wave-glow");
+      ringGlow.setAttribute("d", pathData);
+      waveGroup.appendChild(ringGlow);
+
       const ring = document.createElementNS("http://www.w3.org/2000/svg", "path");
       ring.classList.add("impact-wave", "impact-wave-inner");
-      ring.setAttribute(
-        "d",
-        makeWavePath(
-          data.id + "sharedRingContour",
-          scale,
-          sharedRingPhase
-        )
-      );
+      ring.setAttribute("d", pathData);
       waveGroup.appendChild(ring);
-      waveRings.push(ring);
+
+      const ringShimmer = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      ringShimmer.classList.add("impact-wave", "impact-wave-shimmer");
+      ringShimmer.setAttribute("d", pathData);
+      waveGroup.appendChild(ringShimmer);
+
+      waveRings.push({ ring, ringGlow, ringShimmer });
     });
 
     svg.appendChild(waveGroup);
@@ -212,51 +227,78 @@
        visual sequence: impact -> first ring -> second ring -> third ring.
        Every ring still inherits the same irregular, organic geometry.
     */
-    waveRings.forEach((ring, index) => {
+    waveRings.forEach(({ ring, ringGlow, ringShimmer }, index) => {
       /*
-         Keep every ring on the exact same organic contour. Only its scale
-         changes. This makes the waves truly concentric instead of allowing
-         independently generated bumps to cross one another.
+         Keep every visual layer on the exact same organic contour. Only
+         scale changes, so the rings stay concentric and cannot cross.
       */
       const ringDelay = rippleDelay + index * (rippleDuration * .16);
       const ringDuration = rippleDuration * .56;
 
-      ring.style.transformOrigin = "50% 50%";
-      ring.style.transformBox = "view-box";
+      [ring, ringGlow, ringShimmer].forEach(part => {
+        part.style.transformOrigin = "50% 50%";
+        part.style.transformBox = "view-box";
+      });
 
-      ring.animate(
-        [
-          { transform: "scale(.46)", opacity: 0 },
-          { transform: "scale(.54)", opacity: .82, offset: .10 },
-          { transform: "scale(.70)", opacity: .72, offset: .28 },
-          { transform: "scale(.88)", opacity: .48, offset: .50 },
-          { transform: "scale(1.08)", opacity: .18, offset: .74 },
-          { transform: "scale(1.18)", opacity: 0, offset: 1 }
-        ],
-        {
+      const expansion = [
+        { transform: "scale(.46)", opacity: 0 },
+        { transform: "scale(.54)", opacity: .82, offset: .10 },
+        { transform: "scale(.70)", opacity: .72, offset: .28 },
+        { transform: "scale(.88)", opacity: .48, offset: .50 },
+        { transform: "scale(1.08)", opacity: .18, offset: .74 },
+        { transform: "scale(1.18)", opacity: 0, offset: 1 }
+      ];
+
+      [ring, ringGlow, ringShimmer].forEach(part => {
+        part.animate(expansion, {
           duration: ringDuration,
           easing: "cubic-bezier(.18,.65,.25,1)",
           iterations: Infinity,
           delay: ringDelay,
           fill: "both"
-        }
-      );
+        });
+      });
 
-      /* Broken highlights move around each ring as it expands. */
+      /*
+         The main crest is intentionally broken: real water does not form a
+         perfectly continuous luminous circle. The dash pattern leaves dark
+         gaps while the highlight fragments drift around the surface.
+      */
       ring.animate(
         [
-          { strokeDashoffset: "0", opacity: .48 },
-          { strokeDashoffset: "-14", opacity: .72, offset: .24 },
-          { strokeDashoffset: "-31", opacity: .52, offset: .52 },
-          { strokeDashoffset: "-49", opacity: .20, offset: .76 },
-          { strokeDashoffset: "-64", opacity: 0 }
+          { strokeDashoffset: "0", opacity: .34 },
+          { strokeDashoffset: "-11", opacity: .66, offset: .20 },
+          { strokeDashoffset: "-25", opacity: .42, offset: .42 },
+          { strokeDashoffset: "-41", opacity: .72, offset: .61 },
+          { strokeDashoffset: "-57", opacity: .20, offset: .80 },
+          { strokeDashoffset: "-73", opacity: 0 }
         ],
-        {
-          duration: ringDuration,
-          easing: "ease-out",
-          iterations: Infinity,
-          delay: ringDelay
-        }
+        { duration: ringDuration, easing: "ease-out", iterations: Infinity, delay: ringDelay }
+      );
+
+      /* Soft reflected light sits underneath the crest instead of replacing it. */
+      ringGlow.animate(
+        [
+          { strokeDashoffset: "8", opacity: .05 },
+          { strokeDashoffset: "-18", opacity: .15, offset: .24 },
+          { strokeDashoffset: "-38", opacity: .09, offset: .50 },
+          { strokeDashoffset: "-61", opacity: .13, offset: .70 },
+          { strokeDashoffset: "-84", opacity: 0 }
+        ],
+        { duration: ringDuration * 1.08, easing: "ease-out", iterations: Infinity, delay: ringDelay }
+      );
+
+      /* Tiny moonlit glints briefly catch on different parts of the wave. */
+      ringShimmer.animate(
+        [
+          { strokeDashoffset: "0", opacity: 0 },
+          { strokeDashoffset: "-9", opacity: .08, offset: .28 },
+          { strokeDashoffset: "-21", opacity: .34, offset: .42 },
+          { strokeDashoffset: "-33", opacity: .05, offset: .54 },
+          { strokeDashoffset: "-49", opacity: .22, offset: .70 },
+          { strokeDashoffset: "-67", opacity: 0 }
+        ],
+        { duration: ringDuration * .92, easing: "ease-in-out", iterations: Infinity, delay: ringDelay + index * 170 }
       );
     });
 
@@ -484,20 +526,48 @@
 
     /* Permanent boundary is intentionally almost invisible. */
     .impact-wave-outer{
-      stroke:rgba(93,225,247,.012);
-      stroke-width:.8;
-      opacity:.14;
+      stroke:rgba(93,225,247,.028);
+      stroke-width:1.2;
+      stroke-linecap:round;
+      stroke-dasharray:5 34 2 51 8 42;
+      opacity:.16;
+      filter:blur(.7px);
     }
 
-    /* Main irregular water disturbance. */
-    .impact-wave-inner{
-      stroke:rgba(93,225,247,.82);
-      stroke-width:1.25;
+    /*
+       Water-surface treatment: the glow is wider and softer than the crest,
+       so the eye reads reflected light around the wave rather than a line.
+    */
+    .impact-wave-glow{
+      stroke:rgba(78,214,238,.24);
+      stroke-width:4.2;
       stroke-linecap:round;
       stroke-linejoin:round;
-      stroke-dasharray:3 6 19 4 8 12 2 7 24 5 10 3 17 9;
+      stroke-dasharray:8 18 4 31 12 24 6 38;
+      opacity:.10;
+      filter:blur(2.2px) drop-shadow(0 0 4px rgba(74,214,239,.16));
+    }
+
+    /* Main irregular water crest: broken, translucent, and uneven. */
+    .impact-wave-inner{
+      stroke:rgba(121,231,247,.74);
+      stroke-width:1.05;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+      stroke-dasharray:2 9 13 5 3 21 7 15 2 28 8 6 19 11;
       opacity:1;
-      filter:drop-shadow(0 0 1.5px rgba(74,214,239,.13));
+      filter:drop-shadow(0 0 1.2px rgba(74,214,239,.12));
+    }
+
+    /* Very small bright fragments imitate moonlight catching individual wave crests. */
+    .impact-wave-shimmer{
+      stroke:rgba(205,249,255,.78);
+      stroke-width:1.35;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+      stroke-dasharray:1 34 5 58 2 27 7 71;
+      opacity:0;
+      filter:drop-shadow(0 0 2px rgba(176,244,255,.26));
     }
 
     #impact-ripple-preview{position:fixed;inset:0;z-index:3000;display:grid;place-items:center;background:rgba(0,5,10,.68);backdrop-filter:blur(6px)}
