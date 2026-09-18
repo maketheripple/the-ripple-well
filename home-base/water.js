@@ -1,5 +1,5 @@
 /* THE RIPPLE WELL — HOME BASE
-   v41 — Organic, irregular Impact Ripple
+   v42 — Minimal organic Impact Ripple
    Make a Ripple submission form added.
    Approved Impact Ripples remain. */
 (() => {
@@ -45,41 +45,6 @@
     el.className = "impact-ripple";
     el.style.setProperty("--secondary-rotation", `${rand(data.id + "s", -18, 18)}deg`);
     el.title = data.name ? data.name : "Impact Ripple";
-
-    /* Build organic water rings instead of geometric CSS ovals. */
-    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute("viewBox", "0 0 200 100");
-    svg.setAttribute("preserveAspectRatio", "none");
-    svg.setAttribute("aria-hidden", "true");
-    svg.classList.add("impact-wave-svg");
-
-    const makeWavePath = (id, scale, phase) => {
-      const points = [];
-      const count = 40;
-      for (let i = 0; i < count; i++) {
-        const a = (Math.PI * 2 * i) / count;
-        const n =
-          Math.sin(a * 3 + phase) * rand(id + "a" + i, 1.2, 3.2) +
-          Math.sin(a * 7 + phase * 1.7) * rand(id + "b" + i, .45, 1.45) +
-          Math.sin(a * 11 - phase * .8) * rand(id + "c" + i, .18, .75);
-        const rx = 82 * scale + n;
-        const ry = 34 * scale + n * .55;
-        points.push([100 + Math.cos(a) * rx, 50 + Math.sin(a) * ry]);
-      }
-      return points.map((p, i) => `${i ? "L" : "M"}${p[0].toFixed(2)},${p[1].toFixed(2)}`).join(" ") + " Z";
-    };
-
-    const waveOuter = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    waveOuter.classList.add("impact-wave", "impact-wave-outer");
-    waveOuter.setAttribute("d", makeWavePath(data.id + "outer", 1, rand(data.id + "phase1", 0, 6.28)));
-
-    const waveInner = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    waveInner.classList.add("impact-wave", "impact-wave-inner");
-    waveInner.setAttribute("d", makeWavePath(data.id + "inner", .78, rand(data.id + "phase2", 0, 6.28)));
-
-    svg.appendChild(waveOuter);
-    svg.appendChild(waveInner);
-    el.appendChild(svg);
 
     hitbox.addEventListener("click", () => {
       const message = (data.message || "").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -254,7 +219,7 @@
     .impact-hitbox.impact-size-large{width:175px;height:88px}
     .impact-hitbox.impact-size-extra-large{width:230px;height:115px}
 
-    /* Organic Impact Ripple — irregular water rings */
+    /* Minimal Impact Ripple — one organic traveling water wave */
     .impact-ripple{
       position:absolute;
       left:50%;
@@ -283,12 +248,14 @@
       transform-origin:center;
     }
 
+    /* A nearly invisible point of disturbance — no permanent visible oval. */
     .impact-wave-outer{
-      stroke:rgba(93,225,247,.025);
-      stroke-width:1;
-      opacity:.65;
+      stroke:rgba(93,225,247,.012);
+      stroke-width:.8;
+      opacity:.22;
     }
 
+    /* The only meaningful visual: an irregular wave traveling outward. */
     .impact-wave-inner{
       stroke:rgba(93,225,247,.78);
       stroke-width:1.25;
@@ -299,14 +266,32 @@
     }
 
     @keyframes impactWave{
-      0%{transform:scale(.60);opacity:0}
-      10%{opacity:0}
-      18%{opacity:.72}
-      30%{opacity:.88}
-      48%{opacity:.70}
-      68%{opacity:.34}
-      84%{opacity:.08}
-      100%{transform:scale(1.28);opacity:0}
+      0%{
+        transform:scale(.34);
+        opacity:0;
+      }
+      14%{
+        opacity:0;
+      }
+      22%{
+        opacity:.76;
+      }
+      34%{
+        opacity:.88;
+      }
+      50%{
+        opacity:.64;
+      }
+      68%{
+        opacity:.30;
+      }
+      84%{
+        opacity:.07;
+      }
+      100%{
+        transform:scale(1.34);
+        opacity:0;
+      }
     }
 
     #impact-ripple-preview{position:fixed;inset:0;z-index:3000;display:grid;place-items:center;background:rgba(0,5,10,.68);backdrop-filter:blur(6px)}
