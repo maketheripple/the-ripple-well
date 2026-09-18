@@ -1,5 +1,5 @@
 /* THE RIPPLE WELL — HOME BASE
-   v59 — Defined Impact and Super-Impact placement zones
+   v60 — Added restrained click-ripples for direct Well interaction
    Make a Ripple submission form added.
    Approved Impact Ripples remain. */
 (() => {
@@ -749,6 +749,53 @@
 
 
     /* =========================================================
+       CLICK-RIPPLE — SMALL, DIRECT WATER RESPONSE
+    ========================================================= */
+    .click-ripple{
+      position:absolute;
+      width:58px;
+      height:29px;
+      margin:0;
+      border:1px solid rgba(121,231,247,.82);
+      border-radius:50%;
+      transform:translate(-50%,-50%) rotate(var(--click-rotation,0deg)) scale(.18);
+      opacity:0;
+      pointer-events:none;
+      z-index:6;
+      box-shadow:
+        0 0 3px rgba(111,231,249,.45),
+        0 0 9px rgba(70,210,240,.18);
+      animation:clickRippleWave .82s cubic-bezier(.18,.68,.3,1) forwards;
+    }
+    .click-ripple::before{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:50%;
+      width:5px;
+      height:5px;
+      border-radius:50%;
+      transform:translate(-50%,-50%);
+      background:rgba(215,249,255,.9);
+      box-shadow:0 0 4px rgba(121,231,247,.45);
+      opacity:.85;
+    }
+    .click-ripple::after{
+      content:"";
+      position:absolute;
+      inset:7px 12px;
+      border:1px solid rgba(190,245,255,.38);
+      border-radius:50%;
+      opacity:.55;
+    }
+    @keyframes clickRippleWave{
+      0%{transform:translate(-50%,-50%) rotate(var(--click-rotation,0deg)) scale(.18);opacity:0}
+      10%{opacity:.92}
+      42%{opacity:.72}
+      100%{transform:translate(-50%,-50%) rotate(var(--click-rotation,0deg)) scale(1.25);opacity:0}
+    }
+
+    /* =========================================================
        SUPER-IMPACT — INVISIBLE ROCK / BLUE WATER + GOLD RIM
     ========================================================= */
     .super-impact-hitbox{z-index:12;}
@@ -813,6 +860,49 @@
   const makeRippleModal = createMakeRippleModal();
   if (makeRippleButton && makeRippleModal) {
     makeRippleButton.addEventListener("click", makeRippleModal.open);
+  }
+
+  /* ---------------------------------------------------------
+     CLICK RIPPLES — DIRECT WATER INTERACTION
+     A click creates a small, restrained disturbance at the point touched.
+     This is intentionally much smaller and shorter-lived than an Impact
+     Ripple so the three ripple types remain visually distinct.
+  --------------------------------------------------------- */
+  function createClickRipple(event) {
+    const homebaseSky = document.getElementById("homebase-sky");
+    if (!homebaseSky) return;
+
+    /* Ignore clicks on existing database ripples. Their own click handler
+       is reserved for opening the message/company information popup. */
+    if (event.target.closest && event.target.closest(".impact-hitbox, .super-impact-hitbox")) {
+      return;
+    }
+
+    /* Do not create a ripple when the click lands on visible page content. */
+    if (event.target.closest && event.target.closest(".hero-title, a, button, input, textarea, label")) {
+      return;
+    }
+
+    const rect = homebaseSky.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    /* The click-ripple is only a water interaction. Keep it below the
+       hero title and other intentional foreground content. */
+    const ripple = document.createElement("span");
+    ripple.className = "click-ripple";
+    ripple.style.left = `${x}px`;
+    ripple.style.top = `${y}px`;
+    ripple.style.setProperty("--click-rotation", `${rand(`${x}:${y}`, -8, 8)}deg`);
+
+    homebaseSky.appendChild(ripple);
+
+    window.setTimeout(() => ripple.remove(), 900);
+  }
+
+  const homebaseSky = document.getElementById("homebase-sky");
+  if (homebaseSky) {
+    homebaseSky.addEventListener("click", createClickRipple);
   }
 
   /* ---------------------------------------------------------
