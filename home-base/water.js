@@ -1,5 +1,5 @@
 /* THE RIPPLE WELL — HOME BASE
-   v50 — Multiple expanding raindrop rings for organic Impact Ripple
+   v55 — Super-Impact invisible-rock visual treatment
    Make a Ripple submission form added.
    Approved Impact Ripples remain. */
 (() => {
@@ -322,6 +322,167 @@
     if (layer) layer.appendChild(hitbox);
   }
 
+
+  /* ---------------------------------------------------------
+     SUPER-IMPACT RIPPLES
+     An invisible rock hitting the Well: a stronger central impact,
+     broader blue water waves, restrained gold outer rims, and the
+     contributing organization's logo at the point of impact.
+  --------------------------------------------------------- */
+  function addSuperImpactRipple(data) {
+    const hitbox = document.createElement("div");
+    hitbox.className = `impact-hitbox super-impact-hitbox impact-size-${sizeClass(data.size)}`;
+    hitbox.style.left = `${rand(data.id + "x", 12, 88)}%`;
+    hitbox.style.top = `${rand(data.id + "y", 18, 88)}%`;
+    hitbox.style.setProperty("--rotation", `${rand(data.id + "r", -18, 18)}deg`);
+
+    const el = document.createElement("div");
+    el.className = "impact-ripple super-impact-ripple";
+    el.title = data.organization_name || "Super-Impact Ripple";
+
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("viewBox", "0 0 240 120");
+    svg.setAttribute("preserveAspectRatio", "none");
+    svg.setAttribute("aria-hidden", "true");
+    svg.classList.add("super-impact-wave-svg");
+
+    const makeSuperPath = (id, scale, phase) => {
+      const points = [];
+      const count = 96;
+      for (let i = 0; i < count; i++) {
+        const a = (Math.PI * 2 * i) / count;
+        const low = Math.sin(a * 3 + phase) * rand(id + "low" + i, 4.0, 7.0);
+        const mid = Math.sin(a * 5 - phase * 1.15) * rand(id + "mid" + i, 2.0, 4.5);
+        const high = Math.sin(a * 9 + phase * .65) * rand(id + "high" + i, .8, 2.2);
+        const deformation = low + mid + high;
+        const x = (98 + deformation) * scale;
+        const y = (40 + deformation * rand(id + "ratio" + i, .42, .66)) * scale;
+        points.push([120 + Math.cos(a) * x, 60 + Math.sin(a) * y]);
+      }
+      let cx = 0, cy = 0;
+      points.forEach(p => { cx += p[0]; cy += p[1]; });
+      cx /= points.length; cy /= points.length;
+      points.forEach(p => { p[0] += 120 - cx; p[1] += 60 - cy; });
+      const midpoint = (a,b) => [(a[0]+b[0])/2,(a[1]+b[1])/2];
+      const path = [];
+      const first = midpoint(points[0], points[1]);
+      path.push(`M${first[0].toFixed(2)},${first[1].toFixed(2)}`);
+      for (let i=1; i<=points.length; i++) {
+        const current = points[i % points.length];
+        const next = points[(i+1) % points.length];
+        const mid = midpoint(current,next);
+        path.push(`Q${current[0].toFixed(2)},${current[1].toFixed(2)} ${mid[0].toFixed(2)},${mid[1].toFixed(2)}`);
+      }
+      path.push("Z");
+      return path.join(" ");
+    };
+
+    const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    group.classList.add("super-impact-wave-group");
+    const phase = rand(data.id + "superPhase", 0, 6.28);
+    const rings = [];
+    const scales = [.48, .67, .86, 1.04];
+
+    scales.forEach((scale, index) => {
+      const d = makeSuperPath(data.id + "superContour", scale, phase);
+      const glow = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      glow.classList.add("super-impact-wave", "super-impact-wave-glow");
+      glow.setAttribute("d", d);
+      const blue = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      blue.classList.add("super-impact-wave", "super-impact-wave-blue");
+      blue.setAttribute("d", d);
+      const gold = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      gold.classList.add("super-impact-wave", "super-impact-wave-gold");
+      gold.setAttribute("d", d);
+      group.append(glow, blue, gold);
+      rings.push({glow, blue, gold, index});
+    });
+    svg.appendChild(group);
+    el.appendChild(svg);
+
+    const impact = document.createElement("span");
+    impact.className = "super-impact-hit";
+    el.appendChild(impact);
+
+    if (data.organization_logo) {
+      const logoWrap = document.createElement("span");
+      logoWrap.className = "super-impact-logo-wrap";
+      const logo = document.createElement("img");
+      logo.className = "super-impact-logo";
+      logo.src = data.organization_logo;
+      logo.alt = `${data.organization_name || "Organization"} logo`;
+      logoWrap.appendChild(logo);
+      el.appendChild(logoWrap);
+    }
+
+    /* A full rock-impact cycle lasts about 7 seconds. The long pause between
+       cycles makes the event feel earned rather than like a breathing animation. */
+    const cycle = rand(data.id + "superCycle", 6800, 8200);
+    const delay = -rand(data.id + "superDelay", 0, 9000);
+
+    impact.animate([
+      {transform:"translate(-50%,-50%) scale(.15)",opacity:0},
+      {transform:"translate(-50%,-50%) scale(1)",opacity:1,offset:.035},
+      {transform:"translate(-50%,-50%) scale(1.8)",opacity:.72,offset:.075},
+      {transform:"translate(-50%,-50%) scale(2.5)",opacity:0,offset:.16},
+      {transform:"translate(-50%,-50%) scale(2.5)",opacity:0}
+    ],{duration:cycle,easing:"cubic-bezier(.1,.55,.2,1)",iterations:Infinity,delay,fill:"both"});
+
+    rings.forEach(({glow,blue,gold,index}) => {
+      const ringDelay = delay + index * (cycle * .105);
+      const ringDuration = cycle * .72;
+      [glow,blue,gold].forEach(part => {
+        part.style.transformOrigin = "50% 50%";
+        part.style.transformBox = "view-box";
+        part.animate([
+          {transform:"scale(.34)",opacity:0},
+          {transform:"scale(.50)",opacity:1,offset:.08},
+          {transform:"scale(.70)",opacity:.82,offset:.28},
+          {transform:"scale(.91)",opacity:.48,offset:.54},
+          {transform:"scale(1.10)",opacity:.14,offset:.80},
+          {transform:"scale(1.17)",opacity:0}
+        ],{duration:ringDuration,easing:"cubic-bezier(.12,.62,.22,1)",iterations:Infinity,delay:ringDelay,fill:"both"});
+      });
+      blue.animate([
+        {strokeDashoffset:"0",opacity:.20},{strokeDashoffset:"-18",opacity:.92,offset:.16},
+        {strokeDashoffset:"-43",opacity:.66,offset:.40},{strokeDashoffset:"-76",opacity:.30,offset:.68},
+        {strokeDashoffset:"-108",opacity:0}
+      ],{duration:ringDuration,easing:"ease-out",iterations:Infinity,delay:ringDelay});
+      gold.animate([
+        {strokeDashoffset:"-12",opacity:.08},{strokeDashoffset:"-35",opacity:.72,offset:.22},
+        {strokeDashoffset:"-64",opacity:.54,offset:.46},{strokeDashoffset:"-94",opacity:.22,offset:.73},
+        {strokeDashoffset:"-128",opacity:0}
+      ],{duration:ringDuration,easing:"ease-out",iterations:Infinity,delay:ringDelay + 45});
+    });
+
+    if (data.organization_logo) {
+      const logoWrap = el.querySelector(".super-impact-logo-wrap");
+      logoWrap.animate([
+        {transform:"translate(-50%,-50%) scale(.78)",opacity:0},
+        {transform:"translate(-50%,-50%) scale(1)",opacity:1,offset:.045},
+        {transform:"translate(-50%,-50%) scale(1.04)",opacity:.92,offset:.12},
+        {transform:"translate(-50%,-50%) scale(1.12)",opacity:.50,offset:.28},
+        {transform:"translate(-50%,-50%) scale(1.18)",opacity:0,offset:.48},
+        {transform:"translate(-50%,-50%) scale(1.18)",opacity:0}
+      ],{duration:cycle,easing:"ease-out",iterations:Infinity,delay,fill:"both"});
+    }
+
+    hitbox.addEventListener("click", () => {
+      const existing = document.getElementById("impact-ripple-preview");
+      if (existing) existing.remove();
+      const box = document.createElement("div");
+      box.id = "impact-ripple-preview";
+      const org = (data.organization_name || "Organization").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+      const message = (data.message || "").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+      box.innerHTML = `<div class="irp-box"><button class="irp-close" aria-label="Close">×</button><div class="irp-label">SUPER-IMPACT RIPPLE</div><p>${org}</p>${message ? `<small>“${message}”</small>` : ""}</div>`;
+      document.body.appendChild(box);
+      box.querySelector(".irp-close").onclick=()=>box.remove();
+      box.onclick=e=>{if(e.target===box)box.remove();};
+    });
+    hitbox.appendChild(el);
+    if (layer) layer.appendChild(hitbox);
+  }
+
   /* ---------------------------------------------------------
      MAKE THE RIPPLE FORM
   --------------------------------------------------------- */
@@ -570,6 +731,23 @@
       filter:drop-shadow(0 0 2.5px rgba(176,244,255,.34));
     }
 
+
+
+    /* =========================================================
+       SUPER-IMPACT — INVISIBLE ROCK / BLUE WATER + GOLD RIM
+    ========================================================= */
+    .super-impact-hitbox{z-index:12;}
+    .super-impact-ripple{width:260%;height:260%;transform:translate(-50%,-50%);}
+    .super-impact-wave-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;}
+    .super-impact-wave{fill:none;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;}
+    .super-impact-wave-glow{stroke:rgba(70,210,240,.28);stroke-width:5.5;stroke-dasharray:10 22 6 34 14 30;opacity:.12;filter:blur(3px) drop-shadow(0 0 7px rgba(61,204,236,.28));}
+    .super-impact-wave-blue{stroke:rgba(111,231,249,.94);stroke-width:1.55;stroke-dasharray:3 8 18 5 5 25 9 16 3 31 11 7 22 12;opacity:1;filter:drop-shadow(0 0 2px rgba(77,214,241,.28));}
+    .super-impact-wave-gold{stroke:rgba(255,215,94,.92);stroke-width:1.15;stroke-dasharray:2 16 8 28 3 20 11 34;opacity:.85;filter:drop-shadow(0 0 2px rgba(255,211,82,.38)) drop-shadow(0 0 5px rgba(238,195,76,.18));}
+    .super-impact-hit{position:absolute;left:50%;top:50%;width:9px;height:9px;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,255,255,1) 0%,rgba(210,248,255,.98) 28%,rgba(75,210,239,.78) 58%,transparent 100%);box-shadow:0 0 5px rgba(255,255,255,.9),0 0 14px rgba(70,208,239,.8),0 0 26px rgba(255,211,82,.26);opacity:0;pointer-events:none;}
+    .super-impact-logo-wrap{position:absolute;left:50%;top:50%;width:30%;height:30%;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;z-index:8;pointer-events:none;opacity:0;}
+    .super-impact-logo-wrap::before{content:"";position:absolute;inset:-16%;border-radius:50%;background:radial-gradient(circle,rgba(210,247,255,.22),rgba(255,215,94,.08) 42%,transparent 72%);filter:blur(4px);}
+    .super-impact-logo{position:relative;width:100%;height:100%;object-fit:contain;opacity:.96;filter:drop-shadow(0 0 4px rgba(255,255,255,.78)) drop-shadow(0 0 10px rgba(75,211,240,.58)) drop-shadow(0 0 15px rgba(255,211,82,.24));}
+
     #impact-ripple-preview{position:fixed;inset:0;z-index:3000;display:grid;place-items:center;background:rgba(0,5,10,.68);backdrop-filter:blur(6px)}
     .irp-box{position:relative;width:min(620px,86vw);padding:42px;border:1px solid rgba(91,226,249,.45);background:rgba(2,13,22,.92);box-shadow:0 0 45px rgba(46,198,229,.16);text-align:center;color:#eefaff}
     .irp-label{font-size:12px;letter-spacing:.25em;opacity:.7}
@@ -625,13 +803,26 @@
   /* ---------------------------------------------------------
      LOAD APPROVED IMPACT RIPPLES
   --------------------------------------------------------- */
-  fetch(`${SUPABASE_URL}/rest/v1/ripple_submissions?select=id,created_at,message,name,region,country,status,size&status=eq.approved&order=created_at.asc`, {
+  fetch(`${SUPABASE_URL}/rest/v1/ripple_submissions?select=id,created_at,message,name,region,country,status,size,type&status=eq.approved&order=created_at.asc`, {
     headers: {
       apikey: SUPABASE_KEY,
       Authorization: `Bearer ${SUPABASE_KEY}`
     }
   })
     .then(response => response.ok ? response.json() : Promise.reject(new Error(`Supabase ${response.status}`)))
-    .then(rows => rows.forEach(addRipple))
+    .then(rows => rows.filter(row => row.type !== "super-impact").forEach(addRipple))
     .catch(error => console.warn("Impact Ripples could not be loaded:", error));
+
+  /* ---------------------------------------------------------
+     LOAD APPROVED SUPER-IMPACT RIPPLES
+  --------------------------------------------------------- */
+  fetch(`${SUPABASE_URL}/rest/v1/ripple_submissions?select=id,created_at,message,name,region,country,status,size,type,sir_id,organization_name,organization_address,organization_logo&status=eq.approved&type=eq.super-impact&order=created_at.asc`, {
+    headers: {
+      apikey: SUPABASE_KEY,
+      Authorization: `Bearer ${SUPABASE_KEY}`
+    }
+  })
+    .then(response => response.ok ? response.json() : Promise.reject(new Error(`Supabase Super-Impact ${response.status}`)))
+    .then(rows => rows.forEach(addSuperImpactRipple))
+    .catch(error => console.warn("Super-Impact Ripples could not be loaded:", error));
 })();
