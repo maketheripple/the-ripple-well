@@ -887,6 +887,12 @@
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
 
+    /* Keep click-ripples below the Well's water line. The upper 10% of
+       the page is reserved for the moonlit/header/title area. */
+    const CLICK_RIPPLE_Y_MIN = 10;
+    const clickYPercent = (y / rect.height) * 100;
+    if (clickYPercent < CLICK_RIPPLE_Y_MIN) return;
+
     /* The click-ripple is only a water interaction. Keep it below the
        hero title and other intentional foreground content. */
     const ripple = document.createElement("span");
