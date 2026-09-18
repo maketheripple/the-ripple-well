@@ -266,10 +266,10 @@
       */
       ring.animate(
         [
-          { strokeDashoffset: "0", opacity: .34 },
-          { strokeDashoffset: "-11", opacity: .66, offset: .20 },
-          { strokeDashoffset: "-25", opacity: .42, offset: .42 },
-          { strokeDashoffset: "-41", opacity: .72, offset: .61 },
+          { strokeDashoffset: "0", opacity: .40 },
+          { strokeDashoffset: "-11", opacity: .76, offset: .20 },
+          { strokeDashoffset: "-25", opacity: .50, offset: .42 },
+          { strokeDashoffset: "-41", opacity: .82, offset: .61 },
           { strokeDashoffset: "-57", opacity: .20, offset: .80 },
           { strokeDashoffset: "-73", opacity: 0 }
         ],
@@ -539,35 +539,35 @@
        so the eye reads reflected light around the wave rather than a line.
     */
     .impact-wave-glow{
-      stroke:rgba(78,214,238,.24);
+      stroke:rgba(78,214,238,.32);
       stroke-width:4.2;
       stroke-linecap:round;
       stroke-linejoin:round;
       stroke-dasharray:8 18 4 31 12 24 6 38;
       opacity:.10;
-      filter:blur(2.2px) drop-shadow(0 0 4px rgba(74,214,239,.16));
+      filter:blur(2.2px) drop-shadow(0 0 4px rgba(74,214,239,.22));
     }
 
     /* Main irregular water crest: broken, translucent, and uneven. */
     .impact-wave-inner{
-      stroke:rgba(121,231,247,.74);
+      stroke:rgba(121,231,247,.88);
       stroke-width:1.05;
       stroke-linecap:round;
       stroke-linejoin:round;
       stroke-dasharray:2 9 13 5 3 21 7 15 2 28 8 6 19 11;
       opacity:1;
-      filter:drop-shadow(0 0 1.2px rgba(74,214,239,.12));
+      filter:drop-shadow(0 0 1.8px rgba(74,214,239,.18));
     }
 
     /* Very small bright fragments imitate moonlight catching individual wave crests. */
     .impact-wave-shimmer{
-      stroke:rgba(205,249,255,.78);
+      stroke:rgba(205,249,255,.92);
       stroke-width:1.35;
       stroke-linecap:round;
       stroke-linejoin:round;
       stroke-dasharray:1 34 5 58 2 27 7 71;
       opacity:0;
-      filter:drop-shadow(0 0 2px rgba(176,244,255,.26));
+      filter:drop-shadow(0 0 2.5px rgba(176,244,255,.34));
     }
 
     #impact-ripple-preview{position:fixed;inset:0;z-index:3000;display:grid;place-items:center;background:rgba(0,5,10,.68);backdrop-filter:blur(6px)}
