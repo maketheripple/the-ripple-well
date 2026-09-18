@@ -1,5 +1,5 @@
 /* THE RIPPLE WELL — HOME BASE
-   v55 — Super-Impact invisible-rock visual treatment
+   v59 — Defined Impact and Super-Impact placement zones
    Make a Ripple submission form added.
    Approved Impact Ripples remain. */
 (() => {
@@ -8,6 +8,21 @@
   const SUPABASE_URL = "https://vazgkkrrjgoowwywamot.supabase.co";
   const SUPABASE_KEY = "sb_publishable_gf0gD7JmbBlm6jR07qYkIQ_YZN301F-";
   const layer = document.getElementById("impact-ripples-layer");
+
+  /* ---------------------------------------------------------
+     RIPPLE PLACEMENT ZONES
+     Impact Ripples may use the open side margins and lower page space.
+     Super-Impact Ripples stay within the central Well.
+  --------------------------------------------------------- */
+  const IMPACT_X_MIN = 5;
+  const IMPACT_X_MAX = 95;
+  const IMPACT_Y_MIN = 34;
+  const IMPACT_Y_MAX = 92;
+
+  const SUPER_X_MIN = 22;
+  const SUPER_X_MAX = 78;
+  const SUPER_Y_MIN = 46;
+  const SUPER_Y_MAX = 88;
 
   /* ---------------------------------------------------------
      IMPACT RIPPLES
@@ -37,8 +52,8 @@
   function addRipple(data) {
     const hitbox = document.createElement("div");
     hitbox.className = `impact-hitbox impact-size-${sizeClass(data.size)}`;
-    hitbox.style.left = `${rand(data.id + "x", 8, 92)}%`;
-    hitbox.style.top = `${rand(data.id + "y", 34, 90)}%`;
+    hitbox.style.left = `${rand(data.id + "x", IMPACT_X_MIN, IMPACT_X_MAX)}%`;
+    hitbox.style.top = `${rand(data.id + "y", IMPACT_Y_MIN, IMPACT_Y_MAX)}%`;
     hitbox.style.setProperty("--rotation", `${rand(data.id + "r", -28, 28)}deg`);
 
     const el = document.createElement("div");
@@ -332,8 +347,8 @@
   function addSuperImpactRipple(data) {
     const hitbox = document.createElement("div");
     hitbox.className = `impact-hitbox super-impact-hitbox impact-size-${sizeClass(data.size)}`;
-    hitbox.style.left = `${rand(data.id + "x", 8, 92)}%`;
-    hitbox.style.top = `${rand(data.id + "y", 34, 90)}%`;
+    hitbox.style.left = `${rand(data.id + "superX", SUPER_X_MIN, SUPER_X_MAX)}%`;
+    hitbox.style.top = `${rand(data.id + "superY", SUPER_Y_MIN, SUPER_Y_MAX)}%`;
     hitbox.style.setProperty("--rotation", `${rand(data.id + "r", -18, 18)}deg`);
 
     const el = document.createElement("div");
