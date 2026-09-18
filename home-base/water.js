@@ -5,7 +5,7 @@
   "use strict";
 
   const SUPABASE_URL = "https://vazgkkrrjgoowwywamot.supabase.co";
-  const SUPABASE_KEY = "sb_publishable_gf0D7JmbBlm6jR07qYkIQ_YZN301F-";
+  const SUPABASE_KEY = "sb_publishable_gf0gD7JmbBlm6jR07qYkIQ_YZN301F-";
   const layer = document.getElementById("impact-ripples-layer");
 
   /* ---------------------------------------------------------
@@ -256,7 +256,8 @@
   --------------------------------------------------------- */
   fetch(`${SUPABASE_URL}/rest/v1/ripple_submissions?select=id,created_at,message,name,region,country,status,size&status=eq.approved&order=created_at.asc`, {
     headers: {
-      apikey: SUPABASE_KEY
+      apikey: SUPABASE_KEY,
+      Authorization: `Bearer ${SUPABASE_KEY}`
     }
   })
     .then(response => response.ok ? response.json() : Promise.reject(new Error(`Supabase ${response.status}`)))
