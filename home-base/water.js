@@ -1,5 +1,5 @@
 /* THE RIPPLE WELL — HOME BASE
-   v49 — Raindrop impact moment for organic Impact Ripple
+   v50 — Multiple expanding raindrop rings for organic Impact Ripple
    Make a Ripple submission form added.
    Approved Impact Ripples remain. */
 (() => {
@@ -130,16 +130,32 @@
     waveOuter.classList.add("impact-wave", "impact-wave-outer");
     waveOuter.setAttribute("d", makeWavePath(data.id + "outer", 1, rand(data.id + "phase1", 0, 6.28)));
 
-    const waveInner = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    waveInner.classList.add("impact-wave", "impact-wave-inner");
-    waveInner.setAttribute("d", makeWavePath(data.id + "inner", .78, rand(data.id + "phase2", 0, 6.28)));
-
     svg.appendChild(waveOuter);
 
-    /* Animate the irregular wave through an SVG group so its expansion
-       is reliable across browsers. */
+    /*
+       Build several separate wave rings. Each ring uses the same organic
+       water shape, but starts later and at a different size so the result
+       reads as one raindrop creating a sequence of expanding ripples.
+    */
     const waveGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
-    waveGroup.appendChild(waveInner);
+    const waveRings = [];
+    const ringScales = [.54, .72, .90];
+
+    ringScales.forEach((scale, index) => {
+      const ring = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      ring.classList.add("impact-wave", "impact-wave-inner");
+      ring.setAttribute(
+        "d",
+        makeWavePath(
+          data.id + "ring" + index,
+          scale,
+          rand(data.id + "ringPhase" + index, 0, 6.28)
+        )
+      );
+      waveGroup.appendChild(ring);
+      waveRings.push(ring);
+    });
+
     svg.appendChild(waveGroup);
     el.appendChild(svg);
 
@@ -168,48 +184,54 @@
       }
     );
 
-    /* Subtle broken highlights move around the wave as it expands. */
-    waveInner.animate(
-      [
-        { strokeDashoffset: "0", opacity: .72 },
-        { strokeDashoffset: "-14", opacity: .90, offset: .24 },
-        { strokeDashoffset: "-31", opacity: .66, offset: .52 },
-        { strokeDashoffset: "-49", opacity: .34, offset: .76 },
-        { strokeDashoffset: "-64", opacity: .05 }
-      ],
-      {
-        duration: rippleDuration,
-        easing: "ease-out",
-        iterations: Infinity,
-        delay: rippleDelay
-      }
-    );
+    /*
+       Each ring expands independently. The staggered delays create the
+       visual sequence: impact -> first ring -> second ring -> third ring.
+       Every ring still inherits the same irregular, organic geometry.
+    */
+    waveRings.forEach((ring, index) => {
+      const ringDelay = rippleDelay + index * (rippleDuration * .115);
+      const ringDuration = rippleDuration * .88;
 
-    /* Drive the expansion directly with the Web Animations API.
-       This avoids CSS/SVG transform interpolation differences between browsers. */
-    waveGroup.style.transformOrigin = "100px 50px";
-    waveGroup.style.transformBox = "fill-box";
+      ring.style.transformOrigin = "100px 50px";
+      ring.style.transformBox = "fill-box";
 
-    waveGroup.animate(
-      [
-        { transform: "scale(.34)", opacity: 0 },
-        { transform: "scale(.42)", opacity: 0, offset: .12 },
-        { transform: "scale(.50)", opacity: .82, offset: .20 },
-        { transform: "scale(.66)", opacity: .94, offset: .32 },
-        { transform: "scale(.84)", opacity: .76, offset: .48 },
-        { transform: "scale(1)", opacity: .48, offset: .64 },
-        { transform: "scale(1.14)", opacity: .20, offset: .78 },
-        { transform: "scale(1.27)", opacity: .035, offset: .92 },
-        { transform: "scale(1.34)", opacity: 0 }
-      ],
-      {
-        duration: rippleDuration,
-        easing: "cubic-bezier(.18,.65,.25,1)",
-        iterations: Infinity,
-        delay: rippleDelay,
-        fill: "both"
-      }
-    );
+      ring.animate(
+        [
+          { transform: "scale(.46)", opacity: 0 },
+          { transform: "scale(.54)", opacity: .86, offset: .10 },
+          { transform: "scale(.70)", opacity: .78, offset: .27 },
+          { transform: "scale(.88)", opacity: .55, offset: .48 },
+          { transform: "scale(1.08)", opacity: .28, offset: .70 },
+          { transform: "scale(1.24)", opacity: .075, offset: .88 },
+          { transform: "scale(1.34)", opacity: 0 }
+        ],
+        {
+          duration: ringDuration,
+          easing: "cubic-bezier(.18,.65,.25,1)",
+          iterations: Infinity,
+          delay: ringDelay,
+          fill: "both"
+        }
+      );
+
+      /* Broken highlights move around each ring as it expands. */
+      ring.animate(
+        [
+          { strokeDashoffset: "0", opacity: .55 },
+          { strokeDashoffset: "-14", opacity: .82, offset: .24 },
+          { strokeDashoffset: "-31", opacity: .60, offset: .52 },
+          { strokeDashoffset: "-49", opacity: .28, offset: .76 },
+          { strokeDashoffset: "-64", opacity: .02 }
+        ],
+        {
+          duration: ringDuration,
+          easing: "ease-out",
+          iterations: Infinity,
+          delay: ringDelay
+        }
+      );
+    });
 
     hitbox.addEventListener("click", () => {
       const message = (data.message || "").replace(/</g, "&lt;").replace(/>/g, "&gt;");
