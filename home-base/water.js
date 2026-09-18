@@ -89,8 +89,8 @@
         const deformation = low + mid + high + irregular;
 
         /* Independent X/Y deformation prevents a smooth oval. */
-        const x = 82 * scale + deformation;
-        const y = 34 * scale + deformation * rand(id + "ratio" + i, .42, .72);
+        const x = (82 + deformation) * scale;
+        const y = (34 + deformation * rand(id + "ratio" + i, .42, .72)) * scale;
 
         points.push([
           100 + Math.cos(a) * x,
@@ -162,6 +162,7 @@
     const waveGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
     const waveRings = [];
     const ringScales = [.54, .72, .90];
+    const sharedRingPhase = rand(data.id + "sharedRingPhase", 0, 6.28);
 
     ringScales.forEach((scale, index) => {
       const ring = document.createElementNS("http://www.w3.org/2000/svg", "path");
@@ -169,9 +170,9 @@
       ring.setAttribute(
         "d",
         makeWavePath(
-          data.id + "ring" + index,
+          data.id + "sharedRingContour",
           scale,
-          rand(data.id + "ringPhase" + index, 0, 6.28)
+          sharedRingPhase
         )
       );
       waveGroup.appendChild(ring);
@@ -212,8 +213,13 @@
        Every ring still inherits the same irregular, organic geometry.
     */
     waveRings.forEach((ring, index) => {
-      const ringDelay = rippleDelay + index * (rippleDuration * .115);
-      const ringDuration = rippleDuration * .88;
+      /*
+         Keep every ring on the exact same organic contour. Only its scale
+         changes. This makes the waves truly concentric instead of allowing
+         independently generated bumps to cross one another.
+      */
+      const ringDelay = rippleDelay + index * (rippleDuration * .16);
+      const ringDuration = rippleDuration * .56;
 
       ring.style.transformOrigin = "50% 50%";
       ring.style.transformBox = "view-box";
@@ -221,12 +227,11 @@
       ring.animate(
         [
           { transform: "scale(.46)", opacity: 0 },
-          { transform: "scale(.54)", opacity: .86, offset: .10 },
-          { transform: "scale(.70)", opacity: .78, offset: .27 },
-          { transform: "scale(.88)", opacity: .55, offset: .48 },
-          { transform: "scale(1.08)", opacity: .28, offset: .70 },
-          { transform: "scale(1.24)", opacity: .075, offset: .88 },
-          { transform: "scale(1.34)", opacity: 0 }
+          { transform: "scale(.54)", opacity: .82, offset: .10 },
+          { transform: "scale(.70)", opacity: .72, offset: .28 },
+          { transform: "scale(.88)", opacity: .48, offset: .50 },
+          { transform: "scale(1.08)", opacity: .18, offset: .74 },
+          { transform: "scale(1.18)", opacity: 0, offset: 1 }
         ],
         {
           duration: ringDuration,
@@ -240,11 +245,11 @@
       /* Broken highlights move around each ring as it expands. */
       ring.animate(
         [
-          { strokeDashoffset: "0", opacity: .55 },
-          { strokeDashoffset: "-14", opacity: .82, offset: .24 },
-          { strokeDashoffset: "-31", opacity: .60, offset: .52 },
-          { strokeDashoffset: "-49", opacity: .28, offset: .76 },
-          { strokeDashoffset: "-64", opacity: .02 }
+          { strokeDashoffset: "0", opacity: .48 },
+          { strokeDashoffset: "-14", opacity: .72, offset: .24 },
+          { strokeDashoffset: "-31", opacity: .52, offset: .52 },
+          { strokeDashoffset: "-49", opacity: .20, offset: .76 },
+          { strokeDashoffset: "-64", opacity: 0 }
         ],
         {
           duration: ringDuration,
