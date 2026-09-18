@@ -55,18 +55,66 @@
 
     const makeWavePath = (id, scale, phase) => {
       const points = [];
-      const count = 40;
+      const count = 72;
+
+      /*
+         Deliberately exaggerated organic deformation.
+         The ring remains a water-like ellipse, but its edge has
+         visible peaks, valleys, bulges, and compressed sections.
+      */
       for (let i = 0; i < count; i++) {
         const a = (Math.PI * 2 * i) / count;
-        const n =
-          Math.sin(a * 3 + phase) * rand(id + "a" + i, 1.2, 3.2) +
-          Math.sin(a * 7 + phase * 1.7) * rand(id + "b" + i, .45, 1.45) +
-          Math.sin(a * 11 - phase * .8) * rand(id + "c" + i, .18, .75);
-        const rx = 82 * scale + n;
-        const ry = 34 * scale + n * .55;
-        points.push([100 + Math.cos(a) * rx, 50 + Math.sin(a) * ry]);
+
+        const low =
+          Math.sin(a * 3 + phase) * rand(id + "low" + i, 5.5, 9.5);
+
+        const mid =
+          Math.sin(a * 5 - phase * 1.35) * rand(id + "mid" + i, 3.0, 6.5);
+
+        const high =
+          Math.sin(a * 9 + phase * .72) * rand(id + "high" + i, 1.2, 3.4);
+
+        const irregular =
+          Math.sin(a * 13 - phase * 1.9) * rand(id + "fine" + i, .4, 1.6);
+
+        const deformation = low + mid + high + irregular;
+
+        /* Independent X/Y deformation prevents a smooth oval. */
+        const x = 82 * scale + deformation;
+        const y = 34 * scale + deformation * rand(id + "ratio" + i, .42, .72);
+
+        points.push([
+          100 + Math.cos(a) * x,
+          50 + Math.sin(a) * y
+        ]);
       }
-      return points.map((p, i) => `${i ? "L" : "M"}${p[0].toFixed(2)},${p[1].toFixed(2)}`).join(" ") + " Z";
+
+      /*
+         Smooth the polygon with quadratic midpoint curves.
+         This keeps the peaks/valleys organic rather than jagged.
+      */
+      const path = [];
+      const midpoint = (a, b) => [
+        (a[0] + b[0]) / 2,
+        (a[1] + b[1]) / 2
+      ];
+
+      const firstMid = midpoint(points[0], points[1]);
+      path.push(`M${firstMid[0].toFixed(2)},${firstMid[1].toFixed(2)}`);
+
+      for (let i = 1; i <= points.length; i++) {
+        const current = points[i % points.length];
+        const next = points[(i + 1) % points.length];
+        const mid = midpoint(current, next);
+
+        path.push(
+          `Q${current[0].toFixed(2)},${current[1].toFixed(2)} ` +
+          `${mid[0].toFixed(2)},${mid[1].toFixed(2)}`
+        );
+      }
+
+      path.push("Z");
+      return path.join(" ");
     };
 
     const waveOuter = document.createElementNS("http://www.w3.org/2000/svg", "path");
@@ -343,7 +391,7 @@
       stroke-width:1.25;
       stroke-linecap:round;
       stroke-linejoin:round;
-      stroke-dasharray:7 3 16 5 4 11 22 6 9 4 18 8;
+      stroke-dasharray:3 6 19 4 8 12 2 7 24 5 10 3 17 9;
       opacity:1;
       filter:drop-shadow(0 0 1.5px rgba(74,214,239,.13));
     }
