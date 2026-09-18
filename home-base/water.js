@@ -144,9 +144,10 @@
         { strokeDashoffset: "-64", opacity: .05 }
       ],
       {
-        duration: 11000,
+        duration: rippleDuration,
         easing: "ease-out",
-        iterations: Infinity
+        iterations: Infinity,
+        delay: rippleDelay
       }
     );
 
@@ -154,6 +155,16 @@
        This avoids CSS/SVG transform interpolation differences between browsers. */
     waveGroup.style.transformOrigin = "100px 50px";
     waveGroup.style.transformBox = "fill-box";
+
+    /*
+       Give every Impact Ripple its own rhythm.
+       The wave shape, brightness curve, and overall behavior stay the same,
+       but each ripple starts at a different point in the cycle and breathes
+       at a slightly different natural interval. This prevents the whole Well
+       from visibly pulsing in unison.
+    */
+    const rippleDelay = -rand(data.id + "delay", 0, 11000);
+    const rippleDuration = rand(data.id + "duration", 9800, 13200);
 
     waveGroup.animate(
       [
@@ -168,10 +179,10 @@
         { transform: "scale(1.34)", opacity: 0 }
       ],
       {
-        duration: 11000,
+        duration: rippleDuration,
         easing: "cubic-bezier(.18,.65,.25,1)",
         iterations: Infinity,
-        delay: 0,
+        delay: rippleDelay,
         fill: "both"
       }
     );
