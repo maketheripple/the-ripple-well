@@ -1,5 +1,5 @@
 /* THE RIPPLE WELL — HOME BASE
-   v46 — Water-textured organic Impact Ripple
+   v49 — Raindrop impact moment for organic Impact Ripple
    Make a Ripple submission form added.
    Approved Impact Ripples remain. */
 (() => {
@@ -45,6 +45,15 @@
     el.className = "impact-ripple";
     el.style.setProperty("--secondary-rotation", `${rand(data.id + "s", -18, 18)}deg`);
     el.title = data.name ? data.name : "Impact Ripple";
+
+    /*
+       Tiny raindrop impact point.
+       This is deliberately restrained: a brief pinpoint disturbance at the
+       center, followed by the existing outward water wave.
+    */
+    const impactDrop = document.createElement("span");
+    impactDrop.className = "impact-drop";
+    el.appendChild(impactDrop);
 
     /* Build organic water rings instead of geometric CSS ovals. */
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -141,6 +150,23 @@
     */
     const rippleDelay = -rand(data.id + "delay", 0, 11000);
     const rippleDuration = rand(data.id + "duration", 9800, 13200);
+
+    impactDrop.animate(
+      [
+        { transform: "translate(-50%,-50%) scale(.15)", opacity: 0 },
+        { transform: "translate(-50%,-50%) scale(.28)", opacity: .78, offset: .055 },
+        { transform: "translate(-50%,-50%) scale(.52)", opacity: .34, offset: .085 },
+        { transform: "translate(-50%,-50%) scale(.78)", opacity: 0, offset: .13 },
+        { transform: "translate(-50%,-50%) scale(1)", opacity: 0 }
+      ],
+      {
+        duration: rippleDuration,
+        easing: "ease-out",
+        iterations: Infinity,
+        delay: rippleDelay,
+        fill: "both"
+      }
+    );
 
     /* Subtle broken highlights move around the wave as it expands. */
     waveInner.animate(
@@ -369,6 +395,26 @@
       pointer-events:none;
       animation:none;
       opacity:1;
+    }
+
+    /*
+       The raindrop itself is almost invisible — just enough to suggest a
+       small drop striking the water before the ripple spreads.
+    */
+    .impact-drop{
+      position:absolute;
+      left:50%;
+      top:50%;
+      width:5px;
+      height:5px;
+      border-radius:50%;
+      background:rgba(210,248,255,.9);
+      box-shadow:
+        0 0 3px rgba(126,231,248,.55),
+        0 0 7px rgba(72,208,235,.22);
+      pointer-events:none;
+      opacity:0;
+      transform:translate(-50%,-50%) scale(.15);
     }
 
     .impact-wave-svg{
