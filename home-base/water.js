@@ -1,5 +1,5 @@
 /* THE RIPPLE WELL — HOME BASE
-   v45 — Visible JS-driven organic traveling Impact Ripple
+   v46 — Broken-light organic Impact Ripple
    Make a Ripple submission form added.
    Approved Impact Ripples remain. */
 (() => {
@@ -109,6 +109,19 @@
         iterations: Infinity,
         delay: 0,
         fill: "both"
+      }
+    );
+
+    /* Slowly shift the broken highlight pattern while the wave travels. */
+    waveInner.animate(
+      [
+        { strokeDashoffset: "0" },
+        { strokeDashoffset: "-48" }
+      ],
+      {
+        duration: 11000,
+        easing: "linear",
+        iterations: Infinity
       }
     );
 
@@ -327,7 +340,9 @@
       stroke-width:1.35;
       stroke-linecap:round;
       stroke-linejoin:round;
+      stroke-dasharray:18 7 4 11 26 5 9 14 31 8 6 19;
       opacity:1;
+      filter:drop-shadow(0 0 2px rgba(74,214,239,.16));
     }
 
     #impact-ripple-preview{position:fixed;inset:0;z-index:3000;display:grid;place-items:center;background:rgba(0,5,10,.68);backdrop-filter:blur(6px)}
