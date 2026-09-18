@@ -38,7 +38,7 @@ button{font:inherit}
 .hero-title{position:absolute;z-index:8;top:235px;left:50%;transform:translateX(-50%);width:min(900px,90%);text-align:center;text-shadow:0 0 22px rgba(92,218,255,.5)}
 .hero-title h1{margin:0;font-size:clamp(54px,7vw,108px);font-weight:400;letter-spacing:.11em;line-height:.95;color:#f3fbff}.hero-title h1 span{display:block;font-size:.32em;letter-spacing:.55em;margin-left:.55em;margin-bottom:15px}
 #impact-ripples-layer{position:absolute;z-index:10;inset:0;pointer-events:none}
-.impact-ripple{position:absolute;width:clamp(90px,12vw,190px);height:clamp(45px,6vw,95px);transform:translate(-50%,-50%) rotate(var(--rotation,0deg));border:2px solid rgba(93,225,247,.48);border-radius:50%;box-shadow:0 0 18px rgba(74,214,239,.18),inset 0 0 14px rgba(74,214,239,.08);opacity:.72;animation:impactFloat var(--float-time,15s) ease-in-out infinite,impactPulse var(--pulse-time,7s) ease-in-out infinite;pointer-events:auto;cursor:pointer}
+.impact-ripple{position:absolute;width:clamp(90px,12vw,190px);height:clamp(45px,6vw,95px);transform:translate(-50%,-50%) rotate(var(--rotation,0deg));border:0;background:transparent;box-shadow:none;border-radius:50%;opacity:1;animation:none;pointer-events:none}
 
 @keyframes impactFloat{0%,100%{translate:0 0}50%{translate:0 -10px}}
 @keyframes impactPulse{0%,100%{opacity:.48;scale:.98}50%{opacity:.78;scale:1.04}}
