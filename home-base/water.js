@@ -201,32 +201,52 @@
 
     /* Realistic Impact Ripple — layered, irregular water rings */
     .impact-ripple{
-      border:1px solid rgba(93,225,247,.34);
+      border:1px solid rgba(93,225,247,.28);
       border-radius:48% 52% 50% 46% / 52% 47% 53% 48%;
       box-shadow:
-        0 0 7px rgba(74,214,239,.055),
-        inset 0 0 6px rgba(74,214,239,.018);
-      opacity:.48;
+        0 0 8px rgba(74,214,239,.045),
+        inset 0 0 6px rgba(74,214,239,.015);
+      opacity:.42;
+      animation:impactFloat var(--float-time,15s) ease-in-out infinite;
     }
     .impact-ripple::before,
     .impact-ripple::after{
       content:"";
       position:absolute;
       pointer-events:none;
-      border:1px solid rgba(93,225,247,.27);
+      border:1px solid rgba(93,225,247,.24);
       border-radius:53% 47% 46% 54% / 47% 54% 46% 52%;
       transform:rotate(var(--secondary-rotation,0deg));
+      animation:impactWave 11s cubic-bezier(.18,.65,.25,1) infinite;
     }
     .impact-ripple::before{
       inset:12% 10%;
-      opacity:.58;
+      opacity:.54;
+      animation-delay:2.6s;
     }
     .impact-ripple::after{
       inset:24% 20%;
-      opacity:.40;
-      border-color:rgba(93,225,247,.22);
+      opacity:.36;
+      border-color:rgba(93,225,247,.20);
       border-radius:46% 54% 52% 48% / 54% 45% 55% 47%;
       transform:rotate(calc(var(--secondary-rotation,0deg) * -1));
+      animation-delay:5.2s;
+    }
+    @keyframes impactWave{
+      0%{
+        transform:rotate(var(--secondary-rotation,0deg)) scale(.78);
+        opacity:0;
+      }
+      12%{
+        opacity:var(--ring-opacity,.54);
+      }
+      62%{
+        opacity:calc(var(--ring-opacity,.54) * .72);
+      }
+      100%{
+        transform:rotate(var(--secondary-rotation,0deg)) scale(1.18);
+        opacity:0;
+      }
     }
 
     #impact-ripple-preview{position:fixed;inset:0;z-index:3000;display:grid;place-items:center;background:rgba(0,5,10,.68);backdrop-filter:blur(6px)}
