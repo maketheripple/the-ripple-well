@@ -525,7 +525,10 @@
       box.id = "impact-ripple-preview";
       const org = (data.organization_name || "Organization").replace(/</g,"&lt;").replace(/>/g,"&gt;");
       const message = (data.message || "").replace(/</g,"&lt;").replace(/>/g,"&gt;");
-      box.innerHTML = `<div class="irp-box"><button class="irp-close" aria-label="Close">×</button><div class="irp-label">SUPER-IMPACT RIPPLE</div><p>${org}</p>${message ? `<small>“${message}”</small>` : ""}</div>`;
+      const logoMarkup = data.organization_logo
+        ? `<img class="irp-org-logo" src="${String(data.organization_logo).replace(/"/g,"&quot;")}" alt="${org} logo">`
+        : "";
+      box.innerHTML = `<div class="irp-box"><button class="irp-close" aria-label="Close">×</button><div class="irp-label">SUPER-IMPACT RIPPLE</div>${logoMarkup}<p>${org}</p>${message ? `<small>“${message}”</small>` : ""}</div>`;
       document.body.appendChild(box);
       box.querySelector(".irp-close").onclick=()=>box.remove();
       box.onclick=e=>{if(e.target===box)box.remove();};
@@ -848,6 +851,7 @@
 
     #impact-ripple-preview{position:fixed;inset:0;z-index:3000;display:grid;place-items:center;background:rgba(0,5,10,.68);backdrop-filter:blur(6px)}
     .irp-box{position:relative;width:min(620px,86vw);padding:42px;border:1px solid rgba(91,226,249,.45);background:rgba(2,13,22,.92);box-shadow:0 0 45px rgba(46,198,229,.16);text-align:center;color:#eefaff}
+    .irp-org-logo{display:block;width:min(180px,42vw);height:min(110px,24vw);object-fit:contain;margin:0 auto 20px;filter:drop-shadow(0 0 5px rgba(255,255,255,.7)) drop-shadow(0 0 12px rgba(75,211,240,.35)) drop-shadow(0 0 14px rgba(255,211,82,.18));}
     .irp-label{font-size:12px;letter-spacing:.25em;opacity:.7}
     .irp-box p{font-size:22px;line-height:1.55}
     .irp-box small{opacity:.7}
@@ -923,10 +927,9 @@
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
 
-    /* Keep click-ripples well below the Well title. The upper 30% of
-       the page is reserved for the moonlit/header/title area, giving the
-       title several title-heights of clear space before interaction begins. */
-    const CLICK_RIPPLE_Y_MIN = 30;
+    /* Keep click-ripples below the upper moon/header/title area. On mobile
+       the boundary is raised so the lower Well becomes interactive sooner. */
+    const CLICK_RIPPLE_Y_MIN = 18;
     const clickYPercent = (y / rect.height) * 100;
     if (clickYPercent < CLICK_RIPPLE_Y_MIN) return;
 
