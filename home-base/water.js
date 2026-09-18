@@ -1,4 +1,5 @@
 /* THE RIPPLE WELL — HOME BASE
+   v40 — More visible Impact Ripple traveling waves
    Make a Ripple submission form added.
    Approved Impact Ripples remain. */
 (() => {
@@ -226,12 +227,12 @@
       width:200%;
       height:200%;
       transform:translate(-50%,-50%);
-      border:1px solid rgba(93,225,247,.08);
+      border:1px solid rgba(93,225,247,.055);
       border-radius:48% 52% 50% 46% / 52% 47% 53% 48%;
       box-shadow:
-        0 0 8px rgba(74,214,239,.02),
-        inset 0 0 6px rgba(74,214,239,.008);
-      opacity:.30;
+        0 0 9px rgba(74,214,239,.035),
+        inset 0 0 6px rgba(74,214,239,.012);
+      opacity:.34;
       pointer-events:none;
       animation:none;
     }
@@ -240,20 +241,20 @@
       content:"";
       position:absolute;
       pointer-events:none;
-      border:1px solid rgba(93,225,247,.42);
+      border:1px solid rgba(93,225,247,.68);
       border-radius:53% 47% 46% 54% / 47% 54% 46% 52%;
       transform:rotate(var(--secondary-rotation,0deg));
       animation:impactWave 11s cubic-bezier(.18,.65,.25,1) infinite;
     }
     .impact-ripple::before{
       inset:12% 10%;
-      opacity:.72;
+      opacity:.92;
       animation-delay:2.6s;
     }
     .impact-ripple::after{
       inset:24% 20%;
-      opacity:.52;
-      border-color:rgba(93,225,247,.32);
+      opacity:.74;
+      border-color:rgba(93,225,247,.52);
       border-radius:46% 54% 52% 48% / 54% 45% 55% 47%;
       transform:rotate(calc(var(--secondary-rotation,0deg) * -1));
       animation-delay:5.2s;
@@ -264,10 +265,13 @@
         opacity:0;
       }
       12%{
-        opacity:var(--ring-opacity,.54);
+        opacity:var(--ring-opacity,.86);
+      }
+      38%{
+        opacity:var(--ring-opacity,.92);
       }
       62%{
-        opacity:calc(var(--ring-opacity,.54) * .72);
+        opacity:calc(var(--ring-opacity,.86) * .72);
       }
       100%{
         transform:rotate(var(--secondary-rotation,0deg)) scale(1.18);
