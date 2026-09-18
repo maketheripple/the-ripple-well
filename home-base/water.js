@@ -887,9 +887,10 @@
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
 
-    /* Keep click-ripples below the Well's water line. The upper 15% of
-       the page is reserved for the moonlit/header/title area. */
-    const CLICK_RIPPLE_Y_MIN = 10;
+    /* Keep click-ripples well below the Well title. The upper 30% of
+       the page is reserved for the moonlit/header/title area, giving the
+       title several title-heights of clear space before interaction begins. */
+    const CLICK_RIPPLE_Y_MIN = 30;
     const clickYPercent = (y / rect.height) * 100;
     if (clickYPercent < CLICK_RIPPLE_Y_MIN) return;
 
