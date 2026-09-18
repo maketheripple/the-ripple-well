@@ -790,7 +790,7 @@
     }
     @keyframes clickRippleWave{
       0%{transform:translate(-50%,-50%) rotate(var(--click-rotation,0deg)) scale(.18);opacity:0}
-      10%{opacity:.92}
+      15%{opacity:.92}
       42%{opacity:.72}
       100%{transform:translate(-50%,-50%) rotate(var(--click-rotation,0deg)) scale(1.25);opacity:0}
     }
@@ -887,7 +887,7 @@
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
 
-    /* Keep click-ripples below the Well's water line. The upper 10% of
+    /* Keep click-ripples below the Well's water line. The upper 15% of
        the page is reserved for the moonlit/header/title area. */
     const CLICK_RIPPLE_Y_MIN = 10;
     const clickYPercent = (y / rect.height) * 100;
