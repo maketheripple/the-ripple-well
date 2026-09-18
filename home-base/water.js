@@ -1,5 +1,5 @@
 /* THE RIPPLE WELL — HOME BASE
-   v43 — Restored organic traveling Impact Ripple
+   v44 — JS-driven organic traveling Impact Ripple
    Make a Ripple submission form added.
    Approved Impact Ripples remain. */
 (() => {
@@ -82,11 +82,35 @@
     /* Animate the irregular wave through an SVG group so its expansion
        is reliable across browsers. */
     const waveGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
-    waveGroup.classList.add("impact-wave-group");
     waveGroup.appendChild(waveInner);
     svg.appendChild(waveGroup);
-
     el.appendChild(svg);
+
+    /* Drive the expansion directly with the Web Animations API.
+       This avoids CSS/SVG transform interpolation differences between browsers. */
+    waveGroup.style.transformOrigin = "100px 50px";
+    waveGroup.style.transformBox = "fill-box";
+
+    waveGroup.animate(
+      [
+        { transform: "scale(.34)", opacity: 0 },
+        { transform: "scale(.42)", opacity: 0, offset: .12 },
+        { transform: "scale(.50)", opacity: .82, offset: .20 },
+        { transform: "scale(.66)", opacity: .94, offset: .32 },
+        { transform: "scale(.84)", opacity: .76, offset: .48 },
+        { transform: "scale(1)", opacity: .48, offset: .64 },
+        { transform: "scale(1.14)", opacity: .20, offset: .78 },
+        { transform: "scale(1.27)", opacity: .035, offset: .92 },
+        { transform: "scale(1.34)", opacity: 0 }
+      ],
+      {
+        duration: 11000,
+        easing: "cubic-bezier(.18,.65,.25,1)",
+        iterations: Infinity,
+        delay: 0,
+        fill: "both"
+      }
+    );
 
     hitbox.addEventListener("click", () => {
       const message = (data.message || "").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -261,7 +285,7 @@
     .impact-hitbox.impact-size-large{width:175px;height:88px}
     .impact-hitbox.impact-size-extra-large{width:230px;height:115px}
 
-    /* Organic Impact Ripple — one clearly visible traveling water wave */
+    /* Organic Impact Ripple — JS-driven traveling water wave */
     .impact-ripple{
       position:absolute;
       left:50%;
@@ -290,65 +314,20 @@
       transform-origin:center;
     }
 
-    /* Permanent boundary is effectively invisible. */
+    /* Permanent boundary is intentionally almost invisible. */
     .impact-wave-outer{
       stroke:rgba(93,225,247,.012);
       stroke-width:.8;
-      opacity:.16;
+      opacity:.14;
     }
 
-    /* Irregular traveling wave — this is the main visible disturbance. */
+    /* Main irregular water disturbance. */
     .impact-wave-inner{
       stroke:rgba(93,225,247,.88);
       stroke-width:1.35;
       stroke-linecap:round;
       stroke-linejoin:round;
       opacity:0;
-    }
-
-    .impact-wave-group{
-      transform-box:fill-box;
-      transform-origin:center;
-      animation:impactWave 11s cubic-bezier(.18,.65,.25,1) infinite;
-    }
-
-    @keyframes impactWave{
-      0%{
-        transform:scale(.34);
-        opacity:0;
-      }
-      12%{
-        transform:scale(.42);
-        opacity:0;
-      }
-      20%{
-        transform:scale(.50);
-        opacity:.82;
-      }
-      32%{
-        transform:scale(.66);
-        opacity:.94;
-      }
-      48%{
-        transform:scale(.84);
-        opacity:.76;
-      }
-      64%{
-        transform:scale(1.00);
-        opacity:.48;
-      }
-      78%{
-        transform:scale(1.14);
-        opacity:.20;
-      }
-      92%{
-        transform:scale(1.27);
-        opacity:.035;
-      }
-      100%{
-        transform:scale(1.34);
-        opacity:0;
-      }
     }
 
     #impact-ripple-preview{position:fixed;inset:0;z-index:3000;display:grid;place-items:center;background:rgba(0,5,10,.68);backdrop-filter:blur(6px)}
