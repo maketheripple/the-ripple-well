@@ -1,5 +1,5 @@
 /* THE RIPPLE WELL — HOME BASE
-   v40 — More visible Impact Ripple traveling waves
+   v41 — Organic, wave-like Impact Ripple
    Make a Ripple submission form added.
    Approved Impact Ripples remain. */
 (() => {
@@ -219,7 +219,7 @@
     .impact-hitbox.impact-size-large{width:175px;height:88px}
     .impact-hitbox.impact-size-extra-large{width:230px;height:115px}
 
-    /* Realistic Impact Ripple — layered, irregular water rings */
+    /* Organic Impact Ripple — irregular water rings */
     .impact-ripple{
       position:absolute;
       left:50%;
@@ -227,54 +227,54 @@
       width:200%;
       height:200%;
       transform:translate(-50%,-50%);
-      border:1px solid rgba(93,225,247,.055);
-      border-radius:48% 52% 50% 46% / 52% 47% 53% 48%;
+      border:1px solid rgba(93,225,247,.018);
+      border-radius:47% 53% 49% 55% / 54% 46% 52% 48%;
       box-shadow:
-        0 0 9px rgba(74,214,239,.035),
-        inset 0 0 6px rgba(74,214,239,.012);
-      opacity:.34;
+        0 0 8px rgba(74,214,239,.018),
+        inset 0 0 5px rgba(74,214,239,.008);
+      opacity:.28;
       pointer-events:none;
       animation:none;
     }
+
     .impact-ripple::before,
     .impact-ripple::after{
       content:"";
       position:absolute;
       pointer-events:none;
-      border:1px solid rgba(93,225,247,.68);
-      border-radius:53% 47% 46% 54% / 47% 54% 46% 52%;
-      transform:rotate(var(--secondary-rotation,0deg));
+      border:1px solid rgba(93,225,247,.82);
+      border-radius:51% 49% 55% 45% / 46% 54% 48% 52%;
       animation:impactWave 11s cubic-bezier(.18,.65,.25,1) infinite;
     }
+
     .impact-ripple::before{
-      inset:12% 10%;
+      inset:13% 9% 11% 11%;
       opacity:.92;
+      filter:url("#ripple-wobble");
       animation-delay:2.6s;
     }
+
     .impact-ripple::after{
-      inset:24% 20%;
-      opacity:.74;
-      border-color:rgba(93,225,247,.52);
-      border-radius:46% 54% 52% 48% / 54% 45% 55% 47%;
-      transform:rotate(calc(var(--secondary-rotation,0deg) * -1));
+      inset:25% 19% 23% 21%;
+      opacity:.68;
+      border-color:rgba(93,225,247,.58);
+      border-radius:45% 55% 51% 49% / 53% 47% 55% 45%;
       animation-delay:5.2s;
     }
+
     @keyframes impactWave{
       0%{
-        transform:rotate(var(--secondary-rotation,0deg)) scale(.78);
+        transform:rotate(var(--secondary-rotation,0deg)) scale(.72);
         opacity:0;
       }
-      12%{
-        opacity:var(--ring-opacity,.86);
-      }
-      38%{
-        opacity:var(--ring-opacity,.92);
-      }
-      62%{
-        opacity:calc(var(--ring-opacity,.86) * .72);
-      }
+      10%{opacity:0;}
+      18%{opacity:.82;}
+      30%{opacity:.94;}
+      48%{opacity:.78;}
+      68%{opacity:.38;}
+      82%{opacity:.12;}
       100%{
-        transform:rotate(var(--secondary-rotation,0deg)) scale(1.18);
+        transform:rotate(var(--secondary-rotation,0deg)) scale(1.22);
         opacity:0;
       }
     }
@@ -323,6 +323,20 @@
       .make-ripple-actions button{width:100%}
     }
   `;
+  /* Subtle organic distortion for the primary traveling water ring. */
+  const rippleFilter = document.createElement("svg");
+  rippleFilter.setAttribute("aria-hidden", "true");
+  rippleFilter.style.position = "absolute";
+  rippleFilter.style.width = "0";
+  rippleFilter.style.height = "0";
+  rippleFilter.innerHTML = `
+    <filter id="ripple-wobble" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.018 0.045" numOctaves="2" seed="7" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3.5" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  `;
+  document.body.appendChild(rippleFilter);
+
   document.head.appendChild(style);
 
   const makeRippleButton = document.getElementById("make-ripple-button");
