@@ -83,57 +83,173 @@
             background-size: 260px 190px, 330px 230px, 290px 210px, 370px 260px;
         }
 
-        /* Header */
+        /* Header — matched to The Ripple Well Home Base, without Make a Ripple */
         header {
-            position: relative;
-            z-index: 10;
+            position: absolute;
+            z-index: 1000;
+            top: 0;
+            left: 0;
             width: 100%;
-            min-height: 92px;
+            height: 92px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 18px 6vw;
+            padding: 10px 7vw;
+            gap: 35px;
             background: linear-gradient(
                 to bottom,
-                rgba(1, 8, 15, .88),
-                rgba(1, 8, 15, .18),
+                rgba(1,8,15,.82),
+                rgba(1,8,15,.10),
                 transparent
             );
+            pointer-events: none;
         }
 
-        .back-link {
-            display: inline-flex;
+        header > * {
+            pointer-events: auto;
+        }
+
+        .brand-link {
+            position: relative;
+            display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 11px 18px;
-            border: 1px solid rgba(82, 229, 255, .55);
-            border-radius: 28px;
-            background: rgba(2, 15, 25, .34);
-            backdrop-filter: blur(5px);
-            text-transform: uppercase;
+            flex: 0 0 auto;
+            width: 225px;
+            z-index: 1;
+        }
+
+        .brand-link::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: calc(50% + 42px);
+            width: 245px;
+            height: 175px;
+            transform: translate(-50%,-50%);
+            border-radius: 50%;
+            background: radial-gradient(
+                ellipse,
+                rgba(74,220,248,.42) 0%,
+                rgba(74,220,248,.24) 28%,
+                rgba(74,220,248,.10) 52%,
+                transparent 76%
+            );
+            filter: blur(12px);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .brand-link img {
+            position: relative;
+            width: 225px;
+            height: auto;
+            display: block;
+            transform: translateY(85px);
+            filter:
+                drop-shadow(0 0 10px rgba(55,219,246,.8))
+                drop-shadow(0 0 24px rgba(55,219,246,.55))
+                drop-shadow(0 0 42px rgba(55,219,246,.32));
+        }
+
+        .desktop-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(10px,2.3vw,38px);
+            flex: 1;
+            font-size: 14px;
             letter-spacing: .11em;
-            font-size: 12px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .desktop-nav a {
+            opacity: .9;
             transition: .25s ease;
         }
 
-        .back-link:hover {
-            border-color: #63e6ff;
-            background: rgba(16, 55, 68, .48);
-            box-shadow: 0 0 22px rgba(50, 211, 243, .22);
-            transform: translateY(-1px);
+        .desktop-nav a:hover {
+            opacity: 1;
+            color: #59e8ff;
+            text-shadow: 0 0 12px rgba(70,224,250,.6);
         }
 
-        .brand {
-            position: absolute;
-            left: 50%;
-            top: 24px;
-            transform: translateX(-50%);
-            text-align: center;
-            font-family: Arial, Helvetica, sans-serif;
-            text-transform: uppercase;
-            letter-spacing: .22em;
-            font-size: 11px;
-            color: rgba(238,250,255,.72);
+        .menu-button {
+            width: 42px;
+            height: 42px;
+            border: 0;
+            background: transparent;
+            display: grid;
+            align-content: center;
+            gap: 6px;
+            cursor: pointer;
+            flex: 0 0 auto;
+        }
+
+        .menu-button span {
+            display: block;
+            width: 30px;
+            height: 2px;
+            background: #eefaff;
+            margin: auto;
+            box-shadow: 0 0 7px rgba(255,255,255,.25);
+        }
+
+        /* Mobile header */
+        @media(max-width:1050px) {
+            header {
+                padding: 16px 4vw;
+                gap: 15px;
+            }
+
+            .brand-link,
+            .brand-link img {
+                width: 190px;
+            }
+
+            .brand-link::before {
+                width: 215px;
+                height: 155px;
+            }
+
+            .brand-link img {
+                transform: translateY(55px);
+            }
+
+            .desktop-nav {
+                gap: 14px;
+                font-size: 11px;
+            }
+        }
+
+        @media(max-width:760px) {
+            header {
+                height: 75px;
+                padding: 10px 5vw;
+            }
+
+            .brand-link,
+            .brand-link img {
+                width: 77.5px;
+            }
+
+            .brand-link::before {
+                width: 88px;
+                height: 63px;
+                top: calc(50% + 14px);
+            }
+
+            .brand-link img {
+                transform: translateY(22.5px);
+            }
+
+            .desktop-nav {
+                display: none;
+            }
+
+            .menu-button {
+                width: 34px;
+                margin-left: auto;
+            }
         }
 
         /* Main content */
@@ -173,7 +289,6 @@
             color: rgba(238,250,255,.88);
         }
 
-        /* Poster display */
         .poster-stage {
             width: min(820px, 100%);
             margin: 0 auto;
@@ -238,24 +353,11 @@
             text-shadow: 0 0 14px rgba(70,224,250,.45);
         }
 
+        /* Mobile content */
         @media (max-width: 760px) {
-            header {
-                min-height: 76px;
-                padding: 12px 5vw;
-            }
-
-            .brand {
-                display: none;
-            }
-
-            .back-link {
-                font-size: 10px;
-                padding: 9px 13px;
-            }
-
             main {
                 width: 94vw;
-                padding-top: 3vh;
+                padding-top: 12vh;
             }
 
             .intro {
@@ -295,11 +397,22 @@
         <div class="background-overlay"></div>
         <div class="stars"></div>
 
-        <header>
-            <a class="back-link" href="index.html" aria-label="Back to The Ripple Well">
-                ← The Ripple Well
+        <header id="ripple-roll-header">
+            <a class="brand-link" href="index.html" aria-label="Make the Ripple Home">
+                <img src="images/Make the Ripple Large Logo.png" alt="Make the Ripple">
             </a>
-            <div class="brand">Make the Ripple</div>
+
+            <nav class="desktop-nav" aria-label="Main navigation">
+                <a href="index.html#about">About</a>
+                <a href="index.html#projects">Projects</a>
+                <a href="index.html#socials">Socials</a>
+                <a href="index.html#involved">Get Involved</a>
+                <a href="index.html#support">Support</a>
+            </nav>
+
+            <button id="menu-button" class="menu-button" type="button" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
         </header>
 
         <main>
@@ -327,5 +440,15 @@
             <a href="index.html">Return to The Ripple Well</a>
         </footer>
     </div>
+
+    <script>
+        const menuButton = document.getElementById("menu-button");
+
+        if (menuButton) {
+            menuButton.addEventListener("click", () => {
+                window.location.href = "index.html";
+            });
+        }
+    </script>
 </body>
 </html>
