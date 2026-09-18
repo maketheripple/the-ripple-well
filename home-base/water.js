@@ -1,5 +1,5 @@
 /* THE RIPPLE WELL — HOME BASE
-   v64 — Added ripple placement separation so Impact and Super-Impact ripples avoid overlapping
+   v65 — Mobile polish paired with Home Base index v65; ripple logic unchanged
    Make a Ripple submission form added.
    Approved Impact Ripples remain. */
 (() => {
