@@ -27,6 +27,12 @@ button{font:inherit}
 #quest-page::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to bottom,rgba(0,0,0,.05),rgba(0,0,0,.12));z-index:1}
 .quest-content{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:120px 6vw 90px}
 .quest-title{width:min(820px,90vw);height:auto;display:block;margin:20px auto 55px;filter:drop-shadow(0 0 14px rgba(50,211,243,.22))}
+/* ACTION SHEET */
+.action-sheet-wrap{width:min(1100px,92vw);display:flex;justify-content:center;align-items:center;margin:0 auto 55px}
+.action-sheet-button{width:100%;max-width:1100px}
+.action-sheet-image{display:block;width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 0 18px rgba(50,211,243,.22));transition:transform .3s ease,filter .3s ease}
+.action-sheet-button:hover .action-sheet-image{transform:scale(1.015);filter:drop-shadow(0 0 28px rgba(50,211,243,.38))}
+
 .quest-guild{width:min(1250px,96vw);display:grid;grid-template-columns:repeat(4,1fr);gap:24px;align-items:end}
 .quest-character{display:flex;align-items:flex-end;justify-content:center;min-width:0}
 .character-image-button{display:block;width:100%;padding:0;margin:0;border:0;background:transparent;cursor:pointer;font:inherit}
@@ -75,6 +81,7 @@ button{font:inherit}
     .menu-button{width:34px}
   .quest-content{padding:105px 5vw 55px}
   .quest-title{width:min(94vw,700px);margin-bottom:35px}
+  .action-sheet-wrap{width:min(94vw,700px);margin-bottom:35px}
   .quest-guild{width:min(94vw,700px);grid-template-columns:repeat(2,1fr);gap:8px 12px}
   .quest-character img{max-height:430px}
   .contact-link{font-size:12px;padding-left:12px}
@@ -118,6 +125,15 @@ button{font:inherit}
     <main id="quest-page">
         <div class="quest-content">
             <img class="quest-title" src="images/the-ripple-quest-title.png" alt="The Ripple Quest">
+
+            <div class="action-sheet-wrap">
+                <button class="character-image-button action-sheet-button" type="button"
+                        data-full-image="images/Action Sheet 4.0.png"
+                        data-image-alt="Action Sheet"
+                        aria-label="View full Action Sheet">
+                    <img class="action-sheet-image" src="images/Action Sheet 4.0.png" alt="Action Sheet">
+                </button>
+            </div>
 
             <div class="quest-guild" aria-label="The Ripple Quest Guild">
                 <div class="quest-character"><button class="character-image-button" type="button" data-full-image="images/Auggie - The Rogue - AC.png" data-image-alt="Auggie — The Rogue" aria-label="View full image of Auggie — The Rogue"><img src="images/Auggie - The Rogue - AC.png" alt="Auggie — The Rogue"></button></div>
