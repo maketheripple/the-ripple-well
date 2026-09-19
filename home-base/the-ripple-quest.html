@@ -27,8 +27,12 @@ button{font:inherit}
 
 #quest-page{min-height:100vh;position:relative;background:#000 url("images/the-ripple-quest-background.png") center top / cover no-repeat;}
 #quest-page::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to bottom,rgba(0,0,0,.05),rgba(0,0,0,.12));z-index:1}
-.quest-content{position:relative;z-index:2;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:120px 6vw 70px}
-.quest-title{width:min(820px,90vw);height:auto;display:block;filter:drop-shadow(0 0 14px rgba(50,211,243,.22))}
+.quest-content{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:120px 6vw 90px}
+.quest-title{width:min(820px,90vw);height:auto;display:block;margin:20px auto 55px;filter:drop-shadow(0 0 14px rgba(50,211,243,.22))}
+.quest-guild{width:min(1250px,96vw);display:grid;grid-template-columns:repeat(4,1fr);gap:24px;align-items:end}
+.quest-character{display:flex;align-items:flex-end;justify-content:center;min-width:0}
+.quest-character img{display:block;width:100%;height:auto;max-height:620px;object-fit:contain;filter:drop-shadow(0 0 14px rgba(50,211,243,.16));transition:transform .3s ease,filter .3s ease}
+.quest-character:hover img{transform:translateY(-8px) scale(1.02);filter:drop-shadow(0 0 20px rgba(50,211,243,.34))}
 
 #homebase-footer{position:relative;z-index:1100;width:100%;height:72px;display:flex;align-items:center;justify-content:flex-end;padding:0 5vw;background:rgba(1,6,12,.9);border-top:1px solid rgba(61,208,239,.38);backdrop-filter:blur(7px)}
 .contact-link{font-size:16px;letter-spacing:.08em;border-left:1px solid rgba(65,212,240,.45);padding-left:28px}
@@ -64,7 +68,9 @@ button{font:inherit}
   #make-ripple-button{position:fixed;left:10px;bottom:10px;z-index:1200;font-size:10px;padding:9px 12px}
   .menu-button{width:34px}
   .quest-content{padding:105px 5vw 55px}
-  .quest-title{width:min(94vw,700px)}
+  .quest-title{width:min(94vw,700px);margin-bottom:35px}
+  .quest-guild{width:min(94vw,700px);grid-template-columns:repeat(2,1fr);gap:8px 12px}
+  .quest-character img{max-height:430px}
   .contact-link{font-size:12px;padding-left:12px}
 }
     </style>
@@ -107,6 +113,13 @@ button{font:inherit}
     <main id="quest-page">
         <div class="quest-content">
             <img class="quest-title" src="images/the-ripple-quest-title.png" alt="The Ripple Quest">
+
+            <div class="quest-guild" aria-label="The Ripple Quest Guild">
+                <div class="quest-character"><img src="images/Auggie - The Rogue - AC.png" alt="Auggie — The Rogue"></div>
+                <div class="quest-character"><img src="images/Evan - The Bard - AC.png" alt="Evan — The Bard"></div>
+                <div class="quest-character"><img src="images/Pebs - The Paladin - AC.png" alt="Pebs — The Paladin"></div>
+                <div class="quest-character"><img src="images/Rucca - The Druid - AC.png" alt="Rucca — The Druid"></div>
+            </div>
         </div>
     </main>
 
