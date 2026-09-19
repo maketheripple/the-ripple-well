@@ -21,8 +21,6 @@ button{font:inherit}
 .desktop-nav{display:flex;align-items:center;justify-content:center;gap:clamp(10px,2.3vw,38px);flex:1;font-size:14px;letter-spacing:.11em;text-transform:uppercase;white-space:nowrap}
 .desktop-nav a{opacity:.9;transition:.25s ease}.desktop-nav a:hover{opacity:1;color:#59e8ff;text-shadow:0 0 12px rgba(70,224,250,.6)}
 .header-actions{display:flex;align-items:center;gap:22px}
-#make-ripple-button{padding:12px 25px;border:1px solid rgba(82,229,255,.9);border-radius:30px;background:rgba(2,15,25,.38);color:#eefaff;text-transform:uppercase;letter-spacing:.12em;font-size:13px;cursor:pointer;box-shadow:0 0 10px rgba(50,211,243,.08);backdrop-filter:blur(5px)}
-#make-ripple-button:hover{background:rgba(16,55,68,.55);box-shadow:0 0 25px rgba(50,211,243,.28)}
 .menu-button{width:42px;height:42px;border:0;background:transparent;display:grid;align-content:center;gap:6px;cursor:pointer}.menu-button span{display:block;width:30px;height:2px;background:#eefaff;margin:auto;box-shadow:0 0 7px rgba(255,255,255,.25)}
 
 #quest-page{min-height:100vh;position:relative;background:#000 url("images/the-ripple-quest-background.png") center top / cover no-repeat;}
@@ -56,8 +54,7 @@ button{font:inherit}
   .brand-link img{transform:translateY(55px)}
   .desktop-nav{gap:14px;font-size:11px}
   .header-actions{gap:10px}
-  #make-ripple-button{padding:10px 14px;font-size:11px}
-}
+  }
 @media(max-width:760px){
   #homebase-header{height:75px;padding:10px 5vw}
   .brand-link,.brand-link img{width:77.5px}
@@ -65,8 +62,7 @@ button{font:inherit}
   .brand-link img{transform:translateY(22.5px)}
   .desktop-nav{display:none}
   .header-actions{margin-left:auto}
-  #make-ripple-button{position:fixed;left:10px;bottom:10px;z-index:1200;font-size:10px;padding:9px 12px}
-  .menu-button{width:34px}
+    .menu-button{width:34px}
   .quest-content{padding:105px 5vw 55px}
   .quest-title{width:min(94vw,700px);margin-bottom:35px}
   .quest-guild{width:min(94vw,700px);grid-template-columns:repeat(2,1fr);gap:8px 12px}
@@ -90,7 +86,6 @@ button{font:inherit}
         </nav>
 
         <div class="header-actions">
-            <button id="make-ripple-button" type="button">Make the Ripple</button>
             <button id="menu-button" class="menu-button" type="button" aria-label="Open menu"><span></span><span></span><span></span></button>
         </div>
     </header>
