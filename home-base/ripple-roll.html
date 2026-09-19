@@ -354,6 +354,90 @@
         }
 
         /* Mobile content */
+        /* Hamburger menu popup */
+        #menu-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 2500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 5, 12, .94);
+            backdrop-filter: blur(12px);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity .35s ease, visibility .35s ease;
+        }
+
+        #menu-overlay.open {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .menu-panel {
+            width: min(760px, 88vw);
+            text-align: center;
+            padding: 70px 30px 55px;
+            position: relative;
+        }
+
+        .menu-close {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 46px;
+            height: 46px;
+            border: 1px solid rgba(110, 225, 246, .45);
+            border-radius: 50%;
+            background: rgba(2, 15, 25, .4);
+            color: #eefaff;
+            font: 32px/1 Arial, sans-serif;
+            cursor: pointer;
+        }
+
+        .menu-close:hover {
+            border-color: #63e6ff;
+            box-shadow: 0 0 10px rgba(70, 224, 250, .35);
+        }
+
+        .menu-kicker {
+            font-size: 12px;
+            letter-spacing: .38em;
+            text-transform: uppercase;
+            opacity: .6;
+            margin-bottom: 10px;
+        }
+
+        .menu-title {
+            font-size: clamp(34px, 5vw, 58px);
+            font-weight: 400;
+            letter-spacing: .16em;
+            margin: 0 0 45px;
+            text-shadow: 0 0 20px rgba(92, 210, 255, .35);
+        }
+
+        .menu-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .menu-links a {
+            font-size: clamp(20px, 3vw, 30px);
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            transition: .25s ease;
+        }
+
+        .menu-links a:hover {
+            color: #63e6ff;
+            text-shadow: 0 0 10px rgba(70, 224, 250, .65);
+            transform: translateY(-2px);
+        }
+
         @media (max-width: 760px) {
             main {
                 width: 94vw;
@@ -417,16 +501,11 @@
 
         <main>
             <section class="intro">
-                                <p>
-                    Roll. Give. Make the Ripple.
-                </p>
             </section>
 
             <section class="poster-stage" aria-label="The Ripple Roll poster">
                 <img src="images/ripple-roll-poster.png" alt="The Ripple Roll poster">
             </section>
-
-            <p class="tagline">Small Rolls. Big Ripples.</p>
 
             <p class="description">
                 Every roll creates a ripple. Roll the D20, complete the matching act of kindness,
@@ -439,14 +518,60 @@
         </footer>
     </div>
 
-    <script>
-        const menuButton = document.getElementById("menu-button");
+    <div id="menu-overlay" aria-hidden="true">
+        <div class="menu-panel" role="dialog" aria-modal="true" aria-label="Main menu">
+            <button id="menu-close" class="menu-close" type="button" aria-label="Close menu">×</button>
+            <div class="menu-kicker">Make the Ripple</div>
+            <h2 class="menu-title">THE RIPPLE ROLL</h2>
+            <nav class="menu-links" aria-label="Main menu navigation">
+                <a href="index.html#about">About</a>
+                <a href="index.html#projects">Projects</a>
+                <a href="index.html#socials">Socials</a>
+                <a href="index.html#involved">Get Involved</a>
+                <a href="index.html#support">Support</a>
+            </nav>
+        </div>
+    </div>
 
-        if (menuButton) {
-            menuButton.addEventListener("click", () => {
-                window.location.href = "index.html";
+    <script>
+        (() => {
+            const menu = document.getElementById("menu-overlay");
+            const openButton = document.getElementById("menu-button");
+            const closeButton = document.getElementById("menu-close");
+
+            if (!menu || !openButton || !closeButton) return;
+
+            const openMenu = () => {
+                menu.classList.add("open");
+                menu.setAttribute("aria-hidden", "false");
+                document.body.style.overflow = "hidden";
+                closeButton.focus();
+            };
+
+            const closeMenu = () => {
+                menu.classList.remove("open");
+                menu.setAttribute("aria-hidden", "true");
+                document.body.style.overflow = "";
+                openButton.focus();
+            };
+
+            openButton.addEventListener("click", openMenu);
+            closeButton.addEventListener("click", closeMenu);
+
+            menu.addEventListener("click", event => {
+                if (event.target === menu) closeMenu();
             });
-        }
+
+            menu.querySelectorAll(".menu-links a").forEach(link => {
+                link.addEventListener("click", closeMenu);
+            });
+
+            document.addEventListener("keydown", event => {
+                if (event.key === "Escape" && menu.classList.contains("open")) {
+                    closeMenu();
+                }
+            });
+        })();
     </script>
 </body>
 </html>
