@@ -29,6 +29,8 @@ button{font:inherit}
 .quest-title{width:min(820px,90vw);height:auto;display:block;margin:20px auto 55px;filter:drop-shadow(0 0 14px rgba(50,211,243,.22))}
 .quest-guild{width:min(1250px,96vw);display:grid;grid-template-columns:repeat(4,1fr);gap:24px;align-items:end}
 .quest-character{display:flex;align-items:flex-end;justify-content:center;min-width:0}
+.character-image-button{display:block;width:100%;padding:0;margin:0;border:0;background:transparent;cursor:pointer;font:inherit}
+.character-image-button:focus-visible{outline:2px solid #63e6ff;outline-offset:4px;border-radius:6px}
 .quest-character img{display:block;width:100%;height:auto;max-height:620px;object-fit:contain;filter:drop-shadow(0 0 14px rgba(50,211,243,.16));transition:transform .3s ease,filter .3s ease}
 .quest-character:hover img{transform:translateY(-8px) scale(1.02);filter:drop-shadow(0 0 20px rgba(50,211,243,.34))}
 
@@ -46,6 +48,14 @@ button{font:inherit}
 .menu-links{display:flex;flex-direction:column;align-items:center;gap:22px}
 .menu-links a{font-size:clamp(20px,3vw,30px);letter-spacing:.2em;text-transform:uppercase;transition:.25s ease}
 .menu-links a:hover{color:#63e6ff;text-shadow:0 0 10px rgba(70,224,250,.65);transform:translateY(-2px)}
+
+/* FULL CHARACTER IMAGE POPUP */
+.character-lightbox{position:fixed;inset:0;z-index:3000;display:flex;align-items:center;justify-content:center;padding:5vh 5vw;background:rgba(0,3,8,.94);backdrop-filter:blur(10px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s ease,visibility .3s ease}
+.character-lightbox.open{opacity:1;visibility:visible;pointer-events:auto}
+.character-lightbox img{display:block;max-width:92vw;max-height:90vh;width:auto;height:auto;object-fit:contain;filter:drop-shadow(0 0 28px rgba(50,211,243,.28))}
+.character-lightbox-close{position:absolute;top:24px;right:28px;width:48px;height:48px;border:1px solid rgba(110,225,246,.55);border-radius:50%;background:rgba(2,15,25,.55);color:#eefaff;font:34px/1 Arial,sans-serif;cursor:pointer}
+.character-lightbox-close:hover{border-color:#63e6ff;box-shadow:0 0 18px rgba(70,224,250,.4)}
+.character-lightbox-close:focus-visible{outline:2px solid #63e6ff;outline-offset:3px}
 
 @media(max-width:1050px){
   #homebase-header{padding:16px 4vw;gap:15px}
@@ -110,17 +120,63 @@ button{font:inherit}
             <img class="quest-title" src="images/the-ripple-quest-title.png" alt="The Ripple Quest">
 
             <div class="quest-guild" aria-label="The Ripple Quest Guild">
-                <div class="quest-character"><img src="images/Auggie - The Rogue - AC.png" alt="Auggie — The Rogue"></div>
-                <div class="quest-character"><img src="images/Evan - The Bard - AC.png" alt="Evan — The Bard"></div>
-                <div class="quest-character"><img src="images/Pebs - The Paladin - AC.png" alt="Pebs — The Paladin"></div>
-                <div class="quest-character"><img src="images/Rucca - The Druid - AC.png" alt="Rucca — The Druid"></div>
+                <div class="quest-character"><button class="character-image-button" type="button" data-full-image="images/Auggie - The Rogue - AC.png" data-image-alt="Auggie — The Rogue" aria-label="View full image of Auggie — The Rogue"><img src="images/Auggie - The Rogue - AC.png" alt="Auggie — The Rogue"></button></div>
+                <div class="quest-character"><button class="character-image-button" type="button" data-full-image="images/Evan - The Bard - AC.png" data-image-alt="Evan — The Bard" aria-label="View full image of Evan — The Bard"><img src="images/Evan - The Bard - AC.png" alt="Evan — The Bard"></button></div>
+                <div class="quest-character"><button class="character-image-button" type="button" data-full-image="images/Pebs - The Paladin - AC.png" data-image-alt="Pebs — The Paladin" aria-label="View full image of Pebs — The Paladin"><img src="images/Pebs - The Paladin - AC.png" alt="Pebs — The Paladin"></button></div>
+                <div class="quest-character"><button class="character-image-button" type="button" data-full-image="images/Rucca - The Druid - AC.png" data-image-alt="Rucca — The Druid" aria-label="View full image of Rucca — The Druid"><img src="images/Rucca - The Druid - AC.png" alt="Rucca — The Druid"></button></div>
             </div>
         </div>
     </main>
 
+    <div id="character-lightbox" class="character-lightbox" aria-hidden="true">
+        <button id="character-lightbox-close" class="character-lightbox-close" type="button" aria-label="Close full image">×</button>
+        <img id="character-lightbox-image" src="" alt="">
+    </div>
+
     <footer id="homebase-footer">
         <a class="contact-link" href="mailto:info@maketheripple.com">Contact Us</a>
     </footer>
+
+    <script>
+    (() => {
+        const lightbox = document.getElementById("character-lightbox");
+        const lightboxImage = document.getElementById("character-lightbox-image");
+        const lightboxClose = document.getElementById("character-lightbox-close");
+        const characterButtons = document.querySelectorAll(".character-image-button");
+
+        if (!lightbox || !lightboxImage || !lightboxClose) return;
+
+        const openLightbox = (button) => {
+            lightboxImage.src = button.dataset.fullImage;
+            lightboxImage.alt = button.dataset.imageAlt || "";
+            lightbox.classList.add("open");
+            lightbox.setAttribute("aria-hidden", "false");
+            document.body.style.overflow = "hidden";
+            lightboxClose.focus();
+        };
+
+        const closeLightbox = () => {
+            lightbox.classList.remove("open");
+            lightbox.setAttribute("aria-hidden", "true");
+            lightboxImage.src = "";
+            document.body.style.overflow = "";
+        };
+
+        characterButtons.forEach(button => {
+            button.addEventListener("click", () => openLightbox(button));
+        });
+
+        lightboxClose.addEventListener("click", closeLightbox);
+
+        lightbox.addEventListener("click", event => {
+            if (event.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape" && lightbox.classList.contains("open")) closeLightbox();
+        });
+    })();
+    </script>
 
     <script>
     (() => {
