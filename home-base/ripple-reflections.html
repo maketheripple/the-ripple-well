@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ripple Reflections — Make the Ripple</title>
+
+    <meta
+        name="description"
+        content="Ripple Reflections — Make the Ripple's stories, conversations, and community segments."
+    >
+
+    <style>
+*{box-sizing:border-box}
+html{margin:0;padding:0;scroll-behavior:smooth;background:#01050b}
+body{
+    margin:0;
+    color:#eefaff;
+    font-family:Georgia,"Times New Roman",serif;
+    overflow-x:hidden;
+    background:#01050b;
+}
+
+/* =========================
+   STANDARD MAKE THE RIPPLE HEADER
+   ========================= */
+#homebase-header{
+    position:absolute;
+    z-index:1000;
+    top:0;
+    left:0;
+    width:100%;
+    height:92px;
+    display:flex;
+    align-items:center;
+    padding:10px 7vw;
+    gap:35px;
+    background:linear-gradient(to bottom,rgba(1,8,15,.82),rgba(1,8,15,.10),transparent);
+    pointer-events:none;
+}
+#homebase-header>*{pointer-events:auto}
+.brand-link{
+    position:relative;
+    display:flex;
+    align-items:center;
+    flex:0 0 auto;
+    width:225px;
+    z-index:1;
+}
+.brand-link::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:calc(50% + 42px);
+    width:245px;
+    height:175px;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+    background:radial-gradient(
+        ellipse,
+        rgba(74,220,248,.42) 0%,
+        rgba(74,220,248,.24) 28%,
+        rgba(74,220,248,.10) 52%,
+        transparent 76%
+    );
+    filter:blur(12px);
+    pointer-events:none;
+    z-index:-1;
+}
+.brand-link img{
+    position:relative;
+    width:225px;
+    height:auto;
+    display:block;
+    transform:translateY(85px);
+    filter:
+        drop-shadow(0 0 10px rgba(55,219,246,.8))
+        drop-shadow(0 0 24px rgba(55,219,246,.55))
+        drop-shadow(0 0 42px rgba(55,219,246,.32));
+}
+.desktop-nav{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:clamp(10px,2.3vw,38px);
+    flex:1;
+    font-size:14px;
+    letter-spacing:.11em;
+    text-transform:uppercase;
+    white-space:nowrap;
+}
+.desktop-nav a{
+    color:inherit;
+    text-decoration:none;
+    opacity:.9;
+    transition:.25s ease;
+}
+.desktop-nav a:hover{
+    opacity:1;
+    color:#59e8ff;
+    text-shadow:0 0 12px rgba(70,224,250,.6);
+}
+.header-actions{
+    display:flex;
+    align-items:center;
+    gap:22px;
+}
+#make-ripple-button{
+    padding:12px 25px;
+    border:1px solid rgba(82,229,255,.9);
+    border-radius:30px;
+    background:rgba(2,15,25,.38);
+    color:#eefaff;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    font-size:13px;
+    cursor:pointer;
+    box-shadow:0 0 10px rgba(50,211,243,.08);
+    backdrop-filter:blur(5px);
+}
+#make-ripple-button:hover{
+    background:rgba(16,55,68,.55);
+    box-shadow:0 0 25px rgba(50,211,243,.28);
+}
+.menu-button{
+    width:42px;
+    height:42px;
+    border:0;
+    background:transparent;
+    display:grid;
+    align-content:center;
+    gap:6px;
+    cursor:pointer;
+}
+.menu-button span{
+    display:block;
+    width:30px;
+    height:2px;
+    background:#eefaff;
+    margin:auto;
+    box-shadow:0 0 7px rgba(255,255,255,.25);
+}
+
+/* =========================
+   PAGE BACKGROUND
+   ========================= */
+#reflection-page{
+    position:relative;
+    min-height:1000vh;
+    background-image:
+        linear-gradient(to bottom,rgba(0,8,16,.10),rgba(0,8,16,.18)),
+        url("images/ripple-reflections-background.png");
+    background-repeat:no-repeat;
+    background-position:center top;
+    background-size:100% 100%;
+    background-color:#01050b;
+}
+
+/* Subtle readability layer behind future segment content */
+.reflection-content{
+    position:relative;
+    z-index:5;
+    width:min(1100px,88vw);
+    margin:0 auto;
+    padding-top:34vh;
+    padding-bottom:18vh;
+}
+
+.reflection-intro{
+    min-height:70vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+.reflection-intro-inner{
+    width:min(850px,100%);
+    padding:48px 38px;
+    border:1px solid rgba(156,235,248,.14);
+    background:rgba(0,10,18,.20);
+    backdrop-filter:blur(3px);
+    box-shadow:0 0 40px rgba(0,0,0,.12);
+}
+.reflection-kicker{
+    margin-bottom:16px;
+    font-size:13px;
+    letter-spacing:.38em;
+    text-transform:uppercase;
+    color:rgba(205,243,249,.72);
+}
+.reflection-title{
+    margin:0;
+    font-size:clamp(42px,7vw,86px);
+    font-weight:400;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    text-shadow:0 0 22px rgba(92,210,255,.42);
+}
+.reflection-subtitle{
+    margin:24px auto 0;
+    max-width:700px;
+    font-size:clamp(17px,2vw,22px);
+    line-height:1.8;
+    color:rgba(238,250,255,.88);
+}
+
+.segment{
+    min-height:85vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:8vh 0;
+}
+.segment-card{
+    width:min(900px,100%);
+    min-height:52vh;
+    padding:55px 55px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    border:1px solid rgba(156,235,248,.15);
+    background:rgba(0,8,16,.24);
+    backdrop-filter:blur(3px);
+    box-shadow:0 0 45px rgba(0,0,0,.14);
+}
+.segment-number{
+    margin-bottom:16px;
+    font-size:12px;
+    letter-spacing:.35em;
+    text-transform:uppercase;
+    color:rgba(205,243,249,.62);
+}
+.segment-card h2{
+    margin:0;
+    font-size:clamp(30px,5vw,58px);
+    font-weight:400;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    text-shadow:0 0 18px rgba(92,210,255,.30);
+}
+.segment-card p{
+    max-width:700px;
+    margin:24px auto 0;
+    font-size:clamp(17px,2vw,22px);
+    line-height:1.8;
+    color:rgba(238,250,255,.86);
+}
+
+/* =========================
+   STANDARD BOTTOM BAR
+   ========================= */
+#homebase-footer{
+    position:relative;
+    z-index:1100;
+    width:100%;
+    height:72px;
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    padding:0 5vw;
+    background:rgba(1,6,12,.92);
+    border-top:1px solid rgba(61,208,239,.38);
+    backdrop-filter:blur(7px);
+}
+.contact-link{
+    color:#eefaff;
+    text-decoration:none;
+    font-size:16px;
+    letter-spacing:.08em;
+    border-left:1px solid rgba(65,212,240,.45);
+    padding-left:28px;
+}
+.contact-link:hover{
+    color:#63e6ff;
+}
+
+/* =========================
+   FULL-SCREEN MENU
+   ========================= */
+#menu-overlay{
+    position:fixed;
+    inset:0;
+    z-index:2500;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,5,12,.94);
+    backdrop-filter:blur(12px);
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transition:opacity .35s ease,visibility .35s ease;
+}
+#menu-overlay.open{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+}
+.menu-panel{
+    width:min(760px,88vw);
+    text-align:center;
+    padding:70px 30px 55px;
+    position:relative;
+}
+.menu-close{
+    position:absolute;
+    right:0;
+    top:0;
+    width:46px;
+    height:46px;
+    border:1px solid rgba(110,225,246,.45);
+    border-radius:50%;
+    background:rgba(2,15,25,.4);
+    color:#eefaff;
+    font:32px/1 Arial,sans-serif;
+    cursor:pointer;
+}
+.menu-close:hover{
+    border-color:#63e6ff;
+    box-shadow:0 0 10px rgba(70,224,250,.35);
+}
+.menu-kicker{
+    font-size:12px;
+    letter-spacing:.38em;
+    text-transform:uppercase;
+    opacity:.6;
+    margin-bottom:10px;
+}
+.menu-title{
+    margin:0 0 45px;
+    font-size:clamp(34px,5vw,58px);
+    font-weight:400;
+    letter-spacing:.16em;
+    text-shadow:0 0 20px rgba(92,210,255,.35);
+}
+.menu-links{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:22px;
+}
+.menu-links a{
+    color:inherit;
+    text-decoration:none;
+    font-size:clamp(20px,3vw,30px);
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    transition:.25s ease;
+}
+.menu-links a:hover{
+    color:#63e6ff;
+    text-shadow:0 0 10px rgba(70,224,250,.65);
+    transform:translateY(-2px);
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+@media(max-width:1050px){
+    #homebase-header{
+        padding:16px 4vw;
+        gap:15px;
+    }
+    .brand-link,
+    .brand-link img{
+        width:190px;
+    }
+    .brand-link::before{
+        width:215px;
+        height:155px;
+    }
+    .brand-link img{
+        transform:translateY(55px);
+    }
+    .desktop-nav{
+        gap:14px;
+        font-size:11px;
+    }
+    .header-actions{
+        gap:10px;
+    }
+    #make-ripple-button{
+        padding:10px 14px;
+        font-size:11px;
+    }
+}
+
+@media(max-width:760px){
+    #homebase-header{
+        height:75px;
+        padding:10px 5vw;
+    }
+    .brand-link,
+    .brand-link img{
+        width:77.5px;
+    }
+    .brand-link::before{
+        width:88px;
+        height:63px;
+        top:calc(50% + 14px);
+    }
+    .brand-link img{
+        transform:translateY(22.5px);
+    }
+    .desktop-nav{
+        display:none;
+    }
+    .header-actions{
+        margin-left:auto;
+    }
+    #make-ripple-button{
+        position:fixed;
+        left:10px;
+        bottom:10px;
+        z-index:1200;
+        font-size:10px;
+        padding:9px 12px;
+    }
+    .menu-button{
+        width:34px;
+    }
+
+    #reflection-page{
+        min-height:1000vh;
+        background-size:auto 100%;
+        background-position:center top;
+    }
+
+    .reflection-content{
+        width:min(92vw,700px);
+        padding-top:20vh;
+        padding-bottom:12vh;
+    }
+    .reflection-intro{
+        min-height:65vh;
+    }
+    .reflection-intro-inner{
+        padding:36px 22px;
+    }
+    .segment{
+        min-height:85vh;
+        padding:6vh 0;
+    }
+    .segment-card{
+        min-height:58vh;
+        padding:40px 24px;
+    }
+    .segment-card h2{
+        font-size:clamp(26px,8vw,42px);
+    }
+
+    #homebase-footer{
+        height:64px;
+        padding:0 5vw;
+    }
+    .contact-link{
+        font-size:12px;
+        padding-left:12px;
+    }
+}
+    </style>
+</head>
+
+<body>
+
+<header id="homebase-header">
+    <a class="brand-link" href="index.html" aria-label="Make the Ripple Home">
+        <img src="images/Make the Ripple Large Logo.png" alt="Make the Ripple">
+    </a>
+
+    <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="index.html#about">About</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#socials">Socials</a>
+        <a href="index.html#involved">Get Involved</a>
+        <a href="index.html#support">Support</a>
+    </nav>
+
+    <div class="header-actions">
+        <button id="make-ripple-button" type="button">Make the Ripple</button>
+        <button id="menu-button" class="menu-button" type="button" aria-label="Open menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<div id="menu-overlay" aria-hidden="true">
+    <div class="menu-panel" role="dialog" aria-modal="true" aria-label="Main menu">
+        <button id="menu-close" class="menu-close" type="button" aria-label="Close menu">×</button>
+        <div class="menu-kicker">Make the Ripple</div>
+        <h2 class="menu-title">THE RIPPLE WELL</h2>
+        <nav class="menu-links" aria-label="Menu navigation">
+            <a href="index.html#about">About</a>
+            <a href="index.html#projects">Projects</a>
+            <a href="index.html#socials">Socials</a>
+            <a href="index.html#involved">Get Involved</a>
+            <a href="index.html#support">Support</a>
+        </nav>
+    </div>
+</div>
+
+<main id="reflection-page">
+
+    <div class="reflection-content">
+
+        <section class="reflection-intro">
+            <div class="reflection-intro-inner">
+                <div class="reflection-kicker">A Make the Ripple Project</div>
+                <h1 class="reflection-title">Ripple Reflections</h1>
+                <p class="reflection-subtitle">
+                    Ten voices. Ten stories. One ripple at a time.
+                </p>
+            </div>
+        </section>
+
+        <!--
+            The ten segment areas are intentionally prepared as placeholders.
+            We can replace the titles and text with the finalized Ripple Reflections
+            segments without changing the background, header, or footer design.
+        -->
+
+        <section class="segment">
+            <div class="segment-card">
+                <div class="segment-number">Reflection 01</div>
+                <h2>Segment One</h2>
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <div class="segment-number">Reflection 02</div>
+                <h2>Segment Two</h2>
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <div class="segment-number">Reflection 03</div>
+                <h2>Segment Three</h2>
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <div class="segment-number">Reflection 04</div>
+                <h2>Segment Four</h2>
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <div class="segment-number">Reflection 05</div>
+                <h2>Segment Five</h2>
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <div class="segment-number">Reflection 06</div>
+                <h2>Segment Six</h2>
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <div class="segment-number">Reflection 07</div>
+                <h2>Segment Seven</h2>
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <div class="segment-number">Reflection 08</div>
+                <h2>Segment Eight</h2>
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <div class="segment-number">Reflection 09</div>
+                <h2>Segment Nine</h2>
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <div class="segment-number">Reflection 10</div>
+                <h2>Segment Ten</h2>
+            </div>
+        </section>
+
+    </div>
+</main>
+
+<footer id="homebase-footer">
+    <a class="contact-link" href="mailto:info@maketheripple.com">Contact Us</a>
+</footer>
+
+<script>
+(() => {
+    const menu = document.getElementById("menu-overlay");
+    const openButton = document.getElementById("menu-button");
+    const closeButton = document.getElementById("menu-close");
+
+    if (!menu || !openButton || !closeButton) return;
+
+    const openMenu = () => {
+        menu.classList.add("open");
+        menu.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        closeButton.focus();
+    };
+
+    const closeMenu = () => {
+        menu.classList.remove("open");
+        menu.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+        openButton.focus();
+    };
+
+    openButton.addEventListener("click", openMenu);
+    closeButton.addEventListener("click", closeMenu);
+
+    menu.addEventListener("click", event => {
+        if (event.target === menu) closeMenu();
+    });
+
+    menu.querySelectorAll(".menu-links a").forEach(link => {
+        link.addEventListener("click", closeMenu);
+    });
+
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && menu.classList.contains("open")) {
+            closeMenu();
+        }
+    });
+})();
+</script>
+
+</body>
+</html>
