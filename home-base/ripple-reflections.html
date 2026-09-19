@@ -168,85 +168,55 @@ body{
 }
 
 .reflection-intro{
-    min-height:70vh;
+    min-height:78vh;
     display:flex;
-    align-items:center;
+    align-items:flex-start;
     justify-content:center;
     text-align:center;
+    padding-top:170px;
 }
 .reflection-intro-inner{
-    width:min(850px,100%);
-    padding:48px 38px;
-    border:1px solid rgba(156,235,248,.14);
-    background:rgba(0,10,18,.20);
-    backdrop-filter:blur(3px);
-    box-shadow:0 0 40px rgba(0,0,0,.12);
+    width:min(1050px,94vw);
+    padding:20px 20px 50px;
 }
-.reflection-kicker{
-    margin-bottom:16px;
-    font-size:13px;
-    letter-spacing:.38em;
-    text-transform:uppercase;
-    color:rgba(205,243,249,.72);
-}
-.reflection-title{
-    margin:0;
-    font-size:clamp(42px,7vw,86px);
-    font-weight:400;
-    letter-spacing:.12em;
-    text-transform:uppercase;
-    text-shadow:0 0 22px rgba(92,210,255,.42);
-}
-.reflection-subtitle{
-    margin:24px auto 0;
-    max-width:700px;
-    font-size:clamp(17px,2vw,22px);
-    line-height:1.8;
-    color:rgba(238,250,255,.88);
+.reflection-logo{
+    display:block;
+    width:min(760px,86vw);
+    max-height:52vh;
+    height:auto;
+    object-fit:contain;
+    margin:0 auto;
+    filter:drop-shadow(0 14px 32px rgba(0,0,0,.30));
 }
 
 .segment{
-    min-height:85vh;
+    min-height:82vh;
     display:flex;
     align-items:center;
     justify-content:center;
     padding:8vh 0;
 }
 .segment-card{
-    width:min(900px,100%);
-    min-height:52vh;
-    padding:55px 55px;
+    width:min(1000px,100%);
+    min-height:60vh;
+    padding:35px 25px;
     display:flex;
-    flex-direction:column;
     align-items:center;
     justify-content:center;
     text-align:center;
-    border:1px solid rgba(156,235,248,.15);
-    background:rgba(0,8,16,.24);
-    backdrop-filter:blur(3px);
-    box-shadow:0 0 45px rgba(0,0,0,.14);
 }
-.segment-number{
-    margin-bottom:16px;
-    font-size:12px;
-    letter-spacing:.35em;
-    text-transform:uppercase;
-    color:rgba(205,243,249,.62);
+.segment-logo{
+    display:block;
+    width:min(760px,88vw);
+    max-height:58vh;
+    height:auto;
+    object-fit:contain;
+    filter:drop-shadow(0 12px 28px rgba(0,0,0,.24));
+    transition:transform .3s ease,filter .3s ease;
 }
-.segment-card h2{
-    margin:0;
-    font-size:clamp(30px,5vw,58px);
-    font-weight:400;
-    letter-spacing:.12em;
-    text-transform:uppercase;
-    text-shadow:0 0 18px rgba(92,210,255,.30);
-}
-.segment-card p{
-    max-width:700px;
-    margin:24px auto 0;
-    font-size:clamp(17px,2vw,22px);
-    line-height:1.8;
-    color:rgba(238,250,255,.86);
+.segment-logo:hover{
+    transform:scale(1.015);
+    filter:drop-shadow(0 15px 34px rgba(0,0,0,.30));
 }
 
 /* =========================
@@ -430,26 +400,32 @@ body{
     }
 
     .reflection-content{
-        width:min(92vw,700px);
-        padding-top:20vh;
-        padding-bottom:12vh;
+        width:min(94vw,700px);
+        padding-top:0;
+        padding-bottom:8vh;
     }
     .reflection-intro{
-        min-height:65vh;
+        min-height:70vh;
+        padding-top:125px;
     }
     .reflection-intro-inner{
-        padding:36px 22px;
+        padding:10px 5px 35px;
+    }
+    .reflection-logo{
+        width:min(88vw,650px);
+        max-height:42vh;
     }
     .segment{
-        min-height:85vh;
-        padding:6vh 0;
+        min-height:76vh;
+        padding:5vh 0;
     }
     .segment-card{
-        min-height:58vh;
-        padding:40px 24px;
+        min-height:54vh;
+        padding:25px 5px;
     }
-    .segment-card h2{
-        font-size:clamp(26px,8vw,42px);
+    .segment-logo{
+        width:min(88vw,650px);
+        max-height:48vh;
     }
 
     #homebase-footer{
@@ -506,13 +482,13 @@ body{
 
     <div class="reflection-content">
 
-        <section class="reflection-intro">
+        <section class="reflection-intro" aria-label="Ripple Reflections">
             <div class="reflection-intro-inner">
-                <div class="reflection-kicker">A Make the Ripple Project</div>
-                <h1 class="reflection-title">Ripple Reflections</h1>
-                <p class="reflection-subtitle">
-                    Ten voices. Ten stories. One ripple at a time.
-                </p>
+                <img
+                    class="reflection-logo"
+                    src="images/ripple-reflections-logo.png"
+                    alt="Ripple Reflections"
+                >
             </div>
         </section>
 
@@ -524,71 +500,1101 @@ body{
 
         <section class="segment">
             <div class="segment-card">
-                <div class="segment-number">Reflection 01</div>
-                <h2>Segment One</h2>
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_IR.png"
+                    alt="Ripple Reflections — Indigenous Ripples"
+                    loading="lazy"
+                >
             </div>
         </section>
 
         <section class="segment">
             <div class="segment-card">
-                <div class="segment-number">Reflection 02</div>
-                <h2>Segment Two</h2>
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RBTHH.png"
+                    alt="Ripple Reflections — Ripple Beyond the Hard Hat"
+                    loading="lazy"
+                >
             </div>
         </section>
 
         <section class="segment">
             <div class="segment-card">
-                <div class="segment-number">Reflection 03</div>
-                <h2>Segment Three</h2>
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RBTR.png"
+                    alt="Ripple Reflections — Ripple Beyond the Roof"
+                    loading="lazy"
+                >
             </div>
         </section>
 
         <section class="segment">
             <div class="segment-card">
-                <div class="segment-number">Reflection 04</div>
-                <h2>Segment Four</h2>
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RIR.png"
+                    alt="Ripple Reflections — Ripple in Recovery"
+                    loading="lazy"
+                >
             </div>
         </section>
 
         <section class="segment">
             <div class="segment-card">
-                <div class="segment-number">Reflection 05</div>
-                <h2>Segment Five</h2>
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_ROTC.png"
+                    alt="Ripple Reflections — Ripple Outside the Classroom"
+                    loading="lazy"
+                >
             </div>
         </section>
 
         <section class="segment">
             <div class="segment-card">
-                <div class="segment-number">Reflection 06</div>
-                <h2>Segment Six</h2>
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RR.png"
+                    alt="Ripple Reflections — Ripple Response"
+                    loading="lazy"
+                >
             </div>
         </section>
 
         <section class="segment">
             <div class="segment-card">
-                <div class="segment-number">Reflection 07</div>
-                <h2>Segment Seven</h2>
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RWH.png"
+                    alt="Ripple Reflections — Ripple with Heroes"
+                    loading="lazy"
+                >
             </div>
         </section>
 
         <section class="segment">
             <div class="segment-card">
-                <div class="segment-number">Reflection 08</div>
-                <h2>Segment Eight</h2>
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RWL.png"
+                    alt="Ripple Reflections — Ripple Without Limits"
+                    loading="lazy"
+                >
             </div>
         </section>
 
         <section class="segment">
             <div class="segment-card">
-                <div class="segment-number">Reflection 09</div>
-                <h2>Segment Nine</h2>
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RWP.png"
+                    alt="Ripple Reflections — Ripple with Pride"
+                    loading="lazy"
+                >
             </div>
         </section>
 
         <section class="segment">
             <div class="segment-card">
-                <div class="segment-number">Reflection 10</div>
-                <h2>Segment Ten</h2>
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_YVBR.png"
+                    alt="Ripple Reflections — Young Voices Big Ripples"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_IR.png"
+                    alt="Ripple Reflections — Indigenous Ripples"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RBTHH.png"
+                    alt="Ripple Reflections — Ripple Beyond the Hard Hat"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RBTR.png"
+                    alt="Ripple Reflections — Ripple Beyond the Roof"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RIR.png"
+                    alt="Ripple Reflections — Ripple in Recovery"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_ROTC.png"
+                    alt="Ripple Reflections — Ripple Outside the Classroom"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RR.png"
+                    alt="Ripple Reflections — Ripple Response"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RWH.png"
+                    alt="Ripple Reflections — Ripple with Heroes"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RWL.png"
+                    alt="Ripple Reflections — Ripple Without Limits"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RWP.png"
+                    alt="Ripple Reflections — Ripple with Pride"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_YVBR.png"
+                    alt="Ripple Reflections — Young Voices Big Ripples"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_IR.png"
+                    alt="Ripple Reflections — Indigenous Ripples"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RBTHH.png"
+                    alt="Ripple Reflections — Ripple Beyond the Hard Hat"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RBTR.png"
+                    alt="Ripple Reflections — Ripple Beyond the Roof"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RIR.png"
+                    alt="Ripple Reflections — Ripple in Recovery"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_ROTC.png"
+                    alt="Ripple Reflections — Ripple Outside the Classroom"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RR.png"
+                    alt="Ripple Reflections — Ripple Response"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RWH.png"
+                    alt="Ripple Reflections — Ripple with Heroes"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RWL.png"
+                    alt="Ripple Reflections — Ripple Without Limits"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RWP.png"
+                    alt="Ripple Reflections — Ripple with Pride"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_YVBR.png"
+                    alt="Ripple Reflections — Young Voices Big Ripples"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_IR.png"
+                    alt="Ripple Reflections — Indigenous Ripples"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RBTHH.png"
+                    alt="Ripple Reflections — Ripple Beyond the Hard Hat"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RBTR.png"
+                    alt="Ripple Reflections — Ripple Beyond the Roof"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RIR.png"
+                    alt="Ripple Reflections — Ripple in Recovery"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_ROTC.png"
+                    alt="Ripple Reflections — Ripple Outside the Classroom"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RR.png"
+                    alt="Ripple Reflections — Ripple Response"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RWH.png"
+                    alt="Ripple Reflections — Ripple with Heroes"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RWL.png"
+                    alt="Ripple Reflections — Ripple Without Limits"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RWP.png"
+                    alt="Ripple Reflections — Ripple with Pride"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_YVBR.png"
+                    alt="Ripple Reflections — Young Voices Big Ripples"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_IR.png"
+                    alt="Ripple Reflections — Indigenous Ripples"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RBTHH.png"
+                    alt="Ripple Reflections — Ripple Beyond the Hard Hat"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RBTR.png"
+                    alt="Ripple Reflections — Ripple Beyond the Roof"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RIR.png"
+                    alt="Ripple Reflections — Ripple in Recovery"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_ROTC.png"
+                    alt="Ripple Reflections — Ripple Outside the Classroom"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RR.png"
+                    alt="Ripple Reflections — Ripple Response"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RWH.png"
+                    alt="Ripple Reflections — Ripple with Heroes"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RWL.png"
+                    alt="Ripple Reflections — Ripple Without Limits"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RWP.png"
+                    alt="Ripple Reflections — Ripple with Pride"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_YVBR.png"
+                    alt="Ripple Reflections — Young Voices Big Ripples"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_IR.png"
+                    alt="Ripple Reflections — Indigenous Ripples"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RBTHH.png"
+                    alt="Ripple Reflections — Ripple Beyond the Hard Hat"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RBTR.png"
+                    alt="Ripple Reflections — Ripple Beyond the Roof"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RIR.png"
+                    alt="Ripple Reflections — Ripple in Recovery"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_ROTC.png"
+                    alt="Ripple Reflections — Ripple Outside the Classroom"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RR.png"
+                    alt="Ripple Reflections — Ripple Response"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RWH.png"
+                    alt="Ripple Reflections — Ripple with Heroes"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RWL.png"
+                    alt="Ripple Reflections — Ripple Without Limits"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RWP.png"
+                    alt="Ripple Reflections — Ripple with Pride"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_YVBR.png"
+                    alt="Ripple Reflections — Young Voices Big Ripples"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_IR.png"
+                    alt="Ripple Reflections — Indigenous Ripples"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RBTHH.png"
+                    alt="Ripple Reflections — Ripple Beyond the Hard Hat"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RBTR.png"
+                    alt="Ripple Reflections — Ripple Beyond the Roof"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RIR.png"
+                    alt="Ripple Reflections — Ripple in Recovery"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_ROTC.png"
+                    alt="Ripple Reflections — Ripple Outside the Classroom"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RR.png"
+                    alt="Ripple Reflections — Ripple Response"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RWH.png"
+                    alt="Ripple Reflections — Ripple with Heroes"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RWL.png"
+                    alt="Ripple Reflections — Ripple Without Limits"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RWP.png"
+                    alt="Ripple Reflections — Ripple with Pride"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_YVBR.png"
+                    alt="Ripple Reflections — Young Voices Big Ripples"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_IR.png"
+                    alt="Ripple Reflections — Indigenous Ripples"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RBTHH.png"
+                    alt="Ripple Reflections — Ripple Beyond the Hard Hat"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RBTR.png"
+                    alt="Ripple Reflections — Ripple Beyond the Roof"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RIR.png"
+                    alt="Ripple Reflections — Ripple in Recovery"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_ROTC.png"
+                    alt="Ripple Reflections — Ripple Outside the Classroom"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RR.png"
+                    alt="Ripple Reflections — Ripple Response"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RWH.png"
+                    alt="Ripple Reflections — Ripple with Heroes"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RWL.png"
+                    alt="Ripple Reflections — Ripple Without Limits"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RWP.png"
+                    alt="Ripple Reflections — Ripple with Pride"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_YVBR.png"
+                    alt="Ripple Reflections — Young Voices Big Ripples"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_IR.png"
+                    alt="Ripple Reflections — Indigenous Ripples"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RBTHH.png"
+                    alt="Ripple Reflections — Ripple Beyond the Hard Hat"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RBTR.png"
+                    alt="Ripple Reflections — Ripple Beyond the Roof"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RIR.png"
+                    alt="Ripple Reflections — Ripple in Recovery"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_ROTC.png"
+                    alt="Ripple Reflections — Ripple Outside the Classroom"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RR.png"
+                    alt="Ripple Reflections — Ripple Response"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RWH.png"
+                    alt="Ripple Reflections — Ripple with Heroes"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RWL.png"
+                    alt="Ripple Reflections — Ripple Without Limits"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RWP.png"
+                    alt="Ripple Reflections — Ripple with Pride"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_YVBR.png"
+                    alt="Ripple Reflections — Young Voices Big Ripples"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_IR.png"
+                    alt="Ripple Reflections — Indigenous Ripples"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RBTHH.png"
+                    alt="Ripple Reflections — Ripple Beyond the Hard Hat"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RBTR.png"
+                    alt="Ripple Reflections — Ripple Beyond the Roof"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RIR.png"
+                    alt="Ripple Reflections — Ripple in Recovery"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_ROTC.png"
+                    alt="Ripple Reflections — Ripple Outside the Classroom"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RR.png"
+                    alt="Ripple Reflections — Ripple Response"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RWH.png"
+                    alt="Ripple Reflections — Ripple with Heroes"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RWL.png"
+                    alt="Ripple Reflections — Ripple Without Limits"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_RWP.png"
+                    alt="Ripple Reflections — Ripple with Pride"
+                    loading="lazy"
+                >
+            </div>
+        </section>
+
+        <section class="segment">
+            <div class="segment-card">
+                <img
+                    class="segment-logo"
+                    src="images/Ripple Reflections/MTR_YVBR.png"
+                    alt="Ripple Reflections — Young Voices Big Ripples"
+                    loading="lazy"
+                >
             </div>
         </section>
 
