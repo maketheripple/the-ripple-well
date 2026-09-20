@@ -35,7 +35,7 @@
   function rippleFootprint(size, isSuper) {
     const dimensions = { small: [90,45], medium: [130,65], large: [175,88], "extra-large": [230,115] };
     const [w,h] = dimensions[sizeClass(size)] || dimensions.medium;
-    const scale = isSuper ? 8.7 : 2;
+    const scale = isSuper ? (IS_MOBILE_RIPPLE_LAYOUT ? 3.0 : 8.7) : 2;
     return { halfW: w * scale * 0.5 * RIPPLE_SEPARATION, halfH: h * scale * 0.5 * RIPPLE_SEPARATION };
   }
 
@@ -855,6 +855,7 @@
        SUPER-IMPACT — INVISIBLE ROCK / BLUE WATER + GOLD RIM
     ========================================================= */
     .super-impact-hitbox{z-index:12;}
+    @media(max-width:760px){.super-impact-ripple{width:300%;height:300%;}}
     .super-impact-ripple{width:870%;height:870%;transform:translate(-50%,-50%);}
     .super-impact-wave-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;}
     .super-impact-wave{fill:none;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;}
