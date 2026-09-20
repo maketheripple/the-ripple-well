@@ -11,10 +11,10 @@
 
   /* ---------------------------------------------------------
      TEST MODE
-     Open the Home Base with ?testRipple=1 to show ONE enhanced
-     Impact Ripple only. Normal mode remains unchanged.
+     THIS FILE IS A DEDICATED TEST BUILD. It always shows ONE enhanced
+     Impact Ripple only. It does not load Supabase ripples.
   --------------------------------------------------------- */
-  const TEST_IMPACT_RIPPLE = new URLSearchParams(window.location.search).get("testRipple") === "1";
+  const TEST_IMPACT_RIPPLE = true;
 
   /* ---------------------------------------------------------
      RIPPLE PLACEMENT ZONES
@@ -108,7 +108,10 @@
   function addRipple(data) {
     const hitbox = document.createElement("div");
     hitbox.className = `impact-hitbox impact-size-${sizeClass(data.size)}`;
-    const position = chooseRipplePosition(data, IMPACT_X_MIN, IMPACT_X_MAX, IMPACT_Y_MIN, IMPACT_Y_MAX, false);
+    let position = chooseRipplePosition(data, IMPACT_X_MIN, IMPACT_X_MAX, IMPACT_Y_MIN, IMPACT_Y_MAX, false);
+    if (TEST_IMPACT_RIPPLE && data.testPosition) {
+      position = { x: 50, y: 58 };
+    }
     if (!position) return;
     hitbox.style.left = `${position.x}%`;
     hitbox.style.top = `${position.y}%`;
@@ -1063,7 +1066,8 @@
       message: "Enhanced Impact Ripple animation test",
       name: "Test Ripple",
       size: "large",
-      type: "impact"
+      type: "impact",
+      testPosition: true
     });
     console.info("The Ripple Well: TEST IMPACT RIPPLE MODE active — one enhanced Impact Ripple only.");
   } else {
