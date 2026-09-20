@@ -148,7 +148,7 @@
         const angleJitter = rand(data.id + "sa" + i, -7, 7);
         const distance = rand(data.id + "sd" + i, 15, 43) * (i === 2 || i === 8 ? 1.16 : 1);
         const size = rand(data.id + "ss" + i, 1.8, 4.1) * (i === 3 || i === 7 ? 1.12 : 1);
-        const delay = rand(data.id + "sl" + i, 0, 65);
+        const delay = 430 + rand(data.id + "sl" + i, 0, 65);
         droplet.style.setProperty("--splash-angle", `${splashAngles[i] + angleJitter}deg`);
         droplet.style.setProperty("--splash-distance", `${distance.toFixed(1)}px`);
         droplet.style.setProperty("--splash-size", `${size.toFixed(1)}px`);
@@ -331,16 +331,19 @@
        Each ripple starts at a different point in the cycle and uses a
        slightly different duration, while preserving the existing motion.
     */
-    const rippleDelay = TEST_IMPACT_RIPPLE ? 0 : -rand(data.id + "delay", 0, 11000);
-    const rippleDuration = TEST_IMPACT_RIPPLE ? 2400 : rand(data.id + "duration", 9800, 13200);
+    const rippleDelay = TEST_IMPACT_RIPPLE ? 430 : -rand(data.id + "delay", 0, 11000);
+    const rippleDuration = TEST_IMPACT_RIPPLE ? 2550 : rand(data.id + "duration", 9800, 13200);
 
     impactDrop.animate(
       TEST_IMPACT_RIPPLE ? [
-        { transform: "translate(-50%,-50%) scale(.05)", opacity: 0 },
-        { transform: "translate(-50%,-50%) scale(1)", opacity: 1, offset: .08 },
-        { transform: "translate(-50%,-50%) scale(1.7)", opacity: .65, offset: .18 },
-        { transform: "translate(-50%,-50%) scale(2.2)", opacity: 0, offset: .34 },
-        { transform: "translate(-50%,-50%) scale(2.2)", opacity: 0 }
+        /* Invisible droplet: fall first, hit the surface, then create the wave. */
+        { transform: "translate(-50%,-50%) translateY(-42px) scale(.18)", opacity: 0 },
+        { transform: "translate(-50%,-50%) translateY(-18px) scale(.28)", opacity: 0, offset: .55 },
+        { transform: "translate(-50%,-50%) translateY(-3px) scale(.42)", opacity: .18, offset: .72 },
+        { transform: "translate(-50%,-50%) translateY(0) scale(.78)", opacity: .92, offset: .82 },
+        { transform: "translate(-50%,-50%) translateY(0) scale(1.9)", opacity: .62, offset: .89 },
+        { transform: "translate(-50%,-50%) translateY(0) scale(2.4)", opacity: 0, offset: .97 },
+        { transform: "translate(-50%,-50%) translateY(0) scale(2.4)", opacity: 0 }
       ] : [
         { transform: "translate(-50%,-50%) scale(.15)", opacity: 0 },
         { transform: "translate(-50%,-50%) scale(.28)", opacity: .78, offset: .055 },
@@ -843,15 +846,15 @@
       box-shadow:0 0 5px rgba(91,224,247,.72),0 0 10px rgba(91,224,247,.28);
       transform:rotate(var(--splash-angle)) translateY(0) scale(.2);
       opacity:0;
-      animation:impactSplashDrop 2.4s cubic-bezier(.16,.66,.28,1) infinite;
+      animation:impactSplashDrop 2.55s cubic-bezier(.16,.66,.28,1) infinite;
       animation-delay:var(--splash-delay);
     }
     @keyframes impactSplashDrop{
-      0%,7%{opacity:0;transform:rotate(var(--splash-angle)) translateY(0) scale(.2)}
-      12%{opacity:.95;transform:rotate(var(--splash-angle)) translateY(0) scale(1)}
-      30%{opacity:.78;transform:rotate(var(--splash-angle)) translateY(calc(var(--splash-distance) * -.48)) scale(.82)}
-      54%{opacity:.32;transform:rotate(var(--splash-angle)) translateY(calc(var(--splash-distance) * -.88)) scale(.58)}
-      72%,100%{opacity:0;transform:rotate(var(--splash-angle)) translateY(calc(var(--splash-distance) * -1.12)) scale(.35)}
+      0%,15%{opacity:0;transform:rotate(var(--splash-angle)) translateY(0) scale(.2)}
+      18%{opacity:.95;transform:rotate(var(--splash-angle)) translateY(0) scale(1)}
+      34%{opacity:.78;transform:rotate(var(--splash-angle)) translateY(calc(var(--splash-distance) * -.48)) scale(.82)}
+      56%{opacity:.32;transform:rotate(var(--splash-angle)) translateY(calc(var(--splash-distance) * -.88)) scale(.58)}
+      76%,100%{opacity:0;transform:rotate(var(--splash-angle)) translateY(calc(var(--splash-distance) * -1.12)) scale(.35)}
     }
 
     /* Permanent boundary is intentionally almost invisible. */
