@@ -184,7 +184,7 @@ button{font:inherit}
                 <p>Across the land, a new guild has formed — <span class="guild-name">The Ripple Guild</span>.
                 Four unlikely adventurers have answered the call:</p>
 
-                <p><strong>Pebs — The Paladin</strong><br>
+                <p class="adventurer-intro"><strong>Pebs — The Paladin</strong><br>
                 A champion of compassion, standing ready to defend those who need a helping hand.</p>
                 <button class="character-image-button adventurer-card-button" type="button"
                         data-full-image="images/Pebs - The Paladin - AC.png"
@@ -275,9 +275,11 @@ button{font:inherit}
     </footer>
 
     <script>
-/* Keep a half-card-height gap between each adventurer. */
+/* Keep a half-card-height gap between each adventurer,
+   and the same amount of space before the first adventurer title. */
 function setAdventurerSpacing(){
     const cards = document.querySelectorAll('.adventurer-card-button');
+
     cards.forEach((card, index) => {
         if (index < cards.length - 1) {
             card.style.marginBottom = (card.getBoundingClientRect().height / 2) + 'px';
@@ -285,9 +287,15 @@ function setAdventurerSpacing(){
             card.style.marginBottom = '0';
         }
     });
+
+    const pebsTitle = document.querySelector('.adventurer-intro');
+    if (pebsTitle && cards.length) {
+        pebsTitle.style.marginTop = (cards[0].getBoundingClientRect().height / 2) + 'px';
+    }
 }
 
 window.addEventListener('load', setAdventurerSpacing);
+window.addEventListener('resize', setAdventurerSpacing);
 window.addEventListener('resize', setAdventurerSpacing);
 
     (() => {
