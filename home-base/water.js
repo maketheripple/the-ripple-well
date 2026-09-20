@@ -880,7 +880,7 @@
       stroke-linejoin:round;
       stroke-dasharray:8 10 4 31 12 24 6 38;
       opacity:.10;
-      filter:blur(2.2px) drop-shadow(0 0 4px rgba(74,214,239,.22));
+      filter:blur(3px) drop-shadow(0 0 7px rgba(61,204,236,.28));
     }
 
     /* Main irregular water crest: broken, translucent, and uneven. */
@@ -891,7 +891,7 @@
       stroke-linejoin:round;
       stroke-dasharray:2 9 13 5 3 21 7 15 2 28 8 6 19 11;
       opacity:1;
-      filter:drop-shadow(0 0 1.8px rgba(74,214,239,.10));
+      filter:drop-shadow(0 0 2px rgba(77,214,241,.28));
     }
 
     /* Very small bright fragments imitate moonlight catching individual wave crests. */
@@ -902,7 +902,7 @@
       stroke-linejoin:round;
       stroke-dasharray:1 34 5 58 2 27 7 71;
       opacity:0;
-      filter:drop-shadow(0 0 2.5px rgba(176,244,255,.34));
+      filter:drop-shadow(0 0 3px rgba(190,248,255,.44));
     }
 
 
@@ -963,12 +963,12 @@
     .impact-ripple .impact-wave-glow{
       stroke:rgba(83,220,245,.42);stroke-width:5.4;
       stroke-dasharray:7 8 3 17 10 21 5 28;
-      filter:blur(2.7px) drop-shadow(0 0 7px rgba(65,214,241,.30));
+      filter:blur(3px) drop-shadow(0 0 7px rgba(61,204,236,.28));
     }
     .impact-ripple .impact-wave-inner{
       stroke:rgba(137,239,251,.94);stroke-width:1.35;
       stroke-dasharray:3 7 11 4 4 17 8 12 2 24 7 5;
-      filter:drop-shadow(0 0 2.4px rgba(74,214,239,.20));
+      filter:drop-shadow(0 0 2px rgba(77,214,241,.28));
     }
     .impact-ripple .impact-wave-shimmer{
       stroke:rgba(225,252,255,.98);stroke-width:1.65;
