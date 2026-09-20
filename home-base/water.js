@@ -10,6 +10,13 @@
   const layer = document.getElementById("impact-ripples-layer");
 
   /* ---------------------------------------------------------
+     TEST MODE
+     Open the Home Base with ?testRipple=1 to show ONE enhanced
+     Impact Ripple only. Normal mode remains unchanged.
+  --------------------------------------------------------- */
+  const TEST_IMPACT_RIPPLE = new URLSearchParams(window.location.search).get("testRipple") === "1";
+
+  /* ---------------------------------------------------------
      RIPPLE PLACEMENT ZONES
      Impact Ripples may use the open side margins and lower page space.
      Super-Impact Ripples stay within the central Well.
@@ -35,7 +42,7 @@
   function rippleFootprint(size, isSuper) {
     const dimensions = { small: [90,45], medium: [130,65], large: [175,88], "extra-large": [230,115] };
     const [w,h] = dimensions[sizeClass(size)] || dimensions.medium;
-    const scale = isSuper ? (IS_MOBILE_RIPPLE_LAYOUT ? 3.0 : 8.7) : 2;
+    const scale = isSuper ? 8.7 : 2;
     return { halfW: w * scale * 0.5 * RIPPLE_SEPARATION, halfH: h * scale * 0.5 * RIPPLE_SEPARATION };
   }
 
@@ -108,7 +115,7 @@
     hitbox.style.setProperty("--rotation", `${rand(data.id + "r", -28, 28)}deg`);
 
     const el = document.createElement("div");
-    el.className = "impact-ripple";
+    el.className = `impact-ripple${TEST_IMPACT_RIPPLE ? " impact-ripple-test" : ""}`;
     el.style.setProperty("--secondary-rotation", `${rand(data.id + "s", -10, 10)}deg`);
     el.title = data.name ? data.name : "Impact Ripple";
 
@@ -120,6 +127,22 @@
     const impactDrop = document.createElement("span");
     impactDrop.className = "impact-drop";
     el.appendChild(impactDrop);
+
+    /* Test-only splash crown: small droplets kick upward at the instant of impact. */
+    if (TEST_IMPACT_RIPPLE) {
+      const splash = document.createElement("span");
+      splash.className = "impact-splash";
+      for (let i = 0; i < 9; i++) {
+        const droplet = document.createElement("span");
+        droplet.className = "impact-splash-drop";
+        droplet.style.setProperty("--splash-angle", `${-82 + i * 20 + rand(data.id + "sa" + i, -5, 5)}deg`);
+        droplet.style.setProperty("--splash-distance", `${rand(data.id + "sd" + i, 18, 38)}px`);
+        droplet.style.setProperty("--splash-size", `${rand(data.id + "ss" + i, 2.2, 4.4)}px`);
+        droplet.style.setProperty("--splash-delay", `${rand(data.id + "sl" + i, 0, 55)}ms`);
+        splash.appendChild(droplet);
+      }
+      el.appendChild(splash);
+    }
 
     /* Build organic water rings instead of geometric CSS ovals. */
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -227,7 +250,7 @@
     */
     const waveGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
     const waveRings = [];
-    const ringScales = [.54, .72, .90];
+    const ringScales = TEST_IMPACT_RIPPLE ? [.48, .64, .80, .96] : [.54, .72, .90];
     const sharedRingPhase = rand(data.id + "sharedRingPhase", 0, 6.28);
 
     ringScales.forEach((scale, index) => {
@@ -268,11 +291,17 @@
        Each ripple starts at a different point in the cycle and uses a
        slightly different duration, while preserving the existing motion.
     */
-    const rippleDelay = -rand(data.id + "delay", 0, 11000);
-    const rippleDuration = rand(data.id + "duration", 9800, 13200);
+    const rippleDelay = TEST_IMPACT_RIPPLE ? 0 : -rand(data.id + "delay", 0, 11000);
+    const rippleDuration = TEST_IMPACT_RIPPLE ? 2400 : rand(data.id + "duration", 9800, 13200);
 
     impactDrop.animate(
-      [
+      TEST_IMPACT_RIPPLE ? [
+        { transform: "translate(-50%,-50%) scale(.05)", opacity: 0 },
+        { transform: "translate(-50%,-50%) scale(1)", opacity: 1, offset: .08 },
+        { transform: "translate(-50%,-50%) scale(1.7)", opacity: .65, offset: .18 },
+        { transform: "translate(-50%,-50%) scale(2.2)", opacity: 0, offset: .34 },
+        { transform: "translate(-50%,-50%) scale(2.2)", opacity: 0 }
+      ] : [
         { transform: "translate(-50%,-50%) scale(.15)", opacity: 0 },
         { transform: "translate(-50%,-50%) scale(.28)", opacity: .78, offset: .055 },
         { transform: "translate(-50%,-50%) scale(.52)", opacity: .34, offset: .085 },
@@ -298,15 +327,22 @@
          Keep every visual layer on the exact same organic contour. Only
          scale changes, so the rings stay concentric and cannot cross.
       */
-      const ringDelay = rippleDelay + index * (rippleDuration * .16);
-      const ringDuration = rippleDuration * .56;
+      const ringDelay = rippleDelay + index * (rippleDuration * (TEST_IMPACT_RIPPLE ? .105 : .16));
+      const ringDuration = rippleDuration * (TEST_IMPACT_RIPPLE ? .78 : .56);
 
       [ring, ringGlow, ringShimmer].forEach(part => {
         part.style.transformOrigin = "50% 50%";
         part.style.transformBox = "view-box";
       });
 
-      const expansion = [
+      const expansion = TEST_IMPACT_RIPPLE ? [
+        { transform: "scale(.24)", opacity: 0 },
+        { transform: "scale(.38)", opacity: .96, offset: .08 },
+        { transform: "scale(.58)", opacity: .86, offset: .24 },
+        { transform: "scale(.78)", opacity: .62, offset: .48 },
+        { transform: "scale(1.00)", opacity: .28, offset: .72 },
+        { transform: "scale(1.16)", opacity: 0, offset: 1 }
+      ] : [
         { transform: "scale(.46)", opacity: 0 },
         { transform: "scale(.54)", opacity: .82, offset: .10 },
         { transform: "scale(.70)", opacity: .72, offset: .28 },
@@ -756,6 +792,28 @@
       transform-origin:center;
     }
 
+    /* Test-only splash crown — used only with ?testRipple=1. */
+    .impact-ripple-test .impact-splash{
+      position:absolute;left:50%;top:50%;width:1px;height:1px;
+      transform:translate(-50%,-50%);pointer-events:none;z-index:4;
+    }
+    .impact-ripple-test .impact-splash-drop{
+      position:absolute;left:0;top:0;width:var(--splash-size);height:var(--splash-size);
+      border-radius:50%;background:rgba(214,250,255,.92);
+      box-shadow:0 0 5px rgba(91,224,247,.72),0 0 10px rgba(91,224,247,.28);
+      transform:rotate(var(--splash-angle)) translateY(0) scale(.2);
+      opacity:0;
+      animation:impactSplashDrop 2.4s cubic-bezier(.16,.66,.28,1) infinite;
+      animation-delay:var(--splash-delay);
+    }
+    @keyframes impactSplashDrop{
+      0%,7%{opacity:0;transform:rotate(var(--splash-angle)) translateY(0) scale(.2)}
+      12%{opacity:.95;transform:rotate(var(--splash-angle)) translateY(0) scale(1)}
+      30%{opacity:.78;transform:rotate(var(--splash-angle)) translateY(calc(var(--splash-distance) * -.48)) scale(.82)}
+      54%{opacity:.32;transform:rotate(var(--splash-angle)) translateY(calc(var(--splash-distance) * -.88)) scale(.58)}
+      72%,100%{opacity:0;transform:rotate(var(--splash-angle)) translateY(calc(var(--splash-distance) * -1.12)) scale(.35)}
+    }
+
     /* Permanent boundary is intentionally almost invisible. */
     .impact-wave-outer{
       stroke:rgba(93,225,247,.028);
@@ -851,11 +909,32 @@
       100%{transform:translate(-50%,-50%) rotate(var(--click-rotation,0deg)) scale(1.25);opacity:0}
     }
 
+    /* Test-only richer water treatment. Normal Impact Ripples are untouched. */
+    .impact-ripple-test .impact-wave-outer{
+      stroke:rgba(104,224,247,.26);stroke-width:2.2;
+      stroke-dasharray:4 12 9 18 3 24;
+      filter:blur(1.6px) drop-shadow(0 0 5px rgba(65,214,241,.22));
+    }
+    .impact-ripple-test .impact-wave-glow{
+      stroke:rgba(83,220,245,.42);stroke-width:5.4;
+      stroke-dasharray:7 8 3 17 10 21 5 28;
+      filter:blur(2.7px) drop-shadow(0 0 7px rgba(65,214,241,.30));
+    }
+    .impact-ripple-test .impact-wave-inner{
+      stroke:rgba(137,239,251,.94);stroke-width:1.35;
+      stroke-dasharray:3 7 11 4 4 17 8 12 2 24 7 5;
+      filter:drop-shadow(0 0 2.4px rgba(74,214,239,.20));
+    }
+    .impact-ripple-test .impact-wave-shimmer{
+      stroke:rgba(225,252,255,.98);stroke-width:1.65;
+      stroke-dasharray:1 22 5 39 2 19 7 54;
+      filter:drop-shadow(0 0 3px rgba(190,248,255,.44));
+    }
+
     /* =========================================================
        SUPER-IMPACT — INVISIBLE ROCK / BLUE WATER + GOLD RIM
     ========================================================= */
     .super-impact-hitbox{z-index:12;}
-    @media(max-width:760px){.super-impact-ripple{width:300%;height:300%;}}
     .super-impact-ripple{width:870%;height:870%;transform:translate(-50%,-50%);}
     .super-impact-wave-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;}
     .super-impact-wave{fill:none;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;}
@@ -977,26 +1056,38 @@
   /* ---------------------------------------------------------
      LOAD APPROVED IMPACT RIPPLES
   --------------------------------------------------------- */
-  fetch(`${SUPABASE_URL}/rest/v1/ripple_submissions?select=id,created_at,message,name,region,country,status,size,type&status=eq.approved&order=created_at.asc`, {
-    headers: {
-      apikey: SUPABASE_KEY,
-      Authorization: `Bearer ${SUPABASE_KEY}`
-    }
-  })
-    .then(response => response.ok ? response.json() : Promise.reject(new Error(`Supabase ${response.status}`)))
-    .then(rows => rows.filter(row => row.type !== "super-impact").forEach(addRipple))
-    .catch(error => console.warn("Impact Ripples could not be loaded:", error));
+  if (TEST_IMPACT_RIPPLE) {
+    /* One isolated test ripple. No Supabase records are loaded in test mode. */
+    addRipple({
+      id: "TEST-IMPACT-001",
+      message: "Enhanced Impact Ripple animation test",
+      name: "Test Ripple",
+      size: "large",
+      type: "impact"
+    });
+    console.info("The Ripple Well: TEST IMPACT RIPPLE MODE active — one enhanced Impact Ripple only.");
+  } else {
+    fetch(`${SUPABASE_URL}/rest/v1/ripple_submissions?select=id,created_at,message,name,region,country,status,size,type&status=eq.approved&order=created_at.asc`, {
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`
+      }
+    })
+      .then(response => response.ok ? response.json() : Promise.reject(new Error(`Supabase ${response.status}`)))
+      .then(rows => rows.filter(row => row.type !== "super-impact").forEach(addRipple))
+      .catch(error => console.warn("Impact Ripples could not be loaded:", error));
 
-  /* ---------------------------------------------------------
-     LOAD APPROVED SUPER-IMPACT RIPPLES
-  --------------------------------------------------------- */
-  fetch(`${SUPABASE_URL}/rest/v1/ripple_submissions?select=id,created_at,message,name,region,country,status,size,type,sir_id,organization_name,organization_address,organization_logo&status=eq.approved&type=eq.super-impact&order=created_at.asc`, {
-    headers: {
-      apikey: SUPABASE_KEY,
-      Authorization: `Bearer ${SUPABASE_KEY}`
-    }
-  })
-    .then(response => response.ok ? response.json() : Promise.reject(new Error(`Supabase Super-Impact ${response.status}`)))
-    .then(rows => rows.forEach(addSuperImpactRipple))
-    .catch(error => console.warn("Super-Impact Ripples could not be loaded:", error));
+    /* ---------------------------------------------------------
+       LOAD APPROVED SUPER-IMPACT RIPPLES
+    --------------------------------------------------------- */
+    fetch(`${SUPABASE_URL}/rest/v1/ripple_submissions?select=id,created_at,message,name,region,country,status,size,type,sir_id,organization_name,organization_address,organization_logo&status=eq.approved&type=eq.super-impact&order=created_at.asc`, {
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`
+      }
+    })
+      .then(response => response.ok ? response.json() : Promise.reject(new Error(`Supabase Super-Impact ${response.status}`)))
+      .then(rows => rows.forEach(addSuperImpactRipple))
+      .catch(error => console.warn("Super-Impact Ripples could not be loaded:", error));
+  }
 })();
