@@ -26,7 +26,7 @@ button{font:inherit}
 
 #quest-page{min-height:100vh;position:relative;background:#000 url("images/the-ripple-quest-background.png") center top / cover no-repeat;}
 #quest-page::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to bottom,rgba(0,0,0,.05),rgba(0,0,0,.12));z-index:1}
-.quest-content{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:120px 6vw 90px}
+.quest-content{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:calc(120px + var(--content-shift, 0px)) 6vw 90px}
 .quest-title{
     margin-top: 70px;width:min(820px,90vw);height:auto;display:block;margin:20px auto 55px;filter:drop-shadow(0 0 14px rgba(50,211,243,.22))}
 .quest-description{
@@ -176,7 +176,7 @@ button{font:inherit}
         </div>
     </div>
 
-    <main id="quest-page" class="quest-page-shift">
+    <main id="quest-page">
         <div class="quest-content">
             <img class="quest-title" src="images/the-ripple-quest-title.png" alt="The Ripple Quest">
 
@@ -281,6 +281,16 @@ button{font:inherit}
    and the same amount of space before the first adventurer title. */
 function setAdventurerSpacing(){
     const cards = document.querySelectorAll('.adventurer-card-button');
+
+    /* Move all quest text and images down by half an adventurer-card height.
+       This affects only .quest-content, not the background image. */
+    const questContent = document.querySelector('.quest-content');
+    if (questContent && cards.length) {
+        questContent.style.setProperty(
+            '--content-shift',
+            (cards[0].getBoundingClientRect().height / 2) + 'px'
+        );
+    }
 
     cards.forEach((card, index) => {
         if (index < cards.length - 1) {
