@@ -28,6 +28,36 @@ button{font:inherit}
 #quest-page::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to bottom,rgba(0,0,0,.05),rgba(0,0,0,.12));z-index:1}
 .quest-content{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:120px 6vw 90px}
 .quest-title{width:min(820px,90vw);height:auto;display:block;margin:20px auto 55px;filter:drop-shadow(0 0 14px rgba(50,211,243,.22))}
+.quest-description{
+    width:min(900px,92vw);
+    margin:-25px auto 55px;
+    text-align:center;
+    color:rgba(238,250,255,.90);
+    font-size:clamp(16px,1.55vw,20px);
+    line-height:1.8;
+    text-shadow:0 0 16px rgba(50,211,243,.18);
+}
+.quest-description p{margin:0 0 24px}
+.quest-description .quest-intro{font-size:clamp(20px,2vw,27px);color:#eefaff}
+.quest-description .quest-heading{font-size:clamp(23px,2.4vw,32px);color:#79eaff;letter-spacing:.08em}
+.quest-description .guild-name{font-weight:700;color:#eefaff}
+.quest-description .quest-dice{color:#79eaff;font-weight:700}
+.quest-description .quest-final{font-size:clamp(20px,2vw,27px);color:#eefaff;font-weight:700}
+.quest-description strong{color:#eefaff}
+.quest-description .action-sheet-inline{
+    display:block;
+    width:min(550px,70vw);
+    margin:34px auto 38px;
+    padding:0;
+    background:transparent;
+    border:0;
+}
+.quest-description .action-sheet-inline img{
+    display:block;
+    width:100%;
+    height:auto;
+    filter:drop-shadow(0 0 18px rgba(50,211,243,.22));
+}
 /* ACTION SHEET */
 .action-sheet-wrap{width:min(550px,46vw);display:flex;justify-content:center;align-items:center;margin:0 auto 55px}
 .action-sheet-button{width:100%;max-width:1100px}
@@ -127,13 +157,64 @@ button{font:inherit}
         <div class="quest-content">
             <img class="quest-title" src="images/the-ripple-quest-title.png" alt="The Ripple Quest">
 
-            <div class="action-sheet-wrap">
-                <button class="character-image-button action-sheet-button" type="button"
-                        data-full-image="images/Action Sheet 4.0.png"
-                        data-image-alt="Action Sheet"
-                        aria-label="View full Action Sheet">
-                    <img class="action-sheet-image" src="images/Action Sheet 4.0.png" alt="Action Sheet">
-                </button>
+            <div class="quest-description">
+                <p class="quest-intro"><strong>Every great adventure begins with a single roll.</strong></p>
+
+                <p>Across the land, a new guild has formed — <span class="guild-name">The Ripple Guild</span>.
+                Four unlikely adventurers have answered the call:</p>
+
+                <p><strong>Pebs — The Paladin</strong><br>
+                A champion of compassion, standing ready to defend those who need a helping hand.</p>
+
+                <p><strong>Evan — The Bard</strong><br>
+                The storyteller of the guild, carrying the tales of every Ripple and inspiring others to join the quest.</p>
+
+                <p><strong>Auggie — The Rogue</strong><br>
+                Quick, clever, and always ready to sneak a little kindness where it's needed most.</p>
+
+                <p><strong>Rucca — The Druid</strong><br>
+                Connected to the world around her, reminding the guild that every living thing deserves care and kindness.</p>
+
+                <p>Together, the Ripple Guild embarks on <strong>The Ripple Quest.</strong></p>
+
+                <p>Armed with the <span class="quest-dice">seven sacred dice of the adventurer — the d4, d6, d8, d10, d%, d12, and d20</span> —
+                the Guild rolls their way through each quest. Every roll determines another part of the adventure,
+                eventually revealing <strong>what kind of Ripple the Guild will put out into the world that week.</strong></p>
+
+                <p><strong>But this quest isn't meant to end with the Guild.</strong></p>
+
+                <div class="action-sheet-inline">
+                    <button class="character-image-button action-sheet-button" type="button"
+                            data-full-image="images/Action Sheet 4.0.png"
+                            data-image-alt="Action Sheet"
+                            aria-label="View full Action Sheet">
+                        <img class="action-sheet-image" src="images/Action Sheet 4.0.png" alt="Action Sheet">
+                    </button>
+                </div>
+
+                <p class="quest-heading"><strong>That's where you come in.</strong></p>
+
+                <p>Once the Guild discovers its Ripple, <strong>we challenge you to take that same Ripple into your own world.</strong>
+                Maybe it's helping a stranger, buying someone a coffee, checking in on a friend, picking up litter,
+                donating what you can, or simply making someone's day a little brighter.</p>
+
+                <p>Your Ripple doesn't have to be big.</p>
+
+                <p><strong>It just has to start.</strong></p>
+
+                <p>And when you've completed your own quest, <strong>tell us about it.</strong>
+                Leave a comment. Share your story. Repost the quest. Tag Make the Ripple. Tell a friend.</p>
+
+                <p>Because when one person creates a Ripple, it reaches someone else.</p>
+
+                <p>And when enough Ripples come together...</p>
+
+                <p class="quest-final">we can change the whole pond.</p>
+
+                <p><strong>The Ripple Quest</strong><br>
+                7 Dice. 1 Quest. Infinite Possibilities.</p>
+
+                <p><strong>Roll the dice. Follow the path. Make the Ripple.</strong></p>
             </div>
 
             <div class="quest-guild" aria-label="The Ripple Quest Guild">
