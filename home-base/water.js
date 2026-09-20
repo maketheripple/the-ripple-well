@@ -331,8 +331,13 @@
        Each ripple starts at a different point in the cycle and uses a
        slightly different duration, while preserving the existing motion.
     */
-    const rippleDelay = TEST_IMPACT_RIPPLE ? 430 : -rand(data.id + "delay", 0, 11000);
+    const rippleDelay = TEST_IMPACT_RIPPLE ? 1080 : -rand(data.id + "delay", 0, 11000);
     const rippleDuration = TEST_IMPACT_RIPPLE ? 2550 : rand(data.id + "duration", 9800, 13200);
+
+    // Test timing: the invisible droplet gets a short, dedicated fall/impact
+    // cycle. The first wave begins just after the droplet reaches the water,
+    // so the cause-and-effect reads clearly instead of looking reversed.
+    const impactDropDuration = TEST_IMPACT_RIPPLE ? 1050 : rippleDuration;
 
     impactDrop.animate(
       TEST_IMPACT_RIPPLE ? [
@@ -352,10 +357,10 @@
         { transform: "translate(-50%,-50%) scale(1)", opacity: 0 }
       ],
       {
-        duration: rippleDuration,
+        duration: impactDropDuration,
         easing: "ease-out",
         iterations: Infinity,
-        delay: rippleDelay,
+        delay: TEST_IMPACT_RIPPLE ? 0 : rippleDelay,
         fill: "both"
       }
     );
