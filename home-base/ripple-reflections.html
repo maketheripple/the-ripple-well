@@ -4,792 +4,315 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="images/make-the-ripple-favicon.png">
-
-    <title>Ripple Reflections — Make the Ripple</title>
-
-    <meta
-        name="description"
-        content="Ripple Reflections — Make the Ripple's stories, conversations, and community segments."
-    >
-
+    <title>The Ripple Quest — Make the Ripple</title>
+    <meta name="description" content="The Ripple Quest — Make the Ripple.">
     <style>
 *{box-sizing:border-box}
-html{margin:0;padding:0;scroll-behavior:smooth;background:#01050b}
-body{
-    margin:0;
-    color:#eefaff;
-    font-family:Georgia,"Times New Roman",serif;
-    overflow-x:hidden;
-    background:#01050b;
-}
+html{margin:0;padding:0;background:#01050b;scroll-behavior:smooth}
+body{margin:0;background:#01050b;color:#eefaff;font-family:Georgia,"Times New Roman",serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
 
-/* =========================
-   STANDARD MAKE THE RIPPLE HEADER
-   ========================= */
-#homebase-header{
-    position:absolute;
-    z-index:1000;
-    top:0;
-    left:0;
-    width:100%;
-    height:92px;
-    display:flex;
-    align-items:center;
-    padding:10px 7vw;
-    gap:35px;
-    background:linear-gradient(to bottom,rgba(1,8,15,.82),rgba(1,8,15,.10),transparent);
-    pointer-events:none;
-}
+/* SAME HOME BASE HEADER / MENU BAR */
+#homebase-header{position:absolute;z-index:1000;top:0;left:0;width:100%;height:92px;display:flex;align-items:center;padding:10px 7vw;gap:35px;background:linear-gradient(to bottom,rgba(1,8,15,.82),rgba(1,8,15,.10),transparent);pointer-events:none}
 #homebase-header>*{pointer-events:auto}
-.brand-link{
-    position:relative;
-    display:flex;
-    align-items:center;
-    flex:0 0 auto;
-    width:225px;
-    z-index:1;
+.brand-link{position:relative;display:flex;align-items:center;flex:0 0 auto;width:225px;z-index:1}
+.brand-link::before{content:"";position:absolute;left:50%;top:calc(50% + 42px);width:245px;height:175px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(ellipse,rgba(74,220,248,.42) 0%,rgba(74,220,248,.24) 28%,rgba(74,220,248,.10) 52%,transparent 76%);filter:blur(12px);pointer-events:none;z-index:-1}
+.brand-link img{position:relative;width:225px;height:auto;display:block;transform:translateY(85px);filter:drop-shadow(0 0 10px rgba(55,219,246,.8)) drop-shadow(0 0 24px rgba(55,219,246,.55)) drop-shadow(0 0 42px rgba(55,219,246,.32))}
+.desktop-nav{display:flex;align-items:center;justify-content:center;gap:clamp(10px,2.3vw,38px);flex:1;font-size:14px;letter-spacing:.11em;text-transform:uppercase;white-space:nowrap}
+.desktop-nav a{opacity:.9;transition:.25s ease}.desktop-nav a:hover{opacity:1;color:#59e8ff;text-shadow:0 0 12px rgba(70,224,250,.6)}
+.header-actions{display:flex;align-items:center;gap:22px}
+.menu-button{width:42px;height:42px;border:0;background:transparent;display:grid;align-content:center;gap:6px;cursor:pointer}.menu-button span{display:block;width:30px;height:2px;background:#eefaff;margin:auto;box-shadow:0 0 7px rgba(255,255,255,.25)}
+
+#quest-page{min-height:100vh;position:relative;background:#000 url("images/the-ripple-quest-background.png") center top / cover no-repeat;}
+#quest-page::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to bottom,rgba(0,0,0,.05),rgba(0,0,0,.12));z-index:1}
+.quest-content{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:120px 6vw 90px}
+.quest-title{width:min(820px,90vw);height:auto;display:block;margin:20px auto 55px;filter:drop-shadow(0 0 14px rgba(50,211,243,.22))}
+.quest-description{
+    width:min(900px,92vw);
+    margin:-25px auto 55px;
+    text-align:center;
+    color:rgba(238,250,255,.90);
+    font-size:clamp(16px,1.55vw,20px);
+    line-height:1.8;
+    text-shadow:0 0 16px rgba(50,211,243,.18);
 }
-.brand-link::before{
-    content:"";
-    position:absolute;
-    left:50%;
-    top:calc(50% + 42px);
-    width:245px;
-    height:175px;
-    transform:translate(-50%,-50%);
-    border-radius:50%;
-    background:radial-gradient(
-        ellipse,
-        rgba(74,220,248,.42) 0%,
-        rgba(74,220,248,.24) 28%,
-        rgba(74,220,248,.10) 52%,
-        transparent 76%
-    );
-    filter:blur(12px);
-    pointer-events:none;
-    z-index:-1;
-}
-.brand-link img{
-    position:relative;
-    width:225px;
-    height:auto;
+.quest-description p{margin:0 0 24px}
+.quest-description .quest-intro{font-size:clamp(20px,2vw,27px);color:#eefaff}
+.quest-description .quest-heading{font-size:clamp(23px,2.4vw,32px);color:#79eaff;letter-spacing:.08em}
+.quest-description .guild-name{font-weight:700;color:#eefaff}
+.quest-description .quest-dice{color:#79eaff;font-weight:700}
+.quest-description .quest-final{font-size:clamp(20px,2vw,27px);color:#eefaff;font-weight:700}
+.quest-description strong{color:#eefaff}
+.quest-description .action-sheet-inline{
     display:block;
-    transform:translateY(85px);
-    filter:
-        drop-shadow(0 0 10px rgba(55,219,246,.8))
-        drop-shadow(0 0 24px rgba(55,219,246,.55))
-        drop-shadow(0 0 42px rgba(55,219,246,.32));
-}
-.desktop-nav{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:clamp(10px,2.3vw,38px);
-    flex:1;
-    font-size:14px;
-    letter-spacing:.11em;
-    text-transform:uppercase;
-    white-space:nowrap;
-}
-.desktop-nav a{
-    color:inherit;
-    text-decoration:none;
-    opacity:.9;
-    transition:.25s ease;
-}
-.desktop-nav a:hover{
-    opacity:1;
-    color:#59e8ff;
-    text-shadow:0 0 12px rgba(70,224,250,.6);
-}
-.header-actions{
-    display:flex;
-    align-items:center;
-    gap:22px;
-}
-#make-ripple-button{
-    padding:12px 25px;
-    border:1px solid rgba(82,229,255,.9);
-    border-radius:30px;
-    background:rgba(2,15,25,.38);
-    color:#eefaff;
-    text-transform:uppercase;
-    letter-spacing:.12em;
-    font-size:13px;
-    cursor:pointer;
-    box-shadow:0 0 10px rgba(50,211,243,.08);
-    backdrop-filter:blur(5px);
-}
-#make-ripple-button:hover{
-    background:rgba(16,55,68,.55);
-    box-shadow:0 0 25px rgba(50,211,243,.28);
-}
-.menu-button{
-    width:42px;
-    height:42px;
-    border:0;
+    width:min(550px,70vw);
+    margin:34px auto 38px;
+    padding:0;
     background:transparent;
-    display:grid;
-    align-content:center;
-    gap:6px;
-    cursor:pointer;
+    border:0;
 }
-.menu-button span{
+.quest-description .action-sheet-inline img{
     display:block;
-    width:30px;
-    height:2px;
-    background:#eefaff;
-    margin:auto;
-    box-shadow:0 0 7px rgba(255,255,255,.25);
-}
-
-/* =========================
-   PAGE BACKGROUND
-   ========================= */
-#reflection-page{
-    position:relative;
-    min-height:1000vh;
-    background-image:
-        linear-gradient(to bottom,rgba(0,8,16,.10),rgba(0,8,16,.18)),
-        url("images/ripple-reflections-background.png");
-    background-repeat:no-repeat;
-    background-position:center top;
-    background-size:100% 100%;
-    background-color:#01050b;
-}
-
-/* Subtle readability layer behind future segment content */
-.reflection-content{
-    position:relative;
-    z-index:5;
-    width:min(1100px,88vw);
-    margin:0 auto;
-    padding-top:34vh;
-    padding-bottom:18vh;
-}
-
-.reflection-intro{
-    min-height:78vh;
-    display:flex;
-    align-items:flex-start;
-    justify-content:center;
-    text-align:center;
-    padding-top:170px;
-}
-.reflection-intro-inner{
-    width:min(1050px,94vw);
-    padding:20px 20px 50px;
-}
-.reflection-logo{
-    display:block;
-    transform:translateY(calc(-52vh / 2));
-    width:min(760px,86vw);
-    max-height:52vh;
-    height:auto;
-    object-fit:contain;
-    margin:0 auto;
-    filter:drop-shadow(0 14px 32px rgba(0,0,0,.30));
-}
-
-.segment{
-    min-height:82vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:8vh 0;
-}
-.segment-card{
-    width:min(1000px,100%);
-    min-height:60vh;
-    padding:35px 25px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-}
-.segment-logo{
-    display:block;
-    width:min(380px,44vw);
-    max-height:29vh;
-    height:auto;
-    object-fit:contain;
-    filter:drop-shadow(0 12px 28px rgba(0,0,0,.24));
-    transition:transform .3s ease,filter .3s ease;
-}
-.segment-description{
-    width:min(760px,88vw);
-    margin:24px auto 0;
-    text-align:center;
-}
-.segment-description h2{
-    margin:0 0 14px;
-    font-size:clamp(24px,3.5vw,40px);
-    font-weight:400;
-    letter-spacing:.10em;
-    text-transform:uppercase;
-    text-shadow:0 0 16px rgba(92,210,255,.28);
-}
-.segment-description p{
-    margin:0 auto;
-    max-width:700px;
-    font-size:clamp(16px,1.8vw,20px);
-    line-height:1.75;
-    color:#fff0d0;
-    text-shadow:0 2px 4px rgba(0,10,18,.95),0 0 10px rgba(0,10,18,.78);
-}
-.segment-logo:hover{
-    transform:scale(1.015);
-    filter:drop-shadow(0 15px 34px rgba(0,0,0,.30));
-}
-
-/* =========================
-   STANDARD BOTTOM BAR
-   ========================= */
-#homebase-footer{
-    position:relative;
-    z-index:1100;
     width:100%;
-    height:72px;
-    display:flex;
-    align-items:center;
-    justify-content:flex-end;
-    padding:0 5vw;
-    background:rgba(1,6,12,.92);
-    border-top:1px solid rgba(61,208,239,.38);
-    backdrop-filter:blur(7px);
+    height:auto;
+    filter:drop-shadow(0 0 18px rgba(50,211,243,.22));
 }
-.contact-link{
-    color:#eefaff;
-    text-decoration:none;
-    font-size:16px;
-    letter-spacing:.08em;
-    border-left:1px solid rgba(65,212,240,.45);
-    padding-left:28px;
-}
-.contact-link:hover{
-    color:#63e6ff;
-}
+/* ACTION SHEET */
+.action-sheet-wrap{width:min(550px,46vw);display:flex;justify-content:center;align-items:center;margin:0 auto 55px}
+.action-sheet-button{width:100%;max-width:1100px}
+.action-sheet-image{display:block;width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 0 18px rgba(50,211,243,.22));transition:transform .3s ease,filter .3s ease}
+.action-sheet-button:hover .action-sheet-image{transform:scale(1.015);filter:drop-shadow(0 0 28px rgba(50,211,243,.38))}
 
-/* =========================
-   FULL-SCREEN MENU
-   ========================= */
-#menu-overlay{
-    position:fixed;
-    inset:0;
-    z-index:2500;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:rgba(0,5,12,.94);
-    backdrop-filter:blur(12px);
-    opacity:0;
-    visibility:hidden;
-    pointer-events:none;
-    transition:opacity .35s ease,visibility .35s ease;
-}
-#menu-overlay.open{
-    opacity:1;
-    visibility:visible;
-    pointer-events:auto;
-}
-.menu-panel{
-    width:min(760px,88vw);
-    text-align:center;
-    padding:70px 30px 55px;
-    position:relative;
-}
-.menu-close{
-    position:absolute;
-    right:0;
-    top:0;
-    width:46px;
-    height:46px;
-    border:1px solid rgba(110,225,246,.45);
-    border-radius:50%;
-    background:rgba(2,15,25,.4);
-    color:#eefaff;
-    font:32px/1 Arial,sans-serif;
-    cursor:pointer;
-}
-.menu-close:hover{
-    border-color:#63e6ff;
-    box-shadow:0 0 10px rgba(70,224,250,.35);
-}
-.menu-kicker{
-    font-size:12px;
-    letter-spacing:.38em;
-    text-transform:uppercase;
-    opacity:.6;
-    margin-bottom:10px;
-}
-.menu-title{
-    margin:0 0 45px;
-    font-size:clamp(34px,5vw,58px);
-    font-weight:400;
-    letter-spacing:.16em;
-    text-shadow:0 0 20px rgba(92,210,255,.35);
-}
-.menu-links{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:22px;
-}
-.menu-links a{
-    color:inherit;
-    text-decoration:none;
-    font-size:clamp(20px,3vw,30px);
-    letter-spacing:.2em;
-    text-transform:uppercase;
-    transition:.25s ease;
-}
-.menu-links a:hover{
-    color:#63e6ff;
-    text-shadow:0 0 10px rgba(70,224,250,.65);
-    transform:translateY(-2px);
-}
+.quest-guild{width:min(1250px,96vw);display:grid;grid-template-columns:repeat(4,1fr);gap:24px;align-items:end}
+.quest-character{display:flex;align-items:flex-end;justify-content:center;min-width:0}
+.character-image-button{display:block;width:100%;padding:0;margin:0;border:0;background:transparent;cursor:pointer;font:inherit}
+.character-image-button:focus-visible{outline:2px solid #63e6ff;outline-offset:4px;border-radius:6px}
+.quest-character img{display:block;width:100%;height:auto;max-height:620px;object-fit:contain;filter:drop-shadow(0 0 14px rgba(50,211,243,.16));transition:transform .3s ease,filter .3s ease}
+.quest-character:hover img{transform:translateY(-8px) scale(1.02);filter:drop-shadow(0 0 20px rgba(50,211,243,.34))}
 
-/* =========================
-   RESPONSIVE
-   ========================= */
+#homebase-footer{position:relative;z-index:1100;width:100%;height:72px;display:flex;align-items:center;justify-content:flex-end;padding:0 5vw;background:rgba(1,6,12,.9);border-top:1px solid rgba(61,208,239,.38);backdrop-filter:blur(7px)}
+.contact-link{font-size:16px;letter-spacing:.08em;border-left:1px solid rgba(65,212,240,.45);padding-left:28px}
+
+/* SAME MENU OVERLAY */
+#menu-overlay{position:fixed;inset:0;z-index:2500;display:flex;align-items:center;justify-content:center;background:rgba(0,5,12,.94);backdrop-filter:blur(12px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .35s ease,visibility .35s ease}
+#menu-overlay.open{opacity:1;visibility:visible;pointer-events:auto}
+.menu-panel{width:min(760px,88vw);text-align:center;padding:70px 30px 55px;position:relative}
+.menu-close{position:absolute;right:0;top:0;width:46px;height:46px;border:1px solid rgba(110,225,246,.45);border-radius:50%;background:rgba(2,15,25,.4);color:#eefaff;font:32px/1 Arial,sans-serif;cursor:pointer}
+.menu-close:hover{border-color:#63e6ff;box-shadow:0 0 10px rgba(70,224,250,.35)}
+.menu-kicker{font-size:12px;letter-spacing:.38em;text-transform:uppercase;opacity:.6;margin-bottom:10px}
+.menu-title{font-size:clamp(34px,5vw,58px);font-weight:400;letter-spacing:.16em;margin:0 0 45px;text-shadow:0 0 20px rgba(92,210,255,.35)}
+.menu-links{display:flex;flex-direction:column;align-items:center;gap:22px}
+.menu-links a{font-size:clamp(20px,3vw,30px);letter-spacing:.2em;text-transform:uppercase;transition:.25s ease}
+.menu-links a:hover{color:#63e6ff;text-shadow:0 0 10px rgba(70,224,250,.65);transform:translateY(-2px)}
+
+/* FULL CHARACTER IMAGE POPUP */
+.character-lightbox{position:fixed;inset:0;z-index:3000;display:flex;align-items:center;justify-content:center;padding:5vh 5vw;background:rgba(0,3,8,.94);backdrop-filter:blur(10px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s ease,visibility .3s ease}
+.character-lightbox.open{opacity:1;visibility:visible;pointer-events:auto}
+.character-lightbox img{display:block;max-width:92vw;max-height:90vh;width:auto;height:auto;object-fit:contain;filter:drop-shadow(0 0 28px rgba(50,211,243,.28))}
+.character-lightbox-close{position:absolute;top:24px;right:28px;width:48px;height:48px;border:1px solid rgba(110,225,246,.55);border-radius:50%;background:rgba(2,15,25,.55);color:#eefaff;font:34px/1 Arial,sans-serif;cursor:pointer}
+.character-lightbox-close:hover{border-color:#63e6ff;box-shadow:0 0 18px rgba(70,224,250,.4)}
+.character-lightbox-close:focus-visible{outline:2px solid #63e6ff;outline-offset:3px}
+
 @media(max-width:1050px){
-    #homebase-header{
-        padding:16px 4vw;
-        gap:15px;
-    }
-    .brand-link,
-    .brand-link img{
-        width:190px;
-    }
-    .brand-link::before{
-        width:215px;
-        height:155px;
-    }
-    .brand-link img{
-        transform:translateY(55px);
-    }
-    .desktop-nav{
-        gap:14px;
-        font-size:11px;
-    }
-    .header-actions{
-        gap:10px;
-    }
-    #make-ripple-button{
-        padding:10px 14px;
-        font-size:11px;
-    }
-}
-
+  #homebase-header{padding:16px 4vw;gap:15px}
+  .brand-link,.brand-link img{width:190px}
+  .brand-link::before{width:215px;height:155px}
+  .brand-link img{transform:translateY(55px)}
+  .desktop-nav{gap:14px;font-size:11px}
+  .header-actions{gap:10px}
+  }
 @media(max-width:760px){
-    #homebase-header{
-        height:75px;
-        padding:10px 5vw;
-    }
-    .brand-link,
-    .brand-link img{
-        width:77.5px;
-    }
-    .brand-link::before{
-        width:88px;
-        height:63px;
-        top:calc(50% + 14px);
-    }
-    .brand-link img{
-        transform:translateY(22.5px);
-    }
-    .desktop-nav{
-        display:none;
-    }
-    .header-actions{
-        margin-left:auto;
-    }
-    .menu-button{
-        width:34px;
-    }
-
-    #reflection-page{
-        min-height:1000vh;
-        background-size:auto 100%;
-        background-position:center top;
-    }
-
-    .reflection-content{
-        width:min(94vw,700px);
-        padding-top:0;
-        padding-bottom:8vh;
-    }
-    .reflection-intro{
-        min-height:70vh;
-        padding-top:125px;
-    }
-    .reflection-intro-inner{
-        padding:10px 5px 35px;
-    }
-    .reflection-logo{
-        width:min(88vw,650px);
-        transform:translateY(0);
-        max-height:84vh;
-    }
-    .segment{
-        min-height:76vh;
-        padding:5vh 0;
-    }
-    .segment-card{
-        min-height:54vh;
-        padding:25px 5px;
-    }
-    .segment-logo{
-        width:min(44vw,325px);
-        max-height:12vh;
-    }
-    .segment-description{
-        width:min(88vw,600px);
-        margin-top:18px;
-    }
-    .segment-description h2{
-        font-size:clamp(21px,6vw,30px);
-        margin-bottom:10px;
-    }
-    .segment-description p{
-        font-size:16px;
-        line-height:1.65;
-    }
-
-    #homebase-footer{
-        height:64px;
-        padding:0 5vw;
-    }
-    .contact-link{
-        font-size:12px;
-        padding-left:12px;
-    }
+  #homebase-header{height:75px;padding:10px 5vw}
+  .brand-link,.brand-link img{width:77.5px}
+  .brand-link::before{width:88px;height:63px;top:calc(50% + 14px)}
+  .brand-link img{transform:translateY(22.5px)}
+  .desktop-nav{display:none}
+  .header-actions{margin-left:auto}
+    .menu-button{width:34px}
+  .quest-content{padding:105px 5vw 55px}
+  .quest-title{width:min(94vw,700px);margin-bottom:35px}
+  .action-sheet-wrap{width:min(47vw,350px);margin-bottom:35px}
+  .quest-guild{width:min(94vw,700px);grid-template-columns:repeat(2,1fr);gap:8px 12px}
+  .quest-character img{max-height:430px}
+  .contact-link{font-size:12px;padding-left:12px}
 }
     </style>
-
-<style>
-.segment-card{
-    display:flex !important;
-    flex-direction:column !important;
-    align-items:center !important;
-    justify-content:flex-start !important;
-    width:100% !important;
-}
-.segment-logo{
-    display:block !important;
-    margin:0 auto !important;
-    flex:0 0 auto !important;
-}
-.segment-description{
-    display:block !important;
-    width:min(760px,88vw) !important;
-    margin:24px auto 0 !important;
-    text-align:center !important;
-    flex:0 0 auto !important;
-}
-.segment-description h2,
-.segment-description p{
-    text-align:center !important;
-}
-@media (max-width:700px){
-    .segment-description{
-        width:min(88vw,600px) !important;
-        margin:18px auto 0 !important;
-    }
-}
-</style>
-
-
-<style>
-.reflection-series-description{
-    width:min(820px,92vw);
-    margin:8px auto 0;
-    text-align:center;
-    transform:translateY(calc(-52vh / 2));
-}
-.reflection-series-description h1{
-    margin:0 0 18px;
-    font-size:clamp(28px,4vw,46px);
-    font-weight:400;
-    letter-spacing:.12em;
-    text-transform:uppercase;
-    text-shadow:0 0 18px rgba(92,210,255,.30);
-}
-.reflection-series-description p{
-    max-width:760px;
-    margin:0 auto 18px;
-    font-size:clamp(16px,1.7vw,20px);
-    line-height:1.75;
-    color:#fff0d0;
-    text-shadow:0 2px 4px rgba(0,10,18,.95),0 0 10px rgba(0,10,18,.78);
-}
-@media(max-width:700px){
-    .reflection-series-description{
-        width:min(90vw,620px);
-        margin-top:8px;
-        transform:translateY(0);
-    }
-    .reflection-series-description h1{
-        font-size:clamp(24px,7vw,34px);
-        margin-bottom:14px;
-    }
-    .reflection-series-description p{
-        font-size:16px;
-        line-height:1.65;
-        margin-bottom:14px;
-    }
-}
-</style>
-
 </head>
-
 <body>
+    <header id="homebase-header">
+        <a class="brand-link" href="index.html" aria-label="Make the Ripple Home">
+            <img src="images/Make the Ripple Large Logo.png" alt="Make the Ripple">
+        </a>
 
-<header id="homebase-header">
-    <a class="brand-link" href="index.html" aria-label="Make the Ripple Home">
-        <img src="images/Make the Ripple Large Logo.png" alt="Make the Ripple">
-    </a>
-
-    <nav class="desktop-nav" aria-label="Main navigation">
-        <a href="index.html#about">About</a>
-        <a href="index.html#projects">Projects</a>
-        <a href="index.html#socials">Socials</a>
-        <a href="index.html#involved">Get Involved</a>
-        <a href="index.html#support">Support</a>
-    </nav>
-
-    <div class="header-actions">
-        
-        <button id="menu-button" class="menu-button" type="button" aria-label="Open menu">
-            <span></span><span></span><span></span>
-        </button>
-    </div>
-</header>
-
-<div id="menu-overlay" aria-hidden="true">
-    <div class="menu-panel" role="dialog" aria-modal="true" aria-label="Main menu">
-        <button id="menu-close" class="menu-close" type="button" aria-label="Close menu">×</button>
-        <div class="menu-kicker">Make the Ripple</div>
-        <h2 class="menu-title">THE RIPPLE WELL</h2>
-        <nav class="menu-links" aria-label="Menu navigation">
+        <nav class="desktop-nav" aria-label="Main navigation">
             <a href="index.html#about">About</a>
             <a href="index.html#projects">Projects</a>
             <a href="index.html#socials">Socials</a>
             <a href="index.html#involved">Get Involved</a>
             <a href="index.html#support">Support</a>
         </nav>
+
+        <div class="header-actions">
+            <button id="menu-button" class="menu-button" type="button" aria-label="Open menu"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+
+    <div id="menu-overlay" aria-hidden="true">
+        <div class="menu-panel" role="dialog" aria-modal="true" aria-label="Main menu">
+            <button id="menu-close" class="menu-close" type="button" aria-label="Close menu">×</button>
+            <div class="menu-kicker">Make the Ripple</div>
+            <h2 class="menu-title">THE RIPPLE QUEST</h2>
+            <nav class="menu-links" aria-label="Menu navigation">
+                <a href="index.html#about">About</a>
+                <a href="index.html#projects">Projects</a>
+                <a href="index.html#socials">Socials</a>
+                <a href="index.html#involved">Get Involved</a>
+                <a href="index.html#support">Support</a>
+            </nav>
+        </div>
     </div>
-</div>
 
-<main id="reflection-page">
+    <main id="quest-page">
+        <div class="quest-content">
+            <img class="quest-title" src="images/the-ripple-quest-title.png" alt="The Ripple Quest">
 
-    <div class="reflection-content">
+            <div class="quest-description">
+                <p class="quest-intro"><strong>Every great adventure begins with a single roll.</strong></p>
 
-        <section class="reflection-intro" aria-label="Ripple Reflections">
-            <div class="reflection-intro-inner">
-                <img
-                    class="reflection-logo"
-                    src="images/ripple-reflections-logo.png"
-                    alt="Ripple Reflections"
-                >
-<div class="reflection-series-description">
-<p><strong>Ripple Reflections is a 10-part conversation series created to openly explore mental health with communities and groups who can face unique challenges, pressures, and barriers to mental-health support.</strong></p>
-    <p>Through honest questions and real conversations, we want to create a space where people feel heard, understood, and comfortable talking about their experiences. Each segment focuses on a different community, because every person's story matters — and every voice has the potential to make a ripple.</p>
-</div>            </div>
-        </section>
+                <p>Across the land, a new guild has formed — <span class="guild-name">The Ripple Guild</span>.
+                Four unlikely adventurers have answered the call:</p>
 
-        <!--
-            The ten segment areas are intentionally prepared as placeholders.
-            We can replace the titles and text with the finalized Ripple Reflections
-            segments without changing the background, header, or footer design.
-        -->
+                <p><strong>Pebs — The Paladin</strong><br>
+                A champion of compassion, standing ready to defend those who need a helping hand.</p>
 
-        <section class="segment">
-            <div class="segment-card">
-                <img
-                    class="segment-logo"
-                    src="images/Ripple Reflections/MTR_IR.png"
-                    alt="Indigenous Ripples"
-                    loading="lazy"
-                >
-                <div class="segment-description">
-<p>A space for conversations about mental health with members of <strong>Indigenous communities</strong>. This segment creates an opportunity to listen, learn, and better understand the experiences, challenges, strengths, and perspectives that shape mental health within Indigenous communities.</p>
+                <p><strong>Evan — The Bard</strong><br>
+                The storyteller of the guild, carrying the tales of every Ripple and inspiring others to join the quest.</p>
+
+                <p><strong>Auggie — The Rogue</strong><br>
+                Quick, clever, and always ready to sneak a little kindness where it's needed most.</p>
+
+                <p><strong>Rucca — The Druid</strong><br>
+                Connected to the world around her, reminding the guild that every living thing deserves care and kindness.</p>
+
+                <p>Together, the Ripple Guild embarks on <strong>The Ripple Quest.</strong></p>
+
+                <p>Armed with the <span class="quest-dice">seven sacred dice of the adventurer — the d4, d6, d8, d10, d%, d12, and d20</span> —
+                the Guild rolls their way through each quest. Every roll determines another part of the adventure,
+                eventually revealing <strong>what kind of Ripple the Guild will put out into the world that week.</strong></p>
+
+                <p><strong>But this quest isn't meant to end with the Guild.</strong></p>
+
+                <div class="action-sheet-inline">
+                    <button class="character-image-button action-sheet-button" type="button"
+                            data-full-image="images/Action Sheet 4.0.png"
+                            data-image-alt="Action Sheet"
+                            aria-label="View full Action Sheet">
+                        <img class="action-sheet-image" src="images/Action Sheet 4.0.png" alt="Action Sheet">
+                    </button>
                 </div>
-            </div>
-        </section>
 
-        <section class="segment">
-            <div class="segment-card">
-                <img
-                    class="segment-logo"
-                    src="images/Ripple Reflections/MTR_RBTHH.png"
-                    alt="Ripple Beyond the Hard Hat"
-                    loading="lazy"
-                >
-                <div class="segment-description">
-<p>Mental health conversations with people working in <strong>trades and construction</strong> — from those working directly on the tools to project managers, supervisors, coordinators, and the many people behind the scenes who keep the industry moving.<br><br>We want to talk openly about the pressures of the industry, workplace culture, stress, resilience, and what it means to look after the people behind the work.</p>
-                </div>
-            </div>
-        </section>
+                <p class="quest-heading"><strong>That's where you come in.</strong></p>
 
-        <section class="segment">
-            <div class="segment-card">
-                <img
-                    class="segment-logo"
-                    src="images/Ripple Reflections/MTR_RBTR.png"
-                    alt="Ripple Beyond the Roof"
-                    loading="lazy"
-                >
-                <div class="segment-description">
-<p>A space for conversations with people who are <strong>unhoused or experiencing housing insecurity</strong>.<br><br>This segment looks beyond the circumstances of someone’s housing situation and creates an opportunity to hear their experiences, challenges, hopes, and perspectives — while bringing greater understanding and compassion to the conversation around mental health and homelessness.</p>
-                </div>
-            </div>
-        </section>
+                <p>Once the Guild discovers its Ripple, <strong>we challenge you to take that same Ripple into your own world.</strong>
+                Maybe it's helping a stranger, buying someone a coffee, checking in on a friend, picking up litter,
+                donating what you can, or simply making someone's day a little brighter.</p>
 
-        <section class="segment">
-            <div class="segment-card">
-                <img
-                    class="segment-logo"
-                    src="images/Ripple Reflections/MTR_RIR.png"
-                    alt="Ripple in Recovery"
-                    loading="lazy"
-                >
-                <div class="segment-description">
-<p>Recovery can look different for everyone.<br><br>This segment opens up conversations about mental health with people who are <strong>in recovery from addiction</strong>, giving them an opportunity to share their experiences, challenges, successes, setbacks, and the realities of their journey.</p>
-                </div>
-            </div>
-        </section>
+                <p>Your Ripple doesn't have to be big.</p>
 
-        <section class="segment">
-            <div class="segment-card">
-                <img
-                    class="segment-logo"
-                    src="images/Ripple Reflections/MTR_ROTC.png"
-                    alt="Ripple Outside the Classroom"
-                    loading="lazy"
-                >
-                <div class="segment-description">
-<p>Mental health conversations with people working in <strong>education</strong> — including teachers, teaching assistants, administrators, and other education professionals.<br><br>This segment explores the experiences and pressures that can come with supporting others every day, while also recognizing the importance of supporting the people who help our communities learn and grow.</p>
-                </div>
-            </div>
-        </section>
+                <p><strong>It just has to start.</strong></p>
 
-        <section class="segment">
-            <div class="segment-card">
-                <img
-                    class="segment-logo"
-                    src="images/Ripple Reflections/MTR_RR.png"
-                    alt="Ripple Response"
-                    loading="lazy"
-                >
-                <div class="segment-description">
-<p>When someone is experiencing a crisis, there are people who answer the call.<br><br><strong>Ripple Response</strong> opens conversations with those who help others through some of their most difficult moments — including police officers, firefighters, paramedics, doctors, nurses, administrative staff, and other crisis-response professionals.<br><br>We want to look beyond the uniform or job title and talk about the people behind the response.</p>
-                </div>
-            </div>
-        </section>
+                <p>And when you've completed your own quest, <strong>tell us about it.</strong>
+                Leave a comment. Share your story. Repost the quest. Tag Make the Ripple. Tell a friend.</p>
 
-        <section class="segment">
-            <div class="segment-card">
-                <img
-                    class="segment-logo"
-                    src="images/Ripple Reflections/MTR_RWH.png"
-                    alt="Ripple with Heroes"
-                    loading="lazy"
-                >
-                <div class="segment-description">
-<p>A space dedicated to conversations with <strong>military veterans</strong>.<br><br>This segment explores mental health, service, transition, resilience, identity, and the experiences that can continue long after someone’s time in uniform has ended.</p>
-                </div>
-            </div>
-        </section>
+                <p>Because when one person creates a Ripple, it reaches someone else.</p>
 
-        <section class="segment">
-            <div class="segment-card">
-                <img
-                    class="segment-logo"
-                    src="images/Ripple Reflections/MTR_RWL.png"
-                    alt="Ripple Without Limits"
-                    loading="lazy"
-                >
-                <div class="segment-description">
-<p>Mental health conversations with people living with <strong>accessibility needs and chronic pain</strong>.<br><br>This segment explores the experiences, challenges, adaptations, and strengths of people navigating a world that doesn't always accommodate them — while creating space for honest conversations about the connection between physical challenges, accessibility, and mental health.</p>
-                </div>
-            </div>
-        </section>
+                <p>And when enough Ripples come together...</p>
 
-        <section class="segment">
-            <div class="segment-card">
-                <img
-                    class="segment-logo"
-                    src="images/Ripple Reflections/MTR_RWP.png"
-                    alt="Ripple with Pride"
-                    loading="lazy"
-                >
-                <div class="segment-description">
-<p>A space for <strong>LGBTQ+ communities and voices</strong>.<br><br>This segment creates an opportunity for open conversations about mental health, identity, acceptance, belonging, relationships, and the experiences that can shape someone's journey. Most importantly, it creates a space where people can share their stories and know that their voices matter.</p>
-                </div>
-            </div>
-        </section>
+                <p class="quest-final">we can change the whole pond.</p>
 
-        <section class="segment">
-            <div class="segment-card">
-                <img
-                    class="segment-logo"
-                    src="images/Ripple Reflections/MTR_YVBR.png"
-                    alt="Young Voices, Big Ripples"
-                    loading="lazy"
-                >
-                <div class="segment-description">
-<p>Young people have perspectives, experiences, and ideas that deserve to be heard.<br><br><strong>Young Voices, Big Ripples</strong> creates a space for youth and young adults to openly talk about mental health, the pressures they face, their experiences, their hopes, and the changes they want to see in their communities.<br><br>Because sometimes, the smallest voice can make the biggest ripple.</p>
-                </div>
+                <p><strong>The Ripple Quest</strong><br>
+                7 Dice. 1 Quest. Infinite Possibilities.</p>
+
+                <p><strong>Roll the dice. Follow the path. Make the Ripple.</strong></p>
             </div>
-        </section>
+
+            <div class="quest-guild" aria-label="The Ripple Quest Guild">
+                <div class="quest-character"><button class="character-image-button" type="button" data-full-image="images/Auggie - The Rogue - AC.png" data-image-alt="Auggie — The Rogue" aria-label="View full image of Auggie — The Rogue"><img src="images/Auggie - The Rogue - AC.png" alt="Auggie — The Rogue"></button></div>
+                <div class="quest-character"><button class="character-image-button" type="button" data-full-image="images/Evan - The Bard - AC.png" data-image-alt="Evan — The Bard" aria-label="View full image of Evan — The Bard"><img src="images/Evan - The Bard - AC.png" alt="Evan — The Bard"></button></div>
+                <div class="quest-character"><button class="character-image-button" type="button" data-full-image="images/Pebs - The Paladin - AC.png" data-image-alt="Pebs — The Paladin" aria-label="View full image of Pebs — The Paladin"><img src="images/Pebs - The Paladin - AC.png" alt="Pebs — The Paladin"></button></div>
+                <div class="quest-character"><button class="character-image-button" type="button" data-full-image="images/Rucca - The Druid - AC.png" data-image-alt="Rucca — The Druid" aria-label="View full image of Rucca — The Druid"><img src="images/Rucca - The Druid - AC.png" alt="Rucca — The Druid"></button></div>
+            </div>
+        </div>
+    </main>
+
+    <div id="character-lightbox" class="character-lightbox" aria-hidden="true">
+        <button id="character-lightbox-close" class="character-lightbox-close" type="button" aria-label="Close full image">×</button>
+        <img id="character-lightbox-image" src="" alt="">
     </div>
-</main>
 
-<footer id="homebase-footer">
-    <a class="contact-link" href="mailto:info@maketheripple.com">Contact Us</a>
-</footer>
+    <footer id="homebase-footer">
+        <a class="contact-link" href="mailto:info@maketheripple.com">Contact Us</a>
+    </footer>
 
-<script>
-(() => {
-    const menu = document.getElementById("menu-overlay");
-    const openButton = document.getElementById("menu-button");
-    const closeButton = document.getElementById("menu-close");
+    <script>
+    (() => {
+        const lightbox = document.getElementById("character-lightbox");
+        const lightboxImage = document.getElementById("character-lightbox-image");
+        const lightboxClose = document.getElementById("character-lightbox-close");
+        const characterButtons = document.querySelectorAll(".character-image-button");
 
-    if (!menu || !openButton || !closeButton) return;
+        if (!lightbox || !lightboxImage || !lightboxClose) return;
 
-    const openMenu = () => {
-        menu.classList.add("open");
-        menu.setAttribute("aria-hidden", "false");
-        document.body.style.overflow = "hidden";
-        closeButton.focus();
-    };
+        const openLightbox = (button) => {
+            lightboxImage.src = button.dataset.fullImage;
+            lightboxImage.alt = button.dataset.imageAlt || "";
+            lightbox.classList.add("open");
+            lightbox.setAttribute("aria-hidden", "false");
+            document.body.style.overflow = "hidden";
+            lightboxClose.focus();
+        };
 
-    const closeMenu = () => {
-        menu.classList.remove("open");
-        menu.setAttribute("aria-hidden", "true");
-        document.body.style.overflow = "";
-        openButton.focus();
-    };
+        const closeLightbox = () => {
+            lightbox.classList.remove("open");
+            lightbox.setAttribute("aria-hidden", "true");
+            lightboxImage.src = "";
+            document.body.style.overflow = "";
+        };
 
-    openButton.addEventListener("click", openMenu);
-    closeButton.addEventListener("click", closeMenu);
+        characterButtons.forEach(button => {
+            button.addEventListener("click", () => openLightbox(button));
+        });
 
-    menu.addEventListener("click", event => {
-        if (event.target === menu) closeMenu();
-    });
+        lightboxClose.addEventListener("click", closeLightbox);
 
-    menu.querySelectorAll(".menu-links a").forEach(link => {
-        link.addEventListener("click", closeMenu);
-    });
+        lightbox.addEventListener("click", event => {
+            if (event.target === lightbox) closeLightbox();
+        });
 
-    document.addEventListener("keydown", event => {
-        if (event.key === "Escape" && menu.classList.contains("open")) {
-            closeMenu();
-        }
-    });
-})();
-</script>
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape" && lightbox.classList.contains("open")) closeLightbox();
+        });
+    })();
+    </script>
 
+    <script>
+    (() => {
+        const menu = document.getElementById("menu-overlay");
+        const openButton = document.getElementById("menu-button");
+        const closeButton = document.getElementById("menu-close");
+        if (!menu || !openButton || !closeButton) return;
+
+        const openMenu = () => {
+            menu.classList.add("open");
+            menu.setAttribute("aria-hidden", "false");
+            document.body.style.overflow = "hidden";
+            closeButton.focus();
+        };
+
+        const closeMenu = () => {
+            menu.classList.remove("open");
+            menu.setAttribute("aria-hidden", "true");
+            document.body.style.overflow = "";
+            openButton.focus();
+        };
+
+        openButton.addEventListener("click", openMenu);
+        closeButton.addEventListener("click", closeMenu);
+
+        menu.addEventListener("click", event => {
+            if (event.target === menu) closeMenu();
+        });
+
+        menu.querySelectorAll(".menu-links a").forEach(link => {
+            link.addEventListener("click", closeMenu);
+        });
+
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape" && menu.classList.contains("open")) closeMenu();
+        });
+    })();
+    </script>
+    <script src="water.js"></script>
 </body>
 </html>
