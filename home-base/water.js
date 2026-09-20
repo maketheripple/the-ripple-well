@@ -10,11 +10,12 @@
   const layer = document.getElementById("impact-ripples-layer");
 
   /* ---------------------------------------------------------
-     TEST MODE
-     THIS FILE IS A DEDICATED TEST BUILD. It always shows ONE enhanced
-     Impact Ripple only. It does not load Supabase ripples.
+     IMPACT RIPPLE MODE
+     Production build: approved Impact Ripples and Super-Impact Ripples
+     load from Supabase. The enhanced Impact Ripple animation is enabled
+     for normal Impact Ripples below.
   --------------------------------------------------------- */
-  const TEST_IMPACT_RIPPLE = true;
+  const TEST_IMPACT_RIPPLE = false;
 
   /* ---------------------------------------------------------
      RIPPLE PLACEMENT ZONES
@@ -131,8 +132,8 @@
     impactDrop.className = "impact-drop";
     el.appendChild(impactDrop);
 
-    /* Test-only splash crown: small droplets kick upward at the instant of impact. */
-    if (TEST_IMPACT_RIPPLE) {
+    /* Organic splash crown: small droplets kick upward at the instant of impact. */
+    if (true) {
       const splash = document.createElement("span");
       splash.className = "impact-splash";
       /*
@@ -280,16 +281,14 @@
     */
     const waveGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
     const waveRings = [];
-    const ringScales = TEST_IMPACT_RIPPLE ? [.48, .64, .80, .96] : [.54, .72, .90];
-    const ringCharacters = TEST_IMPACT_RIPPLE ? ["primary", "secondary", "tertiary", "tertiary"] : ["primary", "secondary", "tertiary"];
-    const ringPhases = TEST_IMPACT_RIPPLE
-      ? [
-          rand(data.id + "primaryPhase", 0, 6.28),
-          rand(data.id + "secondaryPhase", 0, 6.28),
-          rand(data.id + "tertiaryPhase1", 0, 6.28),
-          rand(data.id + "tertiaryPhase2", 0, 6.28)
-        ]
-      : [rand(data.id + "sharedRingPhase", 0, 6.28), rand(data.id + "secondaryPhase", 0, 6.28), rand(data.id + "tertiaryPhase", 0, 6.28)];
+    const ringScales = [.48, .64, .80, .96];
+    const ringCharacters = ["primary", "secondary", "tertiary", "tertiary"];
+    const ringPhases = [
+      rand(data.id + "primaryPhase", 0, 6.28),
+      rand(data.id + "secondaryPhase", 0, 6.28),
+      rand(data.id + "tertiaryPhase1", 0, 6.28),
+      rand(data.id + "tertiaryPhase2", 0, 6.28)
+    ];
 
     ringScales.forEach((scale, index) => {
       const pathData = makeWavePath(
@@ -331,13 +330,11 @@
        Each ripple starts at a different point in the cycle and uses a
        slightly different duration, while preserving the existing motion.
     */
-    const rippleDelay = TEST_IMPACT_RIPPLE ? 1055 : -rand(data.id + "delay", 0, 11000);
-    const rippleDuration = TEST_IMPACT_RIPPLE ? 2550 : rand(data.id + "duration", 9800, 13200);
-
-    // Test timing: the invisible droplet gets a short, dedicated fall/impact
-    // cycle. The first wave begins just after the droplet reaches the water,
-    // so the cause-and-effect reads clearly instead of looking reversed.
-    const impactDropDuration = TEST_IMPACT_RIPPLE ? 1050 : rippleDuration;
+    /* Winning test timing, now used by every Impact Ripple:
+       invisible droplet falls -> hits water -> first wave begins 5ms later. */
+    const rippleDelay = rand(data.id + "delay", 0, 2550);
+    const rippleDuration = 2550;
+    const impactDropDuration = 1050;
 
     impactDrop.animate(
       TEST_IMPACT_RIPPLE ? [
@@ -375,8 +372,8 @@
          Keep every visual layer on the exact same organic contour. Only
          scale changes, so the rings stay concentric and cannot cross.
       */
-      const ringDelay = rippleDelay + index * (rippleDuration * (TEST_IMPACT_RIPPLE ? .105 : .16));
-      const ringDuration = rippleDuration * (TEST_IMPACT_RIPPLE ? .78 : .56);
+      const ringDelay = rippleDelay + 1055 + index * (rippleDuration * .105);
+      const ringDuration = rippleDuration * .78;
 
       [ring, ringGlow, ringShimmer].forEach(part => {
         part.style.transformOrigin = "50% 50%";
@@ -840,12 +837,12 @@
       transform-origin:center;
     }
 
-    /* Test-only splash crown — used only with ?testRipple=1. */
-    .impact-ripple-test .impact-splash{
+    /* Organic splash crown — used by the production Impact Ripple animation. */
+    .impact-ripple .impact-splash{
       position:absolute;left:50%;top:50%;width:1px;height:1px;
       transform:translate(-50%,-50%);pointer-events:none;z-index:4;
     }
-    .impact-ripple-test .impact-splash-drop{
+    .impact-ripple .impact-splash-drop{
       position:absolute;left:0;top:0;width:var(--splash-size);height:var(--splash-size);
       border-radius:50%;background:rgba(214,250,255,.92);
       box-shadow:0 0 5px rgba(91,224,247,.72),0 0 10px rgba(91,224,247,.28);
@@ -957,23 +954,23 @@
       100%{transform:translate(-50%,-50%) rotate(var(--click-rotation,0deg)) scale(1.25);opacity:0}
     }
 
-    /* Test-only richer water treatment. Normal Impact Ripples are untouched. */
-    .impact-ripple-test .impact-wave-outer{
+    /* Enhanced organic water treatment used by production Impact Ripples. */
+    .impact-ripple .impact-wave-outer{
       stroke:rgba(104,224,247,.26);stroke-width:2.2;
       stroke-dasharray:4 12 9 18 3 24;
       filter:blur(1.6px) drop-shadow(0 0 5px rgba(65,214,241,.22));
     }
-    .impact-ripple-test .impact-wave-glow{
+    .impact-ripple .impact-wave-glow{
       stroke:rgba(83,220,245,.42);stroke-width:5.4;
       stroke-dasharray:7 8 3 17 10 21 5 28;
       filter:blur(2.7px) drop-shadow(0 0 7px rgba(65,214,241,.30));
     }
-    .impact-ripple-test .impact-wave-inner{
+    .impact-ripple .impact-wave-inner{
       stroke:rgba(137,239,251,.94);stroke-width:1.35;
       stroke-dasharray:3 7 11 4 4 17 8 12 2 24 7 5;
       filter:drop-shadow(0 0 2.4px rgba(74,214,239,.20));
     }
-    .impact-ripple-test .impact-wave-shimmer{
+    .impact-ripple .impact-wave-shimmer{
       stroke:rgba(225,252,255,.98);stroke-width:1.65;
       stroke-dasharray:1 22 5 39 2 19 7 54;
       filter:drop-shadow(0 0 3px rgba(190,248,255,.44));
@@ -1105,7 +1102,7 @@
      LOAD APPROVED IMPACT RIPPLES
   --------------------------------------------------------- */
   if (TEST_IMPACT_RIPPLE) {
-    /* One isolated test ripple. No Supabase records are loaded in test mode. */
+    /* Reserved for isolated future testing. Production mode uses Supabase below. */
     addRipple({
       id: "TEST-IMPACT-001",
       message: "Enhanced Impact Ripple animation test",
