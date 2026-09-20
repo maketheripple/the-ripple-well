@@ -27,12 +27,8 @@
             overflow-x: hidden;
         }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
+        a { color: inherit; text-decoration: none; }
 
-        /* Cinematic background */
         .page {
             position: relative;
             min-height: 100vh;
@@ -84,7 +80,6 @@
             background-size: 260px 190px, 330px 230px, 290px 210px, 370px 260px;
         }
 
-        /* Header — matched to The Ripple Well Home Base, without Make a Ripple */
         header {
             position: absolute;
             z-index: 1000;
@@ -105,9 +100,7 @@
             pointer-events: none;
         }
 
-        header > * {
-            pointer-events: auto;
-        }
+        header > * { pointer-events: auto; }
 
         .brand-link {
             position: relative;
@@ -195,7 +188,6 @@
             box-shadow: 0 0 7px rgba(255,255,255,.25);
         }
 
-        /* Mobile header */
         @media(max-width:1050px) {
             header {
                 padding: 16px 4vw;
@@ -203,18 +195,14 @@
             }
 
             .brand-link,
-            .brand-link img {
-                width: 190px;
-            }
+            .brand-link img { width: 190px; }
 
             .brand-link::before {
                 width: 215px;
                 height: 155px;
             }
 
-            .brand-link img {
-                transform: translateY(55px);
-            }
+            .brand-link img { transform: translateY(55px); }
 
             .desktop-nav {
                 gap: 14px;
@@ -229,9 +217,7 @@
             }
 
             .brand-link,
-            .brand-link img {
-                width: 77.5px;
-            }
+            .brand-link img { width: 77.5px; }
 
             .brand-link::before {
                 width: 88px;
@@ -239,13 +225,9 @@
                 top: calc(50% + 14px);
             }
 
-            .brand-link img {
-                transform: translateY(22.5px);
-            }
+            .brand-link img { transform: translateY(22.5px); }
 
-            .desktop-nav {
-                display: none;
-            }
+            .desktop-nav { display: none; }
 
             .menu-button {
                 width: 34px;
@@ -253,7 +235,6 @@
             }
         }
 
-        /* Main content */
         main {
             width: min(1200px, 92vw);
             margin: 0 auto;
@@ -378,8 +359,6 @@
             text-shadow: 0 0 14px rgba(70,224,250,.45);
         }
 
-        /* Mobile content */
-        /* Hamburger menu popup */
         #menu-overlay {
             position: fixed;
             inset: 0;
@@ -469,9 +448,7 @@
                 padding-top: 12vh;
             }
 
-            .intro {
-                margin-bottom: 28px;
-            }
+            .intro { margin-bottom: 28px; }
 
             .ripple-roll-title {
                 width: min(88vw, 620px);
@@ -496,9 +473,7 @@
                 line-height: 1.65;
             }
 
-            .poster-stage {
-                padding: 8px;
-            }
+            .poster-stage { padding: 8px; }
 
             .tagline {
                 font-size: 18px;
@@ -542,17 +517,21 @@
                 <img class="ripple-roll-title" src="images/the-ripple-roll-title.png" alt="The Ripple Roll">
                 <p class="description">
                     Every $50 we donate gives us another roll of the dice. We roll a 20-sided die (D20),
-                    and each number on the die represents a different category of need within our community.
-                    Whatever number the die lands on determines where that $50 donation will go.
-                    One roll might help provide food. Another might support clothing, personal care items,
-                    mental health resources, shelter, or another community need.
+                    and each number on the die represents a different food option we can purchase for people
+                    in need within our community. Whatever number the die lands on determines what type of
+                    food that $50 will go toward.
+                    <br><br>
+                    One roll might get coffee and baked goods, while another means shopping at a grocery store.
+                    Another roll could mean shopping at a membership warehouse, while another could get burgers
+                    from a fast-food restaurant. And finally, the last option is to save the $50 and add it to
+                    the next pot.
                     <br><br>
                     The goal is simple:
                     <br>
                     <strong>We roll. We give. We make the Ripple.</strong>
                     <br><br>
-                    Every $50 becomes a new opportunity to help someone who needs it — and every roll
-                    creates another ripple of kindness throughout our community.
+                    Every $50 becomes a new opportunity to put food in someone's hands — and every roll creates
+                    another ripple of kindness throughout our community.
                 </p>
             </section>
 
