@@ -143,7 +143,7 @@ button{font:inherit}
 
 .ripple-guild-logo-wrap{
     width:min(760px,90vw);
-    margin:28px auto 10px;
+    margin:28px auto 0;
     display:flex;
     justify-content:center;
 }
@@ -152,6 +152,11 @@ button{font:inherit}
     display:block;
     width:min(760px,90vw);
     height:auto;
+}
+
+/* Keep Pebs directly beneath the Ripple Guild logo. */
+.ripple-guild-logo-wrap + .adventurer-intro{
+    margin-top:0 !important;
 }
 </style>
 </head>
@@ -322,6 +327,18 @@ function setAdventurerSpacing(){
         pebsTitle.style.marginTop = (cards[0].getBoundingClientRect().height / 2) + 'px';
     }
 }
+
+function setRippleGuildLogoSpacing(){
+    const logoWrap = document.querySelector('.ripple-guild-logo-wrap');
+    const logo = document.querySelector('.ripple-guild-logo');
+
+    if (logoWrap && logo) {
+        logoWrap.style.marginTop = logo.getBoundingClientRect().height + 'px';
+    }
+}
+
+window.addEventListener('load', setRippleGuildLogoSpacing);
+window.addEventListener('resize', setRippleGuildLogoSpacing);
 
 window.addEventListener('load', setAdventurerSpacing);
 window.addEventListener('resize', setAdventurerSpacing);
