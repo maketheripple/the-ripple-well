@@ -135,13 +135,24 @@
     if (TEST_IMPACT_RIPPLE) {
       const splash = document.createElement("span");
       splash.className = "impact-splash";
-      for (let i = 0; i < 9; i++) {
+      /*
+         The crown is deliberately asymmetric. A real droplet does not create
+         evenly spaced spokes, so each splash has its own angle, height, size,
+         and timing. The center/front stays quieter while a few droplets jump
+         higher than the others.
+      */
+      const splashAngles = [-86, -69, -49, -31, -9, 14, 34, 53, 71, 91, 112];
+      for (let i = 0; i < splashAngles.length; i++) {
         const droplet = document.createElement("span");
         droplet.className = "impact-splash-drop";
-        droplet.style.setProperty("--splash-angle", `${-82 + i * 20 + rand(data.id + "sa" + i, -5, 5)}deg`);
-        droplet.style.setProperty("--splash-distance", `${rand(data.id + "sd" + i, 18, 38)}px`);
-        droplet.style.setProperty("--splash-size", `${rand(data.id + "ss" + i, 2.2, 4.4)}px`);
-        droplet.style.setProperty("--splash-delay", `${rand(data.id + "sl" + i, 0, 55)}ms`);
+        const angleJitter = rand(data.id + "sa" + i, -7, 7);
+        const distance = rand(data.id + "sd" + i, 15, 43) * (i === 2 || i === 8 ? 1.16 : 1);
+        const size = rand(data.id + "ss" + i, 1.8, 4.1) * (i === 3 || i === 7 ? 1.12 : 1);
+        const delay = rand(data.id + "sl" + i, 0, 65);
+        droplet.style.setProperty("--splash-angle", `${splashAngles[i] + angleJitter}deg`);
+        droplet.style.setProperty("--splash-distance", `${distance.toFixed(1)}px`);
+        droplet.style.setProperty("--splash-size", `${size.toFixed(1)}px`);
+        droplet.style.setProperty("--splash-delay", `${delay.toFixed(0)}ms`);
         splash.appendChild(droplet);
       }
       el.appendChild(splash);
@@ -154,7 +165,7 @@
     svg.setAttribute("aria-hidden", "true");
     svg.classList.add("impact-wave-svg");
 
-    const makeWavePath = (id, scale, phase) => {
+    const makeWavePath = (id, scale, phase, character = "primary") => {
       const points = [];
       const count = 72;
 
@@ -166,23 +177,39 @@
       for (let i = 0; i < count; i++) {
         const a = (Math.PI * 2 * i) / count;
 
+        /*
+           Each wave has a subtly different personality. The primary wave is
+           broader and calmer; the secondary wave is slightly lopsided; later
+           waves are softer and more fragmented. They are related shapes, not
+           copies, which prevents the "perfect expanding circles" look.
+        */
+        const settings = character === "primary"
+          ? { low: [6.2, 10.0], mid: [2.8, 6.2], high: [1.0, 3.0], fine: [.4, 1.5], ratio: [.44, .70], drift: 0 }
+          : character === "secondary"
+            ? { low: [5.0, 8.2], mid: [3.4, 7.0], high: [1.2, 3.8], fine: [.5, 1.8], ratio: [.38, .64], drift: .42 }
+            : { low: [3.8, 7.0], mid: [2.2, 5.4], high: [.9, 3.0], fine: [.35, 1.45], ratio: [.34, .58], drift: -.31 };
+
         const low =
-          Math.sin(a * 3 + phase) * rand(id + "low" + i, 5.5, 9.5);
+          Math.sin(a * 3 + phase + settings.drift) * rand(id + "low" + i, settings.low[0], settings.low[1]);
 
         const mid =
-          Math.sin(a * 5 - phase * 1.35) * rand(id + "mid" + i, 3.0, 6.5);
+          Math.sin(a * 5 - phase * 1.35 + settings.drift * 2.1) * rand(id + "mid" + i, settings.mid[0], settings.mid[1]);
 
         const high =
-          Math.sin(a * 9 + phase * .72) * rand(id + "high" + i, 1.2, 3.4);
+          Math.sin(a * 9 + phase * .72 - settings.drift) * rand(id + "high" + i, settings.high[0], settings.high[1]);
 
         const irregular =
-          Math.sin(a * 13 - phase * 1.9) * rand(id + "fine" + i, .4, 1.6);
+          Math.sin(a * 13 - phase * 1.9 + settings.drift * 1.7) * rand(id + "fine" + i, settings.fine[0], settings.fine[1]);
 
-        const deformation = low + mid + high + irregular;
+        /* A very low-frequency offset gives each contour a tiny lopsided bulge. */
+        const broadBulge =
+          Math.sin(a * 2 - phase * .6 + settings.drift) * rand(id + "bulge" + i, 0.8, 2.8);
+
+        const deformation = low + mid + high + irregular + broadBulge;
 
         /* Independent X/Y deformation prevents a smooth oval. */
         const x = (82 + deformation) * scale;
-        const y = (34 + deformation * rand(id + "ratio" + i, .42, .72)) * scale;
+        const y = (34 + deformation * rand(id + "ratio" + i, settings.ratio[0], settings.ratio[1])) * scale;
 
         points.push([
           100 + Math.cos(a) * x,
@@ -254,19 +281,29 @@
     const waveGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
     const waveRings = [];
     const ringScales = TEST_IMPACT_RIPPLE ? [.48, .64, .80, .96] : [.54, .72, .90];
-    const sharedRingPhase = rand(data.id + "sharedRingPhase", 0, 6.28);
+    const ringCharacters = TEST_IMPACT_RIPPLE ? ["primary", "secondary", "tertiary", "tertiary"] : ["primary", "secondary", "tertiary"];
+    const ringPhases = TEST_IMPACT_RIPPLE
+      ? [
+          rand(data.id + "primaryPhase", 0, 6.28),
+          rand(data.id + "secondaryPhase", 0, 6.28),
+          rand(data.id + "tertiaryPhase1", 0, 6.28),
+          rand(data.id + "tertiaryPhase2", 0, 6.28)
+        ]
+      : [rand(data.id + "sharedRingPhase", 0, 6.28), rand(data.id + "secondaryPhase", 0, 6.28), rand(data.id + "tertiaryPhase", 0, 6.28)];
 
     ringScales.forEach((scale, index) => {
       const pathData = makeWavePath(
-        data.id + "sharedRingContour",
+        data.id + "ringContour" + index,
         scale,
-        sharedRingPhase
+        ringPhases[index],
+        ringCharacters[index]
       );
 
       /*
-         Three visual layers make the disturbance read as water rather than
+         Three visual layers make each disturbance read as water rather than
          a graphic outline: a soft reflected glow, a broken water crest,
-         and tiny bright surface highlights. All three share the same path.
+         and tiny bright surface highlights. Each ring keeps its own organic
+         contour so the primary and secondary waves do not look cloned.
       */
       const ringGlow = document.createElementNS("http://www.w3.org/2000/svg", "path");
       ringGlow.classList.add("impact-wave", "impact-wave-glow");
