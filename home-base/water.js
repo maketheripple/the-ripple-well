@@ -28,6 +28,10 @@
   const placedRippleFootprints = [];
   const RIPPLE_SEPARATION = 1.12;
 
+  /* On mobile, never use the old overlap-producing fallback. */
+  const IS_MOBILE_RIPPLE_LAYOUT = window.matchMedia("(max-width:760px)").matches;
+  const MAX_RIPPLE_PLACEMENT_ATTEMPTS = IS_MOBILE_RIPPLE_LAYOUT ? 500 : 80;
+
   function rippleFootprint(size, isSuper) {
     const dimensions = { small: [90,45], medium: [130,65], large: [175,88], "extra-large": [230,115] };
     const [w,h] = dimensions[sizeClass(size)] || dimensions.medium;
@@ -43,7 +47,7 @@
     const rect = layer ? layer.getBoundingClientRect() : {width:window.innerWidth,height:window.innerHeight};
     const fp = rippleFootprint(data.size,isSuper);
     const suffix = isSuper ? "super" : "normal";
-    for (let attempt=0; attempt<80; attempt++) {
+    for (let attempt=0; attempt<MAX_RIPPLE_PLACEMENT_ATTEMPTS; attempt++) {
       const x = rand(data.id+suffix+"x"+attempt,xMin,xMax)/100*rect.width;
       const y = rand(data.id+suffix+"y"+attempt,yMin,yMax)/100*rect.height;
       const candidate={x,y,halfW:fp.halfW,halfH:fp.halfH};
@@ -52,6 +56,17 @@
         return {x:x/rect.width*100,y:y/rect.height*100};
       }
     }
+
+    /*
+       Mobile rule: if there is genuinely no room left, skip this ripple.
+       This guarantees that Impact and Super-Impact Ripples never overlap.
+       Desktop keeps the original fallback behavior unchanged.
+    */
+    if (IS_MOBILE_RIPPLE_LAYOUT) {
+      console.warn(`No non-overlapping position available for ${suffix} ripple ${data.id}; ripple skipped on mobile.`);
+      return null;
+    }
+
     const x=rand(data.id+suffix+"fallbackX",xMin,xMax)/100*rect.width;
     const y=rand(data.id+suffix+"fallbackY",yMin,yMax)/100*rect.height;
     placedRippleFootprints.push({x,y,halfW:fp.halfW,halfH:fp.halfH});
@@ -87,6 +102,7 @@
     const hitbox = document.createElement("div");
     hitbox.className = `impact-hitbox impact-size-${sizeClass(data.size)}`;
     const position = chooseRipplePosition(data, IMPACT_X_MIN, IMPACT_X_MAX, IMPACT_Y_MIN, IMPACT_Y_MAX, false);
+    if (!position) return;
     hitbox.style.left = `${position.x}%`;
     hitbox.style.top = `${position.y}%`;
     hitbox.style.setProperty("--rotation", `${rand(data.id + "r", -28, 28)}deg`);
@@ -383,6 +399,7 @@
     const hitbox = document.createElement("div");
     hitbox.className = `impact-hitbox super-impact-hitbox impact-size-${sizeClass(data.size)}`;
     const position = chooseRipplePosition(data, SUPER_X_MIN, SUPER_X_MAX, SUPER_Y_MIN, SUPER_Y_MAX, true);
+    if (!position) return;
     hitbox.style.left = `${position.x}%`;
     hitbox.style.top = `${position.y}%`;
     hitbox.style.setProperty("--rotation", `${rand(data.id + "r", -10, 10)}deg`);
