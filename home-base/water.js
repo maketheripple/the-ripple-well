@@ -927,11 +927,16 @@
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
 
-    /* Keep click-ripples below the upper moon/header/title area. On mobile
-       the boundary is raised so the lower Well becomes interactive sooner. */
-    const CLICK_RIPPLE_Y_MIN = 10;
-    const clickYPercent = (y / rect.height) * 100;
-    if (clickYPercent < CLICK_RIPPLE_Y_MIN) return;
+    /* Keep click-ripples below the title with an additional buffer equal
+       to two full heights of the "THE RIPPLE WELL" title. This keeps the
+       upper title area clear while allowing the lower Well to remain interactive. */
+    const heroTitle = document.querySelector(".hero-title");
+    if (heroTitle) {
+      const titleRect = heroTitle.getBoundingClientRect();
+      const titleBottom = titleRect.bottom - rect.top;
+      const clickMinY = titleBottom + (titleRect.height * 2);
+      if (y < clickMinY) return;
+    }
 
     /* The click-ripple is only a water interaction. Keep it below the
        hero title and other intentional foreground content. */
