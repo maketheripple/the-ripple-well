@@ -139,7 +139,12 @@ button{font:inherit}
   .quest-character img{max-height:430px}
   .contact-link{font-size:12px;padding-left:12px}
 }
-    </style>
+    
+/* Move the complete Ripple Quest content downward by half an adventurer card. */
+.quest-page-shift{
+    transform: translateY(calc(var(--adventurer-half-height, 0px)));
+}
+</style>
 </head>
 <body>
     <header id="homebase-header">
@@ -175,7 +180,7 @@ button{font:inherit}
         </div>
     </div>
 
-    <main id="quest-page">
+    <main id="quest-page" class="quest-page-shift">
         <div class="quest-content">
             <img class="quest-title" src="images/the-ripple-quest-title.png" alt="The Ripple Quest">
 
@@ -280,6 +285,13 @@ button{font:inherit}
    and the same amount of space before the first adventurer title. */
 function setAdventurerSpacing(){
     const cards = document.querySelectorAll('.adventurer-card-button');
+
+    if (cards.length) {
+        document.documentElement.style.setProperty(
+            '--adventurer-half-height',
+            (cards[0].getBoundingClientRect().height / 2) + 'px'
+        );
+    }
 
     cards.forEach((card, index) => {
         if (index < cards.length - 1) {
