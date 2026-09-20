@@ -48,7 +48,7 @@ button{font:inherit}
     display:block;
     width:min(420px,72vw);
     padding:0;
-    margin:42px auto 82px;
+    margin:18px auto 0;
     border:0;
     background:transparent;
     cursor:pointer;
@@ -275,6 +275,21 @@ button{font:inherit}
     </footer>
 
     <script>
+/* Keep a half-card-height gap between each adventurer. */
+function setAdventurerSpacing(){
+    const cards = document.querySelectorAll('.adventurer-card-button');
+    cards.forEach((card, index) => {
+        if (index < cards.length - 1) {
+            card.style.marginBottom = (card.getBoundingClientRect().height / 2) + 'px';
+        } else {
+            card.style.marginBottom = '0';
+        }
+    });
+}
+
+window.addEventListener('load', setAdventurerSpacing);
+window.addEventListener('resize', setAdventurerSpacing);
+
     (() => {
         const lightbox = document.getElementById("character-lightbox");
         const lightboxImage = document.getElementById("character-lightbox-image");
