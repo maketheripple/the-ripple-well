@@ -44,11 +44,25 @@ button{font:inherit}
 .quest-description .quest-dice{color:#79eaff;font-weight:700}
 .quest-description .quest-final{font-size:clamp(20px,2vw,27px);color:#eefaff;font-weight:700}
 .quest-description strong{color:#eefaff}
-.adventurer-card{
+.adventurer-card-button{
     display:block;
     width:min(420px,72vw);
-    height:auto;
+    padding:0;
     margin:18px auto 30px;
+    border:0;
+    background:transparent;
+    cursor:pointer;
+}
+.adventurer-card-button:focus-visible{
+    outline:2px solid #63e6ff;
+    outline-offset:5px;
+    border-radius:6px;
+}
+.adventurer-card{
+    display:block;
+    width:100%;
+    height:auto;
+    margin:0;
     filter:drop-shadow(0 8px 18px rgba(0,0,0,.65)) drop-shadow(0 0 12px rgba(50,211,243,.18));
 }
 .quest-description .action-sheet-inline{
@@ -172,19 +186,39 @@ button{font:inherit}
 
                 <p><strong>Pebs — The Paladin</strong><br>
                 A champion of compassion, standing ready to defend those who need a helping hand.</p>
-                <img class="adventurer-card" src="images/Pebs - The Paladin - AC.png" alt="Pebs — The Paladin adventurer card">
+                <button class="character-image-button adventurer-card-button" type="button"
+                        data-full-image="images/Pebs - The Paladin - AC.png"
+                        data-image-alt="Pebs — The Paladin adventurer card"
+                        aria-label="View full Pebs — The Paladin adventurer card">
+                    <img class="adventurer-card" src="images/Pebs - The Paladin - AC.png" alt="Pebs — The Paladin adventurer card">
+                </button>
 
                 <p><strong>Evan — The Bard</strong><br>
                 The storyteller of the guild, carrying the tales of every Ripple and inspiring others to join the quest.</p>
-                <img class="adventurer-card" src="images/Evan - The Bard - AC.png" alt="Evan — The Bard adventurer card">
+                <button class="character-image-button adventurer-card-button" type="button"
+                        data-full-image="images/Evan - The Bard - AC.png"
+                        data-image-alt="Evan — The Bard adventurer card"
+                        aria-label="View full Evan — The Bard adventurer card">
+                    <img class="adventurer-card" src="images/Evan - The Bard - AC.png" alt="Evan — The Bard adventurer card">
+                </button>
 
                 <p><strong>Auggie — The Rogue</strong><br>
                 Quick, clever, and always ready to sneak a little kindness where it's needed most.</p>
-                <img class="adventurer-card" src="images/Auggie - The Rogue - AC.png" alt="Auggie — The Rogue adventurer card">
+                <button class="character-image-button adventurer-card-button" type="button"
+                        data-full-image="images/Auggie - The Rogue - AC.png"
+                        data-image-alt="Auggie — The Rogue adventurer card"
+                        aria-label="View full Auggie — The Rogue adventurer card">
+                    <img class="adventurer-card" src="images/Auggie - The Rogue - AC.png" alt="Auggie — The Rogue adventurer card">
+                </button>
 
                 <p><strong>Rucca — The Druid</strong><br>
                 Connected to the world around her, reminding the guild that every living thing deserves care and kindness.</p>
-                <img class="adventurer-card" src="images/Rucca - The Druid - AC.png" alt="Rucca — The Druid adventurer card">
+                <button class="character-image-button adventurer-card-button" type="button"
+                        data-full-image="images/Rucca - The Druid - AC.png"
+                        data-image-alt="Rucca — The Druid adventurer card"
+                        aria-label="View full Rucca — The Druid adventurer card">
+                    <img class="adventurer-card" src="images/Rucca - The Druid - AC.png" alt="Rucca — The Druid adventurer card">
+                </button>
 
                 <p>Together, the Ripple Guild embarks on <strong>The Ripple Quest.</strong></p>
 
@@ -228,12 +262,6 @@ button{font:inherit}
                 <p><strong>Roll the dice. Follow the path. Make the Ripple.</strong></p>
             </div>
 
-            <div class="quest-guild" aria-label="The Ripple Quest Guild">
-                <div class="quest-character"><button class="character-image-button" type="button" data-full-image="images/Auggie - The Rogue - AC.png" data-image-alt="Auggie — The Rogue" aria-label="View full image of Auggie — The Rogue"><img src="images/Auggie - The Rogue - AC.png" alt="Auggie — The Rogue"></button></div>
-                <div class="quest-character"><button class="character-image-button" type="button" data-full-image="images/Evan - The Bard - AC.png" data-image-alt="Evan — The Bard" aria-label="View full image of Evan — The Bard"><img src="images/Evan - The Bard - AC.png" alt="Evan — The Bard"></button></div>
-                <div class="quest-character"><button class="character-image-button" type="button" data-full-image="images/Pebs - The Paladin - AC.png" data-image-alt="Pebs — The Paladin" aria-label="View full image of Pebs — The Paladin"><img src="images/Pebs - The Paladin - AC.png" alt="Pebs — The Paladin"></button></div>
-                <div class="quest-character"><button class="character-image-button" type="button" data-full-image="images/Rucca - The Druid - AC.png" data-image-alt="Rucca — The Druid" aria-label="View full image of Rucca — The Druid"><img src="images/Rucca - The Druid - AC.png" alt="Rucca — The Druid"></button></div>
-            </div>
         </div>
     </main>
 
