@@ -266,6 +266,30 @@
             text-shadow: 0 0 22px rgba(60, 215, 250, .34);
         }
 
+        .ripple-roll-title {
+            display: block;
+            width: min(760px, 88vw);
+            max-height: 220px;
+            object-fit: contain;
+            margin: 0 auto 28px;
+            filter:
+                drop-shadow(0 0 10px rgba(55,219,246,.72))
+                drop-shadow(0 0 24px rgba(55,219,246,.32));
+        }
+
+        .action-sheet-title {
+            width: min(820px, 100%);
+            margin: 46px auto 22px;
+            text-align: center;
+            font-size: clamp(24px, 3.5vw, 38px);
+            font-weight: 400;
+            letter-spacing: .10em;
+            color: #eefaff;
+            text-shadow:
+                0 0 12px rgba(92,210,255,.30),
+                0 0 24px rgba(92,210,255,.12);
+        }
+
         .intro-kicker {
             margin: 0 0 12px;
             font-size: 13px;
@@ -322,7 +346,7 @@
 
         .description {
             width: min(780px, 100%);
-            margin: 26px auto 0;
+            margin: 0 auto;
             text-align: center;
             font-size: 18px;
             line-height: 1.8;
@@ -449,6 +473,19 @@
                 margin-bottom: 28px;
             }
 
+            .ripple-roll-title {
+                width: min(88vw, 620px);
+                max-height: 150px;
+                margin-bottom: 22px;
+            }
+
+            .action-sheet-title {
+                margin-top: 34px;
+                margin-bottom: 16px;
+                font-size: clamp(22px, 6vw, 30px);
+                letter-spacing: .07em;
+            }
+
             .intro h1 {
                 font-size: clamp(40px, 13vw, 68px);
                 letter-spacing: .08em;
@@ -502,10 +539,31 @@
 
         <main>
             <section class="intro">
+                <img class="ripple-roll-title" src="images/the-ripple-roll-title.png" alt="The Ripple Roll">
+                <p class="description">
+                    Every $50 we donate gives us another roll of the dice. We roll a 20-sided die (D20),
+                    and each number on the die represents a different category of need within our community.
+                    Whatever number the die lands on determines where that $50 donation will go.
+                    One roll might help provide food. Another might support clothing, personal care items,
+                    mental health resources, shelter, or another community need.
+                    <br><br>
+                    The goal is simple:
+                    <br>
+                    <strong>We roll. We give. We make the Ripple.</strong>
+                    <br><br>
+                    Every $50 becomes a new opportunity to help someone who needs it — and every roll
+                    creates another ripple of kindness throughout our community.
+                </p>
             </section>
 
             <section class="poster-stage" aria-label="The Ripple Roll poster">
                 <img src="images/ripple-roll-poster.png" alt="The Ripple Roll poster">
+            </section>
+
+            <h2 class="action-sheet-title">Ripple Roll - Action Sheet</h2>
+
+            <section class="poster-stage" aria-label="Ripple Roll Action Sheet">
+                <img src="images/D20 Action Sheet.png" alt="Ripple Roll D20 Action Sheet">
             </section>
 
         </main>
