@@ -331,7 +331,7 @@
        Each ripple starts at a different point in the cycle and uses a
        slightly different duration, while preserving the existing motion.
     */
-    const rippleDelay = TEST_IMPACT_RIPPLE ? 1080 : -rand(data.id + "delay", 0, 11000);
+    const rippleDelay = TEST_IMPACT_RIPPLE ? 1055 : -rand(data.id + "delay", 0, 11000);
     const rippleDuration = TEST_IMPACT_RIPPLE ? 2550 : rand(data.id + "duration", 9800, 13200);
 
     // Test timing: the invisible droplet gets a short, dedicated fall/impact
