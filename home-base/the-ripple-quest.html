@@ -40,6 +40,7 @@ button{font:inherit}
 }
 .quest-description p{margin:0 0 24px}
 .quest-description .quest-intro{font-size:clamp(20px,2vw,27px);color:#eefaff}
+.quest-description .guild-intro{margin:0 auto 52px;}
 .quest-description .quest-heading{font-size:clamp(23px,2.4vw,32px);color:#79eaff;letter-spacing:.08em}
 .quest-description .guild-name{font-weight:700;color:#eefaff}
 .quest-description .quest-dice{color:#79eaff;font-weight:700}
@@ -69,7 +70,7 @@ button{font:inherit}
 .quest-description .action-sheet-inline{
     display:block;
     width:min(550px,70vw);
-    margin:34px auto 38px;
+    margin:34px auto 52px;
     padding:0;
     background:transparent;
     border:0;
@@ -138,12 +139,15 @@ button{font:inherit}
   .quest-guild{width:min(94vw,700px);grid-template-columns:repeat(2,1fr);gap:8px 12px}
   .quest-character img{max-height:430px}
   .contact-link{font-size:12px;padding-left:12px}
+  .quest-description .action-sheet-inline{margin-bottom:38px}
+  .quest-description .guild-intro{margin-bottom:38px}
 }
+
     
 
 .ripple-guild-logo-wrap{
     width:min(760px,90vw);
-    margin:28px auto 0;
+    margin:0 auto 0;
     display:flex;
     justify-content:center;
 }
@@ -221,7 +225,7 @@ button{font:inherit}
                     </button>
                 </div>
 
-<p>Across the land, a new guild has formed — <span class="guild-name">The Ripple Guild</span>.
+<p class="guild-intro">Across the land, a new guild has formed — <span class="guild-name">The Ripple Guild</span>.
                 Four unlikely adventurers have answered the call:</p>
 
 
@@ -342,18 +346,6 @@ function setAdventurerSpacing(){
         pebsTitle.style.marginTop = (cards[0].getBoundingClientRect().height / 2) + 'px';
     }
 }
-
-function setRippleGuildLogoSpacing(){
-    const logoWrap = document.querySelector('.ripple-guild-logo-wrap');
-    const logo = document.querySelector('.ripple-guild-logo');
-
-    if (logoWrap && logo) {
-        logoWrap.style.marginTop = logo.getBoundingClientRect().height + 'px';
-    }
-}
-
-window.addEventListener('load', setRippleGuildLogoSpacing);
-window.addEventListener('resize', setRippleGuildLogoSpacing);
 
 window.addEventListener('load', setAdventurerSpacing);
 window.addEventListener('resize', setAdventurerSpacing);
