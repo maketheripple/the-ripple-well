@@ -40,8 +40,7 @@ button{font:inherit}
 }
 .quest-description p{margin:0 0 24px}
 .quest-description .quest-intro{font-size:clamp(20px,2vw,27px);color:#eefaff}
-.quest-description .guild-intro{margin:0 auto 0;}
-.quest-description .quest-heading{font-size:clamp(23px,2.4vw,32px);color:#79eaff;letter-spacing:.08em}
+.quest-description .quest-heading{font-size:clamp(69px,7.2vw,96px);color:#79eaff;letter-spacing:.08em;line-height:1.08}
 .quest-description .guild-name{font-weight:700;color:#eefaff}
 .quest-description .quest-dice{color:#79eaff;font-weight:700}
 .quest-description .quest-final{font-size:clamp(20px,2vw,27px);color:#eefaff;font-weight:700}
@@ -70,7 +69,7 @@ button{font:inherit}
 .quest-description .action-sheet-inline{
     display:block;
     width:min(550px,70vw);
-    margin:34px auto 0;
+    margin:34px auto 38px;
     padding:0;
     background:transparent;
     border:0;
@@ -139,15 +138,12 @@ button{font:inherit}
   .quest-guild{width:min(94vw,700px);grid-template-columns:repeat(2,1fr);gap:8px 12px}
   .quest-character img{max-height:430px}
   .contact-link{font-size:12px;padding-left:12px}
-  .quest-description .action-sheet-inline{margin-bottom:0}
-  .quest-description .guild-intro{margin-bottom:0}
 }
-
     
 
 .ripple-guild-logo-wrap{
     width:min(760px,90vw);
-    margin:0 auto 0;
+    margin:28px auto 0;
     display:flex;
     justify-content:center;
 }
@@ -160,7 +156,7 @@ button{font:inherit}
 
 /* Keep Pebs directly beneath the Ripple Guild logo. */
 .ripple-guild-logo-wrap + .adventurer-intro{
-    margin-top:0 !important;
+    margin-top:var(--guild-half-logo-gap, 0px) !important;
 }
 
 /* Adventurer titles — trial at 4x their previous size. */
@@ -225,7 +221,7 @@ button{font:inherit}
                     </button>
                 </div>
 
-<p class="guild-intro">Across the land, a new guild has formed — <span class="guild-name">The Ripple Guild</span>.
+<p>Across the land, a new guild has formed — <span class="guild-name">The Ripple Guild</span>.
                 Four unlikely adventurers have answered the call:</p>
 
 
@@ -280,7 +276,7 @@ button{font:inherit}
 
                 
 
-                <p class="quest-heading"><strong>That's where you come in.</strong></p>
+                <p class="quest-heading"><strong>That's where you come in!!!</strong></p>
 
                 <p>Once the Guild discovers its Ripple, <strong>we challenge you to take that same Ripple into your own world.</strong>
                 Maybe it's helping a stranger, buying someone a coffee, checking in on a friend, picking up litter,
@@ -347,22 +343,34 @@ function setAdventurerSpacing(){
     }
 }
 
-function setGuildIntroSpacing(){
+function setRippleGuildLogoSpacing(){
+    const logoWrap = document.querySelector('.ripple-guild-logo-wrap');
     const logo = document.querySelector('.ripple-guild-logo');
-    const actionSheet = document.querySelector('.action-sheet-inline');
-    const guildIntro = document.querySelector('.guild-intro');
+    const adventurerIntro = document.querySelector('.adventurer-intro');
+    const questHeading = document.querySelector('.quest-heading');
 
-    if (!logo || !actionSheet || !guildIntro) return;
+    if (logoWrap && logo) {
+        const logoHeight = logo.getBoundingClientRect().height;
+        const halfLogoHeight = logoHeight / 2;
 
-    /* The two gaps are deliberately identical to the rendered height of the
-       Ripple Guild logo, so the spacing stays proportional on every screen. */
-    const gap = logo.getBoundingClientRect().height;
-    actionSheet.style.marginBottom = `${gap}px`;
-    guildIntro.style.marginBottom = `${gap}px`;
+        /* Keep the existing full-logo gap above the Guild logo. */
+        logoWrap.style.marginTop = logoHeight + 'px';
+
+        /* Move all content after the Guild logo down by half its rendered height. */
+        if (adventurerIntro) {
+            adventurerIntro.style.setProperty('--guild-half-logo-gap', halfLogoHeight + 'px');
+            adventurerIntro.style.marginTop = halfLogoHeight + 'px';
+        }
+
+        /* Make the attention-grabbing callout sit one full logo height lower. */
+        if (questHeading) {
+            questHeading.style.marginTop = logoHeight + 'px';
+        }
+    }
 }
 
-window.addEventListener('load', setGuildIntroSpacing);
-window.addEventListener('resize', setGuildIntroSpacing);
+window.addEventListener('load', setRippleGuildLogoSpacing);
+window.addEventListener('resize', setRippleGuildLogoSpacing);
 
 window.addEventListener('load', setAdventurerSpacing);
 window.addEventListener('resize', setAdventurerSpacing);
