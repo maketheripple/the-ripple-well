@@ -330,11 +330,7 @@ function setAdventurerSpacing(){
     }
 
     cards.forEach((card, index) => {
-        if (index < cards.length - 1) {
-            card.style.marginBottom = (card.getBoundingClientRect().height / 2) + 'px';
-        } else {
-            card.style.marginBottom = '0';
-        }
+        card.style.marginBottom = (card.getBoundingClientRect().height / 2) + 'px';
     });
 
     const pebsTitle = document.querySelector('.adventurer-intro');
@@ -353,8 +349,14 @@ function setRippleGuildLogoSpacing(){
         const logoHeight = logo.getBoundingClientRect().height;
         const halfLogoHeight = logoHeight / 2;
 
+        /* Keep the existing full-logo gap between the Action Sheet and Guild intro. */
+        const actionSheet = document.querySelector('.action-sheet-inline');
+        const guildIntro = document.querySelector('.quest-description > p:nth-of-type(3)');
+        if (actionSheet) actionSheet.style.marginBottom = logoHeight + 'px';
+        if (guildIntro) guildIntro.style.marginBottom = logoHeight + 'px';
+
         /* Keep the existing full-logo gap above the Guild logo. */
-        logoWrap.style.marginTop = logoHeight + 'px';
+        logoWrap.style.marginTop = 0;
 
         /* Move all content after the Guild logo down by half its rendered height. */
         if (adventurerIntro) {
